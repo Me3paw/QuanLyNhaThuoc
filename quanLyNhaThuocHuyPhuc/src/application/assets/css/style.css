@@ -1,0 +1,429 @@
+/* Basic Setup */
+.root {
+    -fx-font-family: "Arial", sans-serif; /* Fallback font */
+    -fx-font-size: 14px;
+    -fx-base: #120C0D; /* Dark background */
+    -fx-background-color: #120C0D;
+}
+
+.main-area-background {
+     -fx-background-color: #120C0D;
+}
+
+.component-panel {
+     -fx-background-color: #1B1617;
+     -fx-border-radius: 4px;
+     -fx-background-radius: 4px;
+}
+
+/* ScrollPane Styles (General) */
+.scroll-pane {
+   -fx-background-color: transparent; /* Make background transparent */
+}
+.scroll-pane > .viewport {
+   -fx-background-color: transparent; /* Viewport background transparent */
+}
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color:transparent;
+    -fx-padding: 2; /* Add some padding */
+}
+.scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius: 2em;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #444444; /* Darker gray thumb */
+    -fx-background-radius: 5em;
+}
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 5; /* Size of arrows */
+}
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow{
+    -fx-shape: " "; /* Hide default arrows if needed */
+    -fx-padding: 0;
+}
+
+/* Specific style for the cart scrollpane */
+.cart-scroll-pane {
+     -fx-background-insets: 0;
+     -fx-padding: 0;
+}
+.cart-scroll-pane > .viewport {
+   /* Ensure viewport matches component background */
+    -fx-background-color: #1B1617;
+}
+
+
+/* Labels */
+.label {
+    -fx-text-fill: #FFFFFF; /* White text */
+}
+
+.panel-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.form-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 5 0 0 0; /* Align slightly better with textfield */
+}
+.form-label-accent {
+    -fx-font-size: 15px;
+    -fx-text-fill: #D82027; /* Reddish color */
+    -fx-font-weight: bold;
+     -fx-padding: 5 0 0 0;
+}
+
+
+/* TextFields & TextArea */
+.text-field, .text-area {
+    -fx-background-color: #1B1617; /* Component background */
+    -fx-text-fill: #BABABA; /* Gray text */
+    -fx-border-color: #2A2A2A; /* Border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-prompt-text-fill: #555555;
+     -fx-font-size: 14px;
+     -fx-padding: 5px 8px;
+}
+.text-area .content {
+     -fx-background-color: #1B1617; /* Ensure content background matches */
+}
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #ED6214; /* Orange border on focus */
+}
+
+.readonly-textfield, .readonly-textarea {
+     -fx-opacity: 0.7; /* Make read-only slightly dimmer */
+      -fx-background-color: #252021; /* Slightly different bg for readonly */
+}
+.readonly-textarea .content {
+    -fx-background-color: #252021;
+}
+.readonly-textfield-accent {
+     -fx-opacity: 1.0;
+     -fx-text-fill: #D82027; /* Reddish text */
+     -fx-font-weight: bold;
+      -fx-background-color: #252021;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #444444; /* Dark gray default */
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-padding: 8px 15px;
+     -fx-font-size: 14px;
+     -fx-cursor: hand;
+}
+.button:hover {
+    -fx-background-color: #555555;
+}
+
+.accent-button {
+    -fx-background-color: #ED6214; /* Orange */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+     -fx-font-size: 16px;
+}
+.accent-button:hover {
+    -fx-background-color: #D45812; /* Darker orange on hover */
+}
+.delete-button {
+     -fx-background-color: #ED6214; /* Orange */
+     -fx-padding: 5px;
+}
+.delete-button:hover {
+     -fx-background-color: #D45812;
+}
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #2A2A2A;
+    -fx-border-width: 1;
+     -fx-padding: 10px;
+      -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.icon-button:hover {
+     -fx-background-color: #333333;
+}
+.icon-button-inline {
+    -fx-background-color: transparent;
+     -fx-padding: 2px;
+     -fx-border-color: transparent;
+}
+.icon-button-inline:hover {
+    -fx-background-color: #444444; /* Slight hover effect */
+}
+
+/* Quantity Controls */
+.quantity-button {
+    -fx-min-width: 30px;
+    -fx-padding: 5px 8px;
+     -fx-font-size: 14px;
+     -fx-background-color: #444;
+}
+.quantity-value {
+    -fx-background-color: #ED6214; /* Orange background */
+    -fx-text-fill: white;
+    -fx-padding: 6px 10px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+     -fx-font-size: 12px;
+}
+
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #1B1617;
+    -fx-border-color: #2A2A2A;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: #BABABA;
+     -fx-font-size: 12px; /* Smaller font for combo */
+}
+.combo-box .list-cell {
+    -fx-background-color: #1B1617;
+    -fx-text-fill: #BABABA;
+     -fx-font-size: 12px;
+}
+.combo-box .list-cell:filled:selected, .combo-box .list-cell:filled:selected:hover {
+    -fx-background-color: #ED6214; /* Orange selection */
+    -fx-text-fill: white;
+}
+.combo-box .list-cell:filled:hover {
+    -fx-background-color: #444444;
+    -fx-text-fill: white;
+}
+.combo-box-popup .list-view {
+     -fx-background-color: #1B1617;
+     -fx-border-color: #2A2A2A;
+}
+.combo-box .arrow {
+     -fx-background-color: #BABABA; /* Arrow color */
+     -fx-padding: 6px; /* Adjust size/padding */
+     -fx-shape: "M0 0 L4 4 L8 0 Z"; /* Simple down arrow shape */
+
+}
+.combo-box .arrow-button {
+      -fx-background-color: transparent; /* Make button area transparent */
+      -fx-padding: 0 5 0 0; /* Adjust padding */
+}
+
+
+/* TableView */
+.cart-table {
+    -fx-background-color: transparent; /* Table background transparent inside scrollpane */
+    -fx-border-color: transparent; /* No border for table itself */
+    -fx-selection-bar: #ED6214; /* Orange selection */
+    -fx-selection-bar-text: white;
+    -fx-table-cell-border-color: transparent; /* Remove cell borders */
+    -fx-padding: 0; /* Remove default table padding */
+}
+
+/* Hide Table Header */
+.cart-table .column-header-background,
+.cart-table .column-header-background .filler,
+.cart-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 0; /* Effectively hide */
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+.cart-table .virtual-flow .corner {
+     -fx-background-color: transparent; /* Hide corner piece when header is hidden */
+}
+
+.cart-table .table-cell {
+    -fx-text-fill: #FFFFFF; /* White text in cells */
+    -fx-border-color: transparent; /* No cell borders */
+    -fx-padding: 8px 10px;
+    -fx-font-size: 14px;
+     -fx-background-color: transparent; /* Cell background transparent */
+}
+.cart-table .table-row-cell {
+    -fx-background-color: transparent; /* Row background transparent */
+    -fx-border-color: transparent;
+    -fx-border-width: 0; /* Ensure no row border */
+     -fx-padding: 0; /* Remove default row padding */
+}
+.cart-table .table-row-cell:selected {
+    -fx-background-color: #ED6214; /* Orange selection background */
+}
+.cart-table .placeholder .label {
+    -fx-text-fill: #888888; /* Placeholder text color */
+}
+.table-header-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #BABABA; /* Gray header text */
+    -fx-padding: 0 5px; /* Padding around header text */
+    -fx-font-weight: bold;
+}
+
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #1B1617;
+    -fx-border-color: #2A2A2A transparent transparent transparent;
+    -fx-border-width: 1;
+}
+
+.sidebar-item, .sidebar-subitem {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+.sidebar-item:hover, .sidebar-subitem:hover {
+    -fx-background-color: #333333; /* Hover effect */
+}
+.sidebar-item-selected {
+     -fx-background-color: #120C0D; /* Match main background */
+     -fx-border-color: #ED6214 transparent transparent transparent; /* Orange left border */
+     -fx-border-width: 0 0 0 4px;
+     /* Padding is set in FXML, adjust if needed:
+     -fx-padding: 15 10 15 11; */
+}
+.sidebar-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #BABABA; /* Gray text */
+    -fx-font-weight: 600; /* Semibold */
+}
+.sidebar-label-selected {
+    -fx-text-fill: #ED6214; /* Orange text for selected */
+}
+.sidebar-label-sub {
+     -fx-font-weight: normal;
+     -fx-font-size: 15px;
+}
+
+/* Header */
+.header {
+     -fx-background-color: #1B1617;
+}
+.header-name-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+.header-role-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #BABABA;
+}
+.profile-pic {
+     /* Placeholder style defined in placeholder-image */
+     -fx-border-color: #BABABA;
+     -fx-border-width: 1;
+     -fx-border-radius: 4; /* Assuming rounded */
+}
+
+
+/* Drug Info Panel Specifics */
+.drug-name-label {
+     -fx-font-size: 18px;
+     -fx-font-weight: bold;
+     -fx-text-fill: #FFFFFF;
+}
+.drug-id-label {
+     -fx-font-size: 14px;
+     -fx-text-fill: #FFFFFF;
+     -fx-opacity: 0.8;
+}
+
+/* Invoice Panel Specifics */
+.payment-icon {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.2, 0, 1); /* Subtle shadow */
+    -fx-background-color: #CCCCCC; /* Placeholder background */
+     -fx-background-radius: 4px; /* Match other radius */
+     -fx-border-radius: 4px;
+     -fx-border-color: transparent;
+     -fx-border-width: 4;
+}
+.payment-icon-selected {
+     -fx-border-color: #ED6214; /* Orange border for selected */
+}
+.payment-icon:hover {
+    -fx-opacity: 0.8;
+}
+
+
+/* Separator */
+.separator .line {
+    -fx-border-color: #2A2A2A; /* Match border color */
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Placeholder/Icon Styles */
+.placeholder-image {
+    /* -fx-background-color: #555555; */ /* No longer needed for replaced images */
+    /* -fx-opacity: 0.5; */
+    -fx-background-radius: 4px; /* Optional rounding */
+}
+.placeholder-icon {
+     -fx-background-color: #BABABA;
+     -fx-opacity: 0.8;
+}
+.icon-white {
+     -fx-background-color: white;
+}
+.notification-dot {
+     -fx-background-color: #D82027; /* Red dot */
+     -fx-background-radius: 4;
+     -fx-pref-height: 8;
+     -fx-pref-width: 8;
+     -fx-border-color: #1B1617; /* Match header background */
+     -fx-border-width: 1;
+     -fx-border-radius: 4;
+}
+.sidebar-icon-placeholder {
+    -fx-background-color: #BABABA;
+    -fx-opacity: 0.8;
+    -fx-shape: "M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"; /* Example shape */
+}
+.sidebar-arrow-placeholder {
+     -fx-background-color: #BABABA;
+     -fx-shape: "M0 0 L4 4 L8 0 Z"; /* Simple down arrow */
+}
+.icon-cart {
+     -fx-background-color: white;
+     -fx-shape: "M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.24 17 7 17h12v-2H7l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z";
+}
+.icon-trash {
+     -fx-background-color: white; /* Button is orange, icon white */
+     -fx-shape: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z";
+}
+.icon-search {
+     -fx-background-color: #BABABA;
+     -fx-shape: "M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z";
+}
+.icon-add {
+      -fx-background-color: #BABABA;
+     -fx-shape: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z";
+}
+
+.payment-icon {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.2, 0, 1); /* Subtle shadow */
+    /* -fx-background-color: #CCCCCC; */ /* REMOVE placeholder background */
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: transparent;
+    -fx-border-width: 4; /* Keep border width for selected state */
+}
+.payment-icon-selected {
+     -fx-border-color: #ED6214; /* Orange border for selected */
+}
+.payment-icon:hover {
+    -fx-opacity: 0.8;
+}
