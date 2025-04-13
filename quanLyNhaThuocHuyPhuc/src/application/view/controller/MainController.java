@@ -87,7 +87,7 @@ public class MainController {
 
     @FXML
     private void handleTimKiemHoaDonClick() {
-        // Load Tìm kiếm hóa đơn view
+    	loadPage("PurchaseLookup.fxml");
     }
 
     @FXML
