@@ -149,26 +149,23 @@
                                        <ColumnConstraints hgrow="ALWAYS" />
                                    </columnConstraints>
                                    <Label styleClass="form-label" text="Hóa đơn" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                                   <TextField styleClass="text-field" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="150"/>
+                                   <TextField fx:id="txtMaHoaDon" editable="false" styleClass="text-field" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="150"/>
 
                                    <Label styleClass="form-label" text="SĐT" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
                                    <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="1" GridPane.columnIndex="1">
-                                       <TextField HBox.hgrow="ALWAYS"/>
-                                       <Button mnemonicParsing="false" styleClass="icon-button-inline">
+                                       <TextField fx:id="txtSDT" HBox.hgrow="ALWAYS"/>
+                                       <Button onAction="#handleLookupKH" mnemonicParsing="false" styleClass="icon-button-inline">
                                            <graphic><Region prefHeight="16.0" prefWidth="16.0" styleClass="icon-search"/></graphic>
-                                       </Button>
-                                       <Button mnemonicParsing="false" styleClass="icon-button-inline">
-                                            <graphic><Region prefHeight="16.0" prefWidth="16.0" styleClass="icon-add"/></graphic>
                                        </Button>
                                    </HBox>
 
                                    <Label styleClass="form-label" text="Tên KH" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                   <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="2" GridPane.columnIndex="1">
-                                        <TextField HBox.hgrow="ALWAYS"/>
+                                   <HBox alignment="CENTER_LEFT"  spacing="5.0" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                                        <TextField fx:id="txtTenKH" editable="false" HBox.hgrow="ALWAYS"/>
                                          <!-- ComboBox with items -->
-                                         <ComboBox prefWidth="80.0" styleClass="combo-box" value="Nam">
+                                         <ComboBox fx:id="cboGioiTinh" disable="true" prefWidth="80.0" styleClass="combo-box" value="Nam">
                                              <items>
-                                                 <FXCollections fx:factory="observableArrayList">
+                                                 <FXCollections  fx:factory="observableArrayList">
                                                      <String fx:value="Nam" />
                                                      <String fx:value="Nữ" />
                                                      <String fx:value="Khác" />
@@ -192,8 +189,8 @@
 
                                <HBox alignment="CENTER_LEFT" spacing="10.0">
                                    <padding><Insets top="15.0" /></padding>
-                                   <Button mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Hủy đơn" />
-                                   <Button mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Thanh toán" />
+                                   <Button mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Hủy đơn" onAction="#handleHuyDon"/>
+                                   <Button mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Thanh toán" onAction="#handleCheckout" />
                                </HBox>
                            </VBox>
 
