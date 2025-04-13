@@ -236,11 +236,10 @@
 .cart-table .column-header-background,
 .cart-table .column-header-background .filler,
 .cart-table .column-header {
-    -fx-background-color: transparent;
-    -fx-size: 0; /* Effectively hide */
     -fx-pref-height: 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+    /* Remove -fx-size to avoid warnings */
 }
 .cart-table .virtual-flow .corner {
      -fx-background-color: transparent; /* Hide corner piece when header is hidden */

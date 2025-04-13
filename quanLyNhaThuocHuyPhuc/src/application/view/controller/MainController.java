@@ -16,7 +16,8 @@ public class MainController {
 
     public void loadPOSPage() {
         try {
-            AnchorPane view = FXMLLoader.load(getClass().getResource("/application/view/POS.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/POS.fxml"));
+            AnchorPane view = loader.load();
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();
