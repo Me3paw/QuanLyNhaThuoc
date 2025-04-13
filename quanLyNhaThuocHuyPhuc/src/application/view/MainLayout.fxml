@@ -67,20 +67,22 @@
              <padding>
                  <Insets left="20.0" right="20.0" />
              </padding>
-             <HBox alignment="CENTER_LEFT" styleClass="sidebar-item, sidebar-item-selected" spacing="15.0">
-                 <padding><Insets bottom="15.0" left="15.0" right="10.0" top="15.0" /></padding>
-                 <Region prefHeight="24.0" prefWidth="24.0" styleClass="sidebar-icon-placeholder" />
-                 <Label styleClass="sidebar-label, sidebar-label-selected" text="Hóa đơn" HBox.hgrow="ALWAYS" />
-                 <Region prefHeight="16.0" prefWidth="16.0" styleClass="sidebar-arrow-placeholder" />
-             </HBox>
-             <HBox alignment="CENTER_LEFT" styleClass="sidebar-subitem" spacing="15.0">
-                 <padding><Insets bottom="10.0" left="40.0" right="10.0" top="10.0" /></padding>
-                 <Label styleClass="sidebar-label, sidebar-label-sub" text="Lập hóa đơn" />
-             </HBox>
-             <HBox alignment="CENTER_LEFT" styleClass="sidebar-subitem" spacing="15.0">
-                 <padding><Insets bottom="10.0" left="40.0" right="10.0" top="10.0" /></padding>
+             <HBox fx:id="hoaDonItem" onMouseClicked="#handleHoaDonClick" alignment="CENTER_LEFT" styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets bottom="15.0" left="15.0" right="10.0" top="15.0"/></padding>
+                    <Region prefHeight="24.0" prefWidth="24.0" styleClass="sidebar-icon-placeholder" />
+                    <Label text="Hóa đơn" HBox.hgrow="ALWAYS" styleClass="sidebar-label" />
+                    <Region prefHeight="16.0" prefWidth="16.0" styleClass="sidebar-arrow-placeholder" />
+                </HBox>
+                <VBox fx:id="hoaDonSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0" >
+                        <padding><Insets bottom="10.0" left="40.0" right="10.0" top="10.0" /></padding>
+                        <Label styleClass="sidebar-label, sidebar-label-sub" text="Lập hóa đơn" />
+                    </HBox>
+                    <HBox onMouseClicked="#handleTimKiemHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
+                         <padding><Insets bottom="10.0" left="40.0" right="10.0" top="10.0" /></padding>
                  <Label styleClass="sidebar-label, sidebar-label-sub" text="Tìm kiếm hóa đơn" />
-             </HBox>
+                    </HBox>
+                </VBox>
              <HBox alignment="CENTER_LEFT" styleClass="sidebar-item" spacing="15.0">
                  <padding><Insets bottom="15.0" left="15.0" right="10.0" top="15.0" /></padding>
                  <Region prefHeight="24.0" prefWidth="24.0" styleClass="sidebar-icon-placeholder" />

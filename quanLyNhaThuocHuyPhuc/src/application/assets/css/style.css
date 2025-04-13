@@ -221,6 +221,23 @@
       -fx-padding: 0 5 0 0; /* Adjust padding */
 }
 
+.sidebar-item-selected {
+    -fx-background-color: #1f1f1f;
+    -fx-effect: dropshadow(gaussian, #ff6b00, 10, 0.5, 0, 0);
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.sidebar-label-selected {
+    -fx-text-fill: #ff6b00;
+}
+
+.sidebar-subitem {
+    -fx-text-fill: #bfbfbf;
+}
+.sidebar-subitem:hover {
+    -fx-text-fill: #ff6b00;
+}
 
 /* TableView */
 .cart-table {
