@@ -12,6 +12,7 @@ public class ChiTietHoaDon extends HoaDon {
         this.donGia = donGia;
     }
     public ChiTietHoaDon() {
+    	super();
     }
 	public ChiTietHoaDon(String maHoaDon, String maThuoc, int soLuong, double donGia) {
 		super(maHoaDon);
