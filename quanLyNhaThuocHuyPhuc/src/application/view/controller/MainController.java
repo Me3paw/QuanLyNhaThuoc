@@ -2,17 +2,21 @@ package application.view.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
+import application.model.CartItem;
+
 public class MainController {
 
-    @FXML
-    private AnchorPane contentArea;
-
+	@FXML
+	private StackPane contentArea;
     // Hóa đơn
     @FXML
     private HBox hoaDonItem;
@@ -57,7 +61,7 @@ public class MainController {
     private void loadPage(String fxmlFileName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/" + fxmlFileName));
-            AnchorPane view = loader.load();
+            StackPane view = loader.load();
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +86,8 @@ public class MainController {
 
     @FXML
     private void handleLapHoaDonClick() {
-        loadPage("POS.fxml"); // Load Lập hóa đơn view
+        loadPage("POS.fxml");
+   
     }
 
     @FXML

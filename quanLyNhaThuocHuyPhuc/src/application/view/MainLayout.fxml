@@ -122,7 +122,6 @@
       </VBox>
    </left>
    <center>
-        <!-- Content Area where POS.fxml will be loaded -->
-        <AnchorPane fx:id="contentArea"/>
-    </center>
+   	<StackPane fx:id="contentArea" alignment="CENTER"  />
+   </center>
 </BorderPane>
