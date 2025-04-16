@@ -1,7 +1,6 @@
 package application.database;
 
 import application.model.HoaDon;
-import application.model.HoaDonView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,51 +31,6 @@ public class HoaDonDAO {
 
         return false;
     }
- // Lookup Hóa Đơn theo Mã Hóa Đơn hoặc SĐT
-    public List<HoaDonView> lookupHoaDon(String maHoaDon, String sdt) {
-        List<HoaDonView> list = new ArrayList<>();
-
-        String sql = "SELECT hd.maHoaDon, hd.ngayLap, kh.tenKH, kh.soDienThoai " +
-                     "FROM HoaDon hd JOIN KhachHang kh ON hd.maKhachHang = kh.maKhachHang " +
-                     "WHERE 1=1 ";
-
-        if (!maHoaDon.isEmpty()) {
-            sql += "AND hd.maHoaDon LIKE ? ";
-        }
-
-        if (!sdt.isEmpty()) {
-            sql += "AND kh.soDienThoai LIKE ? ";
-        }
-
-        try (Connection conn = DatabaseConnector.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            int idx = 1;
-            if (!maHoaDon.isEmpty()) {
-                ps.setString(idx++, "%" + maHoaDon + "%");
-            }
-            if (!sdt.isEmpty()) {
-                ps.setString(idx++, "%" + sdt + "%");
-            }
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new HoaDonView(
-                        rs.getString("maHoaDon"),
-                        rs.getString("ngayLap"),
-                        rs.getString("tenKH"),
-                        rs.getString("soDienThoai")
-                ));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return list;
-    }
-
-
 
     // Get all Hóa Đơn
     public List<HoaDon> getAllHoaDon() {

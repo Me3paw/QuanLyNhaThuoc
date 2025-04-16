@@ -17,12 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
 
 public class POSController {
-	@FXML private GridPane tableHeader;
+
     @FXML private TextField txtMaThuocInput;
     @FXML private ImageView imgDrug;
     @FXML private Label lblDrugName;
@@ -52,22 +51,6 @@ public class POSController {
     @FXML
     public void initialize() {
         cartTable.setItems(cartData);
-     // ID
-        tableHeader.getColumnConstraints().get(0).prefWidthProperty().bind(
-            cartTable.getColumns().get(0).widthProperty()
-        );
-        // Tên thuốc
-        tableHeader.getColumnConstraints().get(1).prefWidthProperty().bind(
-            cartTable.getColumns().get(1).widthProperty()
-        );
-        // Số lượng
-        tableHeader.getColumnConstraints().get(2).prefWidthProperty().bind(
-            cartTable.getColumns().get(2).widthProperty()
-        );
-        // Đơn giá
-        tableHeader.getColumnConstraints().get(3).prefWidthProperty().bind(
-            cartTable.getColumns().get(3).widthProperty()
-        );
         setSoLuong();
         maHoaDon = hoaDonDAO.generateNextMaHoaDon();
         txtMaHoaDon.setText(maHoaDon);
@@ -130,38 +113,19 @@ public class POSController {
             alert.showAndWait();
             return;
         }
-        double tienThua;
-        try {
-            tienThua = Double.parseDouble(txtTienThua.getText());
-        } catch (NumberFormatException e) {
-            tienThua = 0; // Default to 0 if parsing fails
-        }
 
-        if (tienThua < 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Số tiền khách đưa không đủ để thanh toán!");
-            alert.showAndWait();
-            return;
-        }
         String sdt = txtSDT.getText().trim();
-        String tenKH = txtTenKH.getText().trim();
-        KhachHang kh = (sdt.isEmpty()) ? null : khachHangDAO.getKhachHangBySDT(sdt);
+        KhachHang kh = khachHangDAO.getKhachHangBySDT(sdt);
         String maKH;
 
         if (kh == null) {
-            if (!sdt.isEmpty()) {
-                // Insert new Khách Hàng
-                maKH = khachHangDAO.generateNextMaKhachHang();
-                KhachHang newKH = new KhachHang(maKH, tenKH, cboGioiTinh.getValue(), sdt);
-                khachHangDAO.insertKhachHang(newKH);
-            } else {
-                maKH = null; // No customer information
-            }
+            // Insert new Khách Hàng
+            maKH = khachHangDAO.generateNextMaKhachHang();
+            KhachHang newKH = new KhachHang(maKH, txtTenKH.getText().trim(), cboGioiTinh.getValue(), sdt);
+            khachHangDAO.insertKhachHang(newKH);
         } else {
             maKH = kh.getMaKhachHang();
         }
-
 
         HoaDon hd = new HoaDon(maHoaDon, LocalDate.now(), maKH, "NV001");
         hoaDonDAO.insertHoaDon(hd);
@@ -302,6 +266,8 @@ public class POSController {
         } catch (NumberFormatException ignored) {}
 
         double tienThua = tienDua - tongTien;
+
+        if (tienThua < 0) tienThua = 0;
 
         txtTienThua.setText(String.valueOf(tienThua));
     }

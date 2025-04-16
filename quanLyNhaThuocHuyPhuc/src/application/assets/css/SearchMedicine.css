@@ -1,0 +1,82 @@
+.root {
+    -fx-background-color: #1E1E1E;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: white;
+}
+
+/* TextField */
+.text-field {
+    -fx-background-color: #2E2E2E;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #AAAAAA;
+    -fx-border-color: #ED6214;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #2E2E2E;
+    -fx-border-color: #ED6214;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-mark-color: #ED6214;
+    -fx-text-fill: white;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #2E2E2E;
+}
+
+/* Button */
+.button {
+    -fx-background-color: #ED6214;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #ff7a36;
+}
+
+/* Label */
+.label {
+    -fx-text-fill: #ED6214;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #2E2E2E;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #ED6214;
+}
+
+.table-view .column-header, 
+.table-view .filler {
+    -fx-size: 40px;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.table-view .label {
+    -fx-text-fill: white;
+}
+
+.table-row-cell {
+    -fx-background-color: #2E2E2E;
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:filled:selected, .table-row-cell:focused:selected {
+    -fx-background-color: #ED6214;
+    -fx-text-fill: white;
+}

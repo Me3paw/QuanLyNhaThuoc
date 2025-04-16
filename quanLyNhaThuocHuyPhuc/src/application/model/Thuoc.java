@@ -11,8 +11,27 @@ public class Thuoc {
     private int soLuongTon;
     private String maNhaCungCap;
     private String hinhAnh;
+    
+    public Thuoc() {
+		this("", "", "", "", "", 0.0, 0.0, 0, "", "");
+	}
+    
+    
+    public Thuoc(String maThuoc, String tenThuoc, String thanhPhan, String congDung, String hanSuDung, double giaBan,
+			double giaNhap, int soLuongTon, String maNhaCungCap, String hinhAnh) {
+		this.maThuoc = maThuoc;
+		this.tenThuoc = tenThuoc;
+		this.thanhPhan = thanhPhan;
+		this.congDung = congDung;
+		this.hanSuDung = hanSuDung;
+		this.giaBan = giaBan;
+		this.giaNhap = giaNhap;
+		this.soLuongTon = soLuongTon;
+		this.maNhaCungCap = maNhaCungCap;
+		this.hinhAnh = hinhAnh;
+	}
 
-    // Getter + Setter
+	// Getter + Setter
 
     public String getMaThuoc() {
         return maThuoc;
