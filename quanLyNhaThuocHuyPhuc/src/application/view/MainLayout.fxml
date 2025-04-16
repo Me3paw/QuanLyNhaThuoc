@@ -89,12 +89,22 @@
                  <Label styleClass="sidebar-label" text="Thống kê" HBox.hgrow="ALWAYS" />
                  <Region prefHeight="16.0" prefWidth="16.0" styleClass="sidebar-arrow-placeholder" />
              </HBox>
-             <HBox alignment="CENTER_LEFT" styleClass="sidebar-item" spacing="15.0">
-                 <padding><Insets bottom="15.0" left="15.0" right="10.0" top="15.0" /></padding>
-                 <Region prefHeight="24.0" prefWidth="24.0" styleClass="sidebar-icon-placeholder" />
-                 <Label styleClass="sidebar-label" text="Khách hàng" HBox.hgrow="ALWAYS" />
-                 <Region prefHeight="16.0" prefWidth="16.0" styleClass="sidebar-arrow-placeholder" />
-             </HBox>
+             <HBox fx:id="khachHangItem" onMouseClicked="#handleKhachHangClick" alignment="CENTER_LEFT" styleClass="sidebar-item" spacing="15.0">
+                <padding><Insets bottom="15.0" left="15.0" right="10.0" top="15.0" /></padding>
+                <Region prefHeight="24.0" prefWidth="24.0" styleClass="sidebar-icon-placeholder" /> 
+                <Label styleClass="sidebar-label" text="Khách hàng" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="16.0" prefWidth="16.0" styleClass="sidebar-arrow-placeholder" />
+            </HBox>
+            <VBox fx:id="khachHangSubMenu" visible="false" managed="false">
+                 <HBox onMouseClicked="#handleThemKhachHangClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <padding><Insets bottom="10.0" left="40.0" right="10.0" top="10.0" /></padding>
+                    <Label styleClass="sidebar-label, sidebar-label-sub" text="Thêm Khách Hàng" />
+                 </HBox>
+                 <HBox onMouseClicked="#handleTimKiemKhachHangClick" styleClass="sidebar-subitem" spacing="15.0"> 
+                    <padding><Insets bottom="10.0" left="40.0" right="10.0" top="10.0" /></padding>
+                    <Label styleClass="sidebar-label, sidebar-label-sub" text="Tìm Kiếm Khách Hàng" />
+                 </HBox>
+            </VBox>
              <HBox alignment="CENTER_LEFT" styleClass="sidebar-item" spacing="15.0">
                  <padding><Insets bottom="15.0" left="15.0" right="10.0" top="15.0" /></padding>
                  <Region prefHeight="24.0" prefWidth="24.0" styleClass="sidebar-icon-placeholder" />
