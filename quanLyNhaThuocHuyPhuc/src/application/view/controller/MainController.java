@@ -94,12 +94,20 @@ public class MainController {
     private void handleTimKiemHoaDonClick() {
     	loadPage("PurchaseLookup.fxml");
     }
+    @FXML
+    private void handleKhachHangClick() { 	
+        resetSidebarStyle();
+        khachHangItem.getStyleClass().add("sidebar-item-selected");
+        toggleSubMenu(khachHangSubMenu);
+    }
 
     @FXML
-    private void handleThongKeClick() {
-        resetSidebarStyle();
-        thongKeItem.getStyleClass().add("sidebar-item-selected");
-        toggleSubMenu(thongKeSubMenu);
+    private void handleThemKhachHangClick() { 
+        loadPage("AddCustomer.fxml"); 
+    }
+    @FXML
+    private void handleTimKiemKhachHangClick() { 
+        loadPage("CustomerLookup.fxml");
     }
 
     // Repeat handleClick for each menu item...
