@@ -42,7 +42,7 @@ public class LoginController {
 
         TaiKhoan taiKhoan = null;
 
-        // Tạm viết logic ngay trong hàm để lấy vai trò
+        // Truy vấn thông tin tài khoản từ bảng taikhoan
         String sql = "SELECT * FROM taikhoan WHERE tenDangNhap = ? AND matKhau = ?";
         try (Connection conn = DatabaseConnector.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -65,12 +65,15 @@ public class LoginController {
         }
 
         if (taiKhoan != null) {
+            // Lấy tên người dùng từ bảng nhanvien thông qua maTaiKhoan
+            String tenNguoiDung = accountDAO.getTenNguoiDung(taiKhoan.getTenDangNhap(), taiKhoan.getMatKhau());
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
                 Parent root = loader.load();
 
                 MainController mainController = loader.getController();
-                mainController.updateUserInfo(taiKhoan.getTenDangNhap(), taiKhoan.getVaiTro());
+                mainController.updateUserInfo(tenNguoiDung, taiKhoan.getVaiTro());  // Truyền tên người dùng vào đây
 
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add(getClass().getResource("/application/assets/css/style.css").toExternalForm());
@@ -90,6 +93,7 @@ public class LoginController {
             showAlert(Alert.AlertType.ERROR, "Sai thông tin đăng nhập!", "Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.");
         }
     }
+
 
 
     private boolean isValidCredentials(String username, String password) {
@@ -134,4 +138,6 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+   
 }
+

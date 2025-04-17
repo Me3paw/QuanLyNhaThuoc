@@ -185,5 +185,29 @@ public class TaiKhoanDAO {
 
         return maMoi;
     }
+    // Phương thức lấy tên người dùng từ bảng nhanvien dựa trên maTaiKhoan
+    public static String getTenNguoiDung(String tenDangNhap, String matKhau) {
+        String tenNguoiDung = null;
+        String sql = "SELECT nv.tenNhanVien " +
+                     "FROM taikhoan tk " +
+                     "JOIN NhanVien nv ON tk.maTaiKhoan = nv.taiKhoan " +
+                     "WHERE tk.tenDangNhap = ? AND tk.matKhau = ?";
 
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, tenDangNhap);
+            ps.setString(2, matKhau);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                tenNguoiDung = rs.getString("tenNhanVien");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tenNguoiDung;
+    }
 }
