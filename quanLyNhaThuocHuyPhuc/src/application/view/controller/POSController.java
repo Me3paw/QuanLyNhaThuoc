@@ -113,19 +113,38 @@ public class POSController {
             alert.showAndWait();
             return;
         }
+        double tienThua;
+        try {
+            tienThua = Double.parseDouble(txtTienThua.getText());
+        } catch (NumberFormatException e) {
+            tienThua = 0; // Default to 0 if parsing fails
+        }
 
+        if (tienThua < 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Số tiền khách đưa không đủ để thanh toán!");
+            alert.showAndWait();
+            return;
+        }
         String sdt = txtSDT.getText().trim();
-        KhachHang kh = khachHangDAO.getKhachHangBySDT(sdt);
+        String tenKH = txtTenKH.getText().trim();
+        KhachHang kh = (sdt.isEmpty()) ? null : khachHangDAO.getKhachHangBySDT(sdt);
         String maKH;
 
         if (kh == null) {
-            // Insert new Khách Hàng
-            maKH = khachHangDAO.generateNextMaKhachHang();
-            KhachHang newKH = new KhachHang(maKH, txtTenKH.getText().trim(), cboGioiTinh.getValue(), sdt);
-            khachHangDAO.insertKhachHang(newKH);
+            if (!sdt.isEmpty()) {
+                // Insert new Khách Hàng
+                maKH = khachHangDAO.generateNextMaKhachHang();
+                KhachHang newKH = new KhachHang(maKH, tenKH, cboGioiTinh.getValue(), sdt);
+                khachHangDAO.insertKhachHang(newKH);
+            } else {
+                maKH = null; // No customer information
+            }
         } else {
             maKH = kh.getMaKhachHang();
         }
+
 
         HoaDon hd = new HoaDon(maHoaDon, LocalDate.now(), maKH, "NV001");
         hoaDonDAO.insertHoaDon(hd);
@@ -266,8 +285,6 @@ public class POSController {
         } catch (NumberFormatException ignored) {}
 
         double tienThua = tienDua - tongTien;
-
-        if (tienThua < 0) tienThua = 0;
 
         txtTienThua.setText(String.valueOf(tienThua));
     }
