@@ -29,7 +29,6 @@
 
 
 <StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="application.view.controller.POSController">
-     <children>
             <!-- Center Content: Drug Info | Cart & Invoice -->
             <HBox spacing="20.0" styleClass="main-area-background" BorderPane.alignment="CENTER">
                <padding>
@@ -222,5 +221,4 @@
                    </VBox>
                </VBox>
             </HBox>
-   </children>
 </StackPane>

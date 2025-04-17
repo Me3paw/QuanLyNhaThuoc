@@ -120,10 +120,6 @@
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <Label text="Danh sách khách hàng" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
-                    <HBox onMouseClicked="#handleThemKhachHangClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Thêm khách hàng" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
                 </VBox>
 
                 <!-- Thuốc -->

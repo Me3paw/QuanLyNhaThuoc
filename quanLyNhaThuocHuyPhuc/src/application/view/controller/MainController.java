@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -230,11 +229,7 @@ public class MainController {
         loadPage("danhsachkhachhang.fxml"); // Load "Danh Sách Khách Hàng" view
     }
 
-    @FXML
-    private void handleThemKhachHangClick() {
-        loadPage("themkachhang.fxml"); // Load "Thêm Khách Hàng" view
-    }
-
+ 
     @FXML
     private void handleCapNhatKhachHangClick() {
         loadPage("capnhatkhachhang.fxml"); // Load "Cập Nhật Khách Hàng" view

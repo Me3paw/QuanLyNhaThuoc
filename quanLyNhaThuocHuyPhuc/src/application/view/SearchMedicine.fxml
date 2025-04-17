@@ -18,15 +18,15 @@
            fx:controller="application.view.controller.SearchMedicineController"
            stylesheets="/application/assets/css/SearchMedicine.css">
 
-    <VBox spacing="10" maxWidth="1200">
+    <VBox spacing="10" >
         <padding>
             <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
         </padding>
 
         <!-- Tìm kiếm thuốc -->
         <HBox spacing="10">
-            <TextField fx:id="searchField" prefWidth="400" promptText="Nhập mã thuốc, tên thuốc hoặc công dụng" />
-            <ComboBox fx:id="searchCriteriaCombo" style="-fx-pref-width: 200px;">
+            <TextField fx:id="searchField"  promptText="Nhập mã thuốc, tên thuốc hoặc công dụng" />
+            <ComboBox fx:id="searchCriteriaCombo">
                 <items>
                     <FXCollections fx:factory="observableArrayList" >
                         <String fx:value="Tên Thuốc" />
@@ -51,17 +51,18 @@
         <!-- Bảng thuốc -->
         <TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="codeColumn" text="Mã Thuốc" prefWidth="100" />
-                <TableColumn fx:id="nameColumn" text="Tên Thuốc" prefWidth="200"/>
-                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" prefWidth="200"/>
-                <TableColumn fx:id="congDungColumn" text="Công Dụng" prefWidth="200"/>
-                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" prefWidth="100"/>
-                <TableColumn fx:id="giaBanColumn" text="Giá Bán" prefWidth="100"/>
-                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" prefWidth="200"/>
-                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" prefWidth="200"/>
-                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" prefWidth="150"/>
-                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" prefWidth="150"/>
+                <TableColumn fx:id="codeColumn" text="Mã Thuốc"  />
+                <TableColumn fx:id="nameColumn" text="Tên Thuốc" />
+                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" />
+                <TableColumn fx:id="congDungColumn" text="Công Dụng" />
+                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" />
+                <TableColumn fx:id="giaBanColumn" text="Giá Bán" />
+                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" />
+                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" />
+                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" />
+                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" />
             </columns>
         </TableView>
+        <!-- cần fix : add scrollpane để cuộn trang / render hình ảnh trong comlumn hình ảnh -->
     </VBox>
 </StackPane>
