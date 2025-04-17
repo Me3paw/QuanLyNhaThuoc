@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    private AnchorPane contentArea;
+    private StackPane contentArea;
     
     // Hóa đơn
     @FXML
@@ -76,12 +77,13 @@ public class MainController {
     private void loadPage(String fxmlFileName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/" + fxmlFileName));
-            AnchorPane view = loader.load();
+            StackPane view = loader.load();  // Dùng StackPane thay vì AnchorPane
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     private void resetSidebarStyle() {
         hoaDonItem.getStyleClass().remove("sidebar-item-selected");
@@ -205,8 +207,8 @@ public class MainController {
         toggleSubMenu(nhanVienSubMenu);
     }
     @FXML
-    private void handleDanhSachNhanVienClick() {
-        loadPage("danhsachnhanvien.fxml"); // Load "Danh Sách Nhân Viên" view
+    private void handleTimNhanVienClick() {
+        loadPage("TimNhanVien.fxml"); // Load "Danh Sách Nhân Viên" view
     }
 
     @FXML

@@ -158,9 +158,9 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleDanhSachNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox onMouseClicked="#handleTimNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Danh sách nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
+                        <Label text="Tìm kiếm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleCapNhatNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
@@ -215,8 +215,8 @@
 
     <!-- CENTER CONTENT -->
     <center>
-        <AnchorPane fx:id="contentArea" BorderPane.alignment="CENTER"
-                    AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+        <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+
+        
     </center>
 </BorderPane>

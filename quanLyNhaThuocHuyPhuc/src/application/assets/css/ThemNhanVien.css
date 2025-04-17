@@ -19,7 +19,7 @@
 
 /* Tiêu đề */
 .form-title {
-    -fx-font-size: 30px;
+    -fx-font-size: 40px;
     -fx-text-fill: #ff5722; /* Cam sáng */
     -fx-font-weight: bold;
     -fx-padding: 0 0 30px 0;
@@ -60,7 +60,7 @@
 .primary-button {
      -fx-font-size: 20px;
     
-    -fx-min-height: 100px;
+    -fx-min-height: 70px;
     
     -fx-background-color: #ff5722; /* Cam */
     -fx-text-fill: white;

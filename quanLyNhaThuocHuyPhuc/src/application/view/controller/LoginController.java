@@ -125,7 +125,7 @@ public class LoginController {
             // Hiển thị màn hình quên mật khẩu
             Stage forgotPasswordStage = new Stage();
             forgotPasswordStage.setWidth(800);
-            forgotPasswordStage.setHeight(500);
+            forgotPasswordStage.setHeight(600);
             forgotPasswordStage.setScene(forgotPasswordScene);
             forgotPasswordStage.setTitle("Quên Mật Khẩu");
             forgotPasswordStage.show();

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="application.view.controller.TimNhanVienController"
+           stylesheets="@../assets/css/SearchMedicine.css">
+    <VBox spacing="10" alignment="TOP_CENTER" styleClass="container">
+        <Label text="Tìm Nhân Viên" styleClass="title-label" style="-fx-font-size: 40px;"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Tìm theo mã hoặc tên:" styleClass="label"/>
+            <TextField fx:id="txtSearch" promptText="Nhập mã hoặc tên nhân viên" styleClass="text-field"/>
+            <Button text="Tìm" onAction="#handleSearch" styleClass="button"/>
+        </HBox>
+
+        <TableView fx:id="tableNhanVien" prefHeight="450" prefWidth="1000" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="colMaNV" text="Mã NV"/>
+                <TableColumn fx:id="colTenNV" text="Tên NV"/>
+                <TableColumn fx:id="colGioiTinh" text="Giới tính"/>
+                <TableColumn fx:id="colNamSinh" text="Năm sinh"/>
+                <TableColumn fx:id="colSoDienThoai" text="SĐT"/>
+                <TableColumn fx:id="colEmail" text="Email"/>
+                <TableColumn fx:id="colHeSoLuong" text="Hệ số lương"/>
+                <TableColumn fx:id="colLuongCoBan" text="Lương cơ bản"/>
+                <TableColumn fx:id="colTenDangNhap" text="Tên đăng nhập"/>
+                <TableColumn fx:id="colVaiTro" text="Vai trò"/>
+                <TableColumn fx:id="colNgayVaoLam" text="Ngày vào làm"/>
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>

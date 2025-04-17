@@ -28,7 +28,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxWidth="800" maxHeight="500" prefWidth="700" prefHeight="450" xmlns:fx="http://javafx.com/fxml" fx:controller="application.view.controller.POSController">
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="application.view.controller.POSController">
      <children>
             <!-- Center Content: Drug Info | Cart & Invoice -->
             <HBox spacing="20.0" styleClass="main-area-background" BorderPane.alignment="CENTER">
@@ -223,4 +223,4 @@
                </VBox>
             </HBox>
    </children>
-</AnchorPane>
+</StackPane>
