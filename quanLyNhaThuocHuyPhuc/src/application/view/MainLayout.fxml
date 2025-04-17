@@ -200,14 +200,11 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="accountSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleThemTaiKhoanClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox onMouseClicked="#handlePhanQuyenClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Thêm tài khoản" styleClass="sidebar-label sidebar-label-sub"/>
+                        <Label text="Phân quyền" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
-                    <HBox onMouseClicked="#handleTimTaiKhoanClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Tìm tài khoản" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
+                   
                 </VBox>
             </VBox>
         </VBox>

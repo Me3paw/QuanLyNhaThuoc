@@ -136,14 +136,11 @@ public class MainController {
     }
 
     @FXML
-    private void handleThemTaiKhoanClick() {
-        loadPage("AddAccount.fxml"); // Load "Thêm Tài Khoản" view
+    private void handlePhanQuyenClick() {
+        loadPage("PhanQuyen.fxml"); // Load "Phân quyền Tài Khoản" view
     }
 
-    @FXML
-    private void handleTimTaiKhoanClick() {
-        loadPage("TimTaiKhoan.fxml"); // Load "Tìm Tài Khoản" view
-    }
+   
     //Thuoc
     @FXML
     private void handleThuocClick() {

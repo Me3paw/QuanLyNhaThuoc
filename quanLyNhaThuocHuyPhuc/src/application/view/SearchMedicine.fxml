@@ -26,21 +26,23 @@
         <!-- Tìm kiếm thuốc -->
         <HBox spacing="10">
             <TextField fx:id="searchField" prefWidth="400" promptText="Nhập mã thuốc, tên thuốc hoặc công dụng" />
-            <Button text="Tìm kiếm" onAction="#handleSearchClick" />
-            <Button text="Làm Mới" onAction="#handleResetClick" />
-        </HBox>
-
-        <!-- Lựa chọn tiêu chí tìm kiếm -->
-        <HBox spacing="10">
-            <ComboBox fx:id="searchCriteriaCombo" prefWidth="200">
+            <ComboBox fx:id="searchCriteriaCombo" style="-fx-pref-width: 200px;">
                 <items>
-                    <FXCollections fx:factory="observableArrayList">
+                    <FXCollections fx:factory="observableArrayList" >
                         <String fx:value="Tên Thuốc" />
                         <String fx:value="Mã Thuốc" />
                         <String fx:value="Công Dụng" />
                     </FXCollections>
                 </items>
             </ComboBox>
+            
+            
+        </HBox>
+
+        
+        <HBox spacing="10">
+            <Button text="Tìm kiếm" onAction="#handleSearchClick" />
+            <Button text="Làm Mới" onAction="#handleResetClick" />
         </HBox>
 
         <!-- Kết quả tìm kiếm -->

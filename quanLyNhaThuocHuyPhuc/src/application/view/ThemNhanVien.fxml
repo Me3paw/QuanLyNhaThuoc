@@ -95,7 +95,7 @@
 
         <!-- Nút thêm -->
         <HBox spacing="10" alignment="CENTER" StackPane.alignment="BOTTOM_CENTER">
-            <Button text="Thêm Nhân Viên" fx:id="themNhanVienButton" onAction="#handleThemNhanVien" styleClass="primary-button"/>
+            <Button text="Thêm Nhân Viên" fx:id="themNhanVienButton" onMouseClicked="#handleThemNhanVien" styleClass="primary-button"/>
         </HBox>
 
     </VBox>
