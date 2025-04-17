@@ -17,12 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
 
 public class POSController {
-	@FXML private GridPane tableHeader;
+
     @FXML private TextField txtMaThuocInput;
     @FXML private ImageView imgDrug;
     @FXML private Label lblDrugName;
@@ -52,22 +51,6 @@ public class POSController {
     @FXML
     public void initialize() {
         cartTable.setItems(cartData);
-     // ID
-        tableHeader.getColumnConstraints().get(0).prefWidthProperty().bind(
-            cartTable.getColumns().get(0).widthProperty()
-        );
-        // Tên thuốc
-        tableHeader.getColumnConstraints().get(1).prefWidthProperty().bind(
-            cartTable.getColumns().get(1).widthProperty()
-        );
-        // Số lượng
-        tableHeader.getColumnConstraints().get(2).prefWidthProperty().bind(
-            cartTable.getColumns().get(2).widthProperty()
-        );
-        // Đơn giá
-        tableHeader.getColumnConstraints().get(3).prefWidthProperty().bind(
-            cartTable.getColumns().get(3).widthProperty()
-        );
         setSoLuong();
         maHoaDon = hoaDonDAO.generateNextMaHoaDon();
         txtMaHoaDon.setText(maHoaDon);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="application.view.controller.LoginController"
+           style="-fx-background-image: url('/application/assets/images/anhnen.png');
+                  -fx-background-size: cover;
+                  -fx-background-repeat: no-repeat;
+                  -fx-background-position: center;">
+
+    <!-- Panel đen chứa form đăng nhập và căn giữa trong StackPane -->
+    <StackPane styleClass="black-background-pane" 
+               maxWidth="400" maxHeight="400" 
+               prefWidth="350" prefHeight="350" 
+               alignment="CENTER">
+
+        <!-- VBox chứa form đăng nhập -->
+        <VBox alignment="CENTER" spacing="10" styleClass="login-panel">
+            <!-- Logo hiệu thuốc -->
+		    <ImageView fx:id="logoImage" fitWidth="400" fitHeight="40" preserveRatio="true" styleClass="logo-image">
+                <image>
+                    <Image url="@/application/assets/images/logo.png" />
+                </image>
+            </ImageView>
+            <!-- Tiêu đề -->
+            <Label text="ĐĂNG NHẬP" styleClass="login-title" />
+
+            <!-- Grid chứa ô nhập -->
+            <GridPane hgap="15" vgap="20" maxWidth="300" alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS"/>
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="Tài khoản:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="login-label"/>
+                <TextField fx:id="txtUsername" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="login-input" />
+
+                <Label text="Mật khẩu:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="login-label"/>
+                <PasswordField fx:id="txtPassword" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="login-input" onAction="#handleLogin"/>
+
+                <Hyperlink fx:id="forgotPasswordLink" text="Quên mật khẩu?" onAction="#handleForgotPassword"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"
+                           styleClass="forgot-password-link"
+                           alignment="CENTER_RIGHT"
+                           GridPane.halignment="RIGHT"/>
+            </GridPane>
+
+            <!-- Nút đăng nhập -->
+            <Button text="Đăng nhập" onAction="#handleLogin"
+                    styleClass="login-button"
+                    maxWidth="200" />
+        </VBox>
+    </StackPane>
+</StackPane>

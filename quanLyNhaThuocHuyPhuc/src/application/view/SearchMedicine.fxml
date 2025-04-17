@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.collections.ObservableList?>
+<?import java.lang.String?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="application.view.controller.SearchMedicineController"
+           stylesheets="/application/assets/css/SearchMedicine.css">
+
+    <VBox spacing="10" maxWidth="1200">
+        <padding>
+            <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+        </padding>
+
+        <!-- Tìm kiếm thuốc -->
+        <HBox spacing="10">
+            <TextField fx:id="searchField" prefWidth="400" promptText="Nhập mã thuốc, tên thuốc hoặc công dụng" />
+            <ComboBox fx:id="searchCriteriaCombo" style="-fx-pref-width: 200px;">
+                <items>
+                    <FXCollections fx:factory="observableArrayList" >
+                        <String fx:value="Tên Thuốc" />
+                        <String fx:value="Mã Thuốc" />
+                        <String fx:value="Công Dụng" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            
+            
+        </HBox>
+
+        
+        <HBox spacing="10">
+            <Button text="Tìm kiếm" onAction="#handleSearchClick" />
+            <Button text="Làm Mới" onAction="#handleResetClick" />
+        </HBox>
+
+        <!-- Kết quả tìm kiếm -->
+        <Label fx:id="resultLabel" text="Kết quả tìm kiếm: 0 thuốc tìm thấy" />
+
+        <!-- Bảng thuốc -->
+        <TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="codeColumn" text="Mã Thuốc" prefWidth="100" />
+                <TableColumn fx:id="nameColumn" text="Tên Thuốc" prefWidth="200"/>
+                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" prefWidth="200"/>
+                <TableColumn fx:id="congDungColumn" text="Công Dụng" prefWidth="200"/>
+                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" prefWidth="100"/>
+                <TableColumn fx:id="giaBanColumn" text="Giá Bán" prefWidth="100"/>
+                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" prefWidth="200"/>
+                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" prefWidth="200"/>
+                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" prefWidth="150"/>
+                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>
