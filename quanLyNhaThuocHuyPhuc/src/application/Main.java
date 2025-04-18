@@ -38,7 +38,6 @@ public class Main extends Application {
             "-fx-background-color: rgba(255,255,255,0.3);" +
             "-fx-background-radius: 10;" +
             "-fx-border-radius: 10;" 
-            
         );
 
         // 3. Gộp vào Pane
