@@ -160,7 +160,7 @@ public class MainController {
 
     @FXML
     private void handleThemThuocClick() {
-        loadPage("themthuoc.fxml"); // Load "Thêm Thuốc" view
+        loadPage("ThemThuoc.fxml"); // Load "Thêm Thuốc" view
     }
     //ThongKe
     @FXML
