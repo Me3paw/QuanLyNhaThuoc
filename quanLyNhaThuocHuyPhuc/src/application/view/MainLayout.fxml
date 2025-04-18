@@ -131,10 +131,6 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thuocSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleDanhSachThuocClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Danh sách thuốc" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
                     <HBox onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <Label text="Thêm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
@@ -177,13 +173,17 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="caLamViecSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleTimKiemCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox onMouseClicked="#handleThongTinCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Tìm kiếm Ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
+                        <Label text="Thông tin ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleChiaCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <Label text="Chia ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox onMouseClicked="#handleLichSuCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Thống kê lịch sử ca" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
 

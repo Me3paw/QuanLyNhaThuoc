@@ -29,6 +29,7 @@
                 <TableColumn fx:id="colTenDangNhap" text="Tên đăng nhập"/>
                 <TableColumn fx:id="colVaiTro" text="Vai trò"/>
                 <TableColumn fx:id="colNgayVaoLam" text="Ngày vào làm"/>
+                <TableColumn text="Ca làm" fx:id="colCaLam"/>
             </columns>
         </TableView>
     </VBox>

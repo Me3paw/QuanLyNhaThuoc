@@ -1,4 +1,7 @@
 package application.view.controller;
+import application.model.NhanVien;
+import application.model.TaiKhoan;
+import application.util.SessionManager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +13,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class MainController {
 
+public class MainController {
+ 
     @FXML
     private StackPane contentArea;
     
@@ -68,10 +72,27 @@ public class MainController {
     @FXML
     private Button toggleButton;
 
-    @FXML
-    public void initialize() {
-        loadPage("POS.fxml"); // Load trang mặc định
-    }
+   @FXML
+	public void initialize() {
+	    // Retrieve the logged-in user and NhanVien from SessionManager
+	    TaiKhoan loggedInUser = SessionManager.getLoggedInUser();
+	    NhanVien loggedInNhanVien = SessionManager.getLoggedInNhanVien();
+	
+	    if (loggedInUser != null && loggedInNhanVien != null) {
+	        // Set the name and role using the retrieved data
+	        nameLabel.setText(loggedInNhanVien.getTenNhanVien());
+	        roleLabel.setText(loggedInUser.getVaiTro());
+	    } else {
+	        // Fallback values if no session data is available
+	        nameLabel.setText("Unknown User");
+	        roleLabel.setText("Unknown Role");
+	    }
+	}
+
+
+
+
+
 
     private void loadPage(String fxmlFileName) {
         try {
@@ -185,15 +206,19 @@ public class MainController {
         toggleSubMenu(caLamViecSubMenu);
     }
 
-
+    
     @FXML
-    private void handleTimKiemCaLamViecClick() {
-        loadPage("timkiemcalamviec.fxml"); // Load "Tìm Kiếm Ca Làm Việc" view
+    private void handleThongTinCaLamViecClick() {
+        loadPage("ThongTinCaLamViec.fxml"); 
     }
 
     @FXML
     private void handleChiaCaLamViecClick() {
-        loadPage("ChiaCaLamViec.fxml"); // Load "Chi Tiết Ca Làm Việc" view
+        loadPage("ShiftManaging.fxml");
+    }
+    @FXML
+    private void handleLichSuCaLamViecClick() {
+        loadPage("LichSuCaLamViec.fxml");
     }
 
     @FXML
@@ -202,18 +227,18 @@ public class MainController {
         nhanVienItem.getStyleClass().add("sidebar-item-selected");
         toggleSubMenu(nhanVienSubMenu);
     }
-    @FXML
-    private void handleTimNhanVienClick() {
-        loadPage("TimNhanVien.fxml"); // Load "Danh Sách Nhân Viên" view
-    }
 
     @FXML
     private void handleThemNhanVienClick() {
-        loadPage("ThemNhanVien.fxml"); // Load "Thêm Nhân Viên" view
+        loadPage("ThemNhanVien.fxml"); 
     }
     @FXML
     private void handleCapNhatNhanVienClick() {
-    	loadPage("CapNhatNhanVien.fxml"); // Load "Thêm Nhân Viên" view
+    	loadPage("CapNhatNhanVien.fxml"); 
+    }
+    @FXML
+    private void handleTimNhanVienClick() {
+    	loadPage("TimNhanVien.fxml"); 
     }
     
     //KhachHang
@@ -230,10 +255,6 @@ public class MainController {
     }
 
  
-    @FXML
-    private void handleCapNhatKhachHangClick() {
-        loadPage("capnhatkhachhang.fxml"); // Load "Cập Nhật Khách Hàng" view
-    }
     
  // Phương thức này sẽ được gọi sau khi người dùng đăng nhập thành công
     public void updateUserInfo(String tenNhanVien, String vaiTro) {

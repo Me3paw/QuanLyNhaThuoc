@@ -94,13 +94,13 @@ public class ThemNhanVienController {
         TaiKhoan taiKhoan = new TaiKhoan(username, password, vaiTro, ngayVaoLam);
 
         // Tạo đối tượng NhanVien
-        NhanVien nhanVien = new NhanVien(tenNhanVienTextField.getText(), 
+        NhanVien nhanVien = new NhanVien(maNhanVienTextField.getText(),tenNhanVienTextField.getText(), 
                                          gioiTinhComboBox.getValue(), namSinh, 
-                                         soDienThoai, email, heSoLuong, luongCoBan, taiKhoan);
+                                         soDienThoai, email, heSoLuong, luongCoBan, taiKhoan, (Integer) null);
 
         // Thêm tài khoản vào cơ sở dữ liệu
         if (taiKhoanDAO.addTaiKhoan(taiKhoan)) {
-            // Thêm nhân viên vào cơ sở dữ liệu
+            // Thêm nhân viên vào cơ sở dữ liệu 
             if (nhanVienDAO.addNhanVien(nhanVien)) {
                 showAlert("Thành công", "Thêm nhân viên thành công!", Alert.AlertType.INFORMATION);
             } else {

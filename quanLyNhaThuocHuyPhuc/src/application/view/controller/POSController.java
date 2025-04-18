@@ -105,78 +105,84 @@ public class POSController {
     }
 
     @FXML
-    private void handleCheckout() {
-        if (cartData.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Giỏ hàng đang trống!");
-            alert.showAndWait();
-            return;
-        }
-        double tienThua;
-        try {
-            tienThua = Double.parseDouble(txtTienThua.getText());
-        } catch (NumberFormatException e) {
-            tienThua = 0; // Default to 0 if parsing fails
-        }
-
-        if (tienThua < 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Số tiền khách đưa không đủ để thanh toán!");
-            alert.showAndWait();
-            return;
-        }
-        String sdt = txtSDT.getText().trim();
-        String tenKH = txtTenKH.getText().trim();
-        KhachHang kh = (sdt.isEmpty()) ? null : khachHangDAO.getKhachHangBySDT(sdt);
-        String maKH;
-
-        if (kh == null) {
-            if (!sdt.isEmpty()) {
-                // Insert new Khách Hàng
-                maKH = khachHangDAO.generateNextMaKhachHang();
-                KhachHang newKH = new KhachHang(maKH, tenKH, cboGioiTinh.getValue(), sdt);
-                khachHangDAO.insertKhachHang(newKH);
-            } else {
-                maKH = null; // No customer information
-            }
-        } else {
-            maKH = kh.getMaKhachHang();
-        }
-
-
-        HoaDon hd = new HoaDon(maHoaDon, LocalDate.now(), maKH, "NV001");
-        hoaDonDAO.insertHoaDon(hd);
-
-        // Insert ChiTietHoaDon
-        ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
-
-        for (CartItem item : cartData) {
-            ChiTietHoaDon cthd = new ChiTietHoaDon(
-                    hd.getMaHoaDon(),
-                    item.getId(),
-                    item.getQuantity(),
-                    item.getPrice()
-            );
-
-            chiTietHoaDonDAO.insertChiTietHoaDon(cthd);
-        }
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+private void handleCheckout() {
+    if (cartData.isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Thông báo");
-        alert.setHeaderText("Thanh toán thành công!");
+        alert.setHeaderText("Giỏ hàng đang trống!");
         alert.showAndWait();
+        return;
+    }
+    double tienThua;
+    try {
+        tienThua = Double.parseDouble(txtTienThua.getText());
+    } catch (NumberFormatException e) {
+        tienThua = 0; // Default to 0 if parsing fails
+    }
 
-        // Reload POS Page
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
-            Parent root = loader.load();
-            txtMaHoaDon.getScene().setRoot(root);
-        } catch (Exception e) {
-            e.printStackTrace();
+    if (tienThua < 0) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText("Số tiền khách đưa không đủ để thanh toán!");
+        alert.showAndWait();
+        return;
+    }
+    String sdt = txtSDT.getText().trim();
+    String tenKH = txtTenKH.getText().trim();
+    KhachHang kh = (sdt.isEmpty()) ? null : khachHangDAO.getKhachHangBySDT(sdt);
+    String maKH;
+
+    if (kh == null) {
+        if (!sdt.isEmpty()) {
+            // Insert new Khách Hàng
+            maKH = khachHangDAO.generateNextMaKhachHang();
+            KhachHang newKH = new KhachHang(maKH, tenKH, cboGioiTinh.getValue(), sdt);
+            khachHangDAO.insertKhachHang(newKH);
+        } else {
+            maKH = null; // No customer information
+        }
+    } else {
+        maKH = kh.getMaKhachHang();
+    }
+
+    HoaDon hd = new HoaDon(maHoaDon, LocalDate.now(), maKH, "NV001");
+    hoaDonDAO.insertHoaDon(hd);
+
+    // Insert ChiTietHoaDon
+    ChiTietHoaDonDAO chiTietHoaDonDAO = new ChiTietHoaDonDAO();
+    for (CartItem item : cartData) {
+        ChiTietHoaDon cthd = new ChiTietHoaDon(
+                hd.getMaHoaDon(),
+                item.getId(),
+                item.getQuantity(),
+                item.getPrice()
+        );
+        chiTietHoaDonDAO.insertChiTietHoaDon(cthd);
+
+        // Update soLuongTon in Thuoc
+        Thuoc thuoc = thuocDAO.getThuocByID(item.getId());
+        if (thuoc != null) {
+            int updatedSoLuongTon = thuoc.getSoLuongTon() - item.getQuantity();
+            thuoc.setSoLuongTon(updatedSoLuongTon);
+            thuocDAO.updateThuoc(thuoc);
         }
     }
+
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Thông báo");
+    alert.setHeaderText("Thanh toán thành công!");
+    alert.showAndWait();
+
+    // Reload POS Page
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
+        Parent root = loader.load();
+        txtMaHoaDon.getScene().setRoot(root);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 
 
     @FXML

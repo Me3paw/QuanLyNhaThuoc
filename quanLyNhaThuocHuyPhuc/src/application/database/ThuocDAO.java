@@ -41,6 +41,18 @@ public class ThuocDAO {
 
         return list;
     }
+    public void updateThuoc(Thuoc thuoc) {
+        String sql = "UPDATE Thuoc SET soLuongTon = ? WHERE maThuoc = ?";
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, thuoc.getSoLuongTon());
+            ps.setString(2, thuoc.getMaThuoc());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Thuoc getThuocByID(String maThuoc) {
         String sql = "SELECT * FROM Thuoc WHERE maThuoc = ?";
         try (Connection conn = DatabaseConnector.getConnection();

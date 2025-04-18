@@ -2,11 +2,10 @@ package application.view.controller;
 
 import application.database.TaiKhoanDAO;
 import application.model.TaiKhoan;
+import application.util.SessionManager;
 
 import java.io.IOException;
 
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,74 +37,85 @@ public class LoginController {
         alert.showAndWait();
     }
 
-   @FXML
-private void handleLogin() {
-    String user = txtUsername.getText();
-    String pass = txtPassword.getText();
+    @FXML
+    private void handleLogin() {
+        System.out.println("handleLogin() called");
 
-    if (user.isEmpty() || pass.isEmpty()) {
-        showAlert(Alert.AlertType.WARNING, "Thông báo", "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.");
-        return;
+        String user = txtUsername.getText();
+        String pass = txtPassword.getText();
+
+        System.out.println("Username entered: " + user);
+        System.out.println("Password entered: " + pass);
+
+        if (user.isEmpty() || pass.isEmpty()) {
+            System.out.println("Username or password is empty");
+            showAlert(Alert.AlertType.WARNING, "Thông báo", "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.");
+            return;
+        }
+
+        TaiKhoan taiKhoan = accountDAO.getTaiKhoanByTenDangNhap(user);
+        System.out.println("TaiKhoan retrieved: " + (taiKhoan != null ? taiKhoan.getTenDangNhap() : "null"));
+
+        if (taiKhoan == null) {
+            System.out.println("Account not found in the system");
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Tài khoản không tồn tại trong hệ thống.");
+            return;
+        }
+
+        if (!taiKhoan.getMatKhau().equals(pass)) {
+            System.out.println("Incorrect password");
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Sai mật khẩu. Vui lòng thử lại.");
+            return;
+        }
+
+        System.out.println("Login successful, saving user to SessionManager");
+        SessionManager.setLoggedInUser(taiKhoan);
+
+        if (SessionManager.getLoggedInNhanVien() == null) {
+            System.out.println("NhanVien data not found for the logged-in user");
+            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không tìm thấy thông tin nhân viên.");
+            return;
+        }
+
+        try {
+            System.out.println("Loading MainLayout.fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/application/assets/css/style.css").toExternalForm());
+
+            Stage stage = new Stage();
+            stage.setTitle("Trang chính");
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Closing current login window");
+            Stage currentStage = (Stage) txtUsername.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            System.out.println("Error loading MainLayout.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-
-    TaiKhoan taiKhoan = accountDAO.getTaiKhoanByTenDangNhap(user);
-
-    if (taiKhoan == null) {
-        showAlert(Alert.AlertType.ERROR, "Lỗi", "Tài khoản không tồn tại trong hệ thống.");
-        return;
-    }
-
-    if (!taiKhoan.getMatKhau().equals(pass)) {
-        showAlert(Alert.AlertType.ERROR, "Lỗi", "Sai mật khẩu. Vui lòng thử lại.");
-        return;
-    }
-
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
-        Parent root = loader.load();
-
-        MainController mainController = loader.getController();
-        mainController.updateUserInfo(
-            TaiKhoanDAO.getTenNguoiDung(taiKhoan.getTenDangNhap(), taiKhoan.getMatKhau()), 
-            taiKhoan.getVaiTro()
-        );
-
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/application/assets/css/style.css").toExternalForm());
-
-        Stage stage = new Stage();
-        stage.setTitle("Trang chính");
-        stage.setScene(scene);
-        stage.show();
-
-        Stage currentStage = (Stage) txtUsername.getScene().getWindow();
-        currentStage.close();
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-
-
 
     @FXML
-    private void handleForgotPassword(ActionEvent event) {
-        try {
-            // Ẩn màn hình đăng nhập
-            Stage loginStage = (Stage) forgotPasswordLink.getScene().getWindow();
-            loginStage.hide();  // Ẩn cửa sổ đăng nhập
+    private void handleForgotPassword() {
+        System.out.println("handleForgotPassword() called");
 
-            // Tải màn hình quên mật khẩu
+        try {
+            System.out.println("Hiding login window");
+            Stage loginStage = (Stage) forgotPasswordLink.getScene().getWindow();
+            loginStage.hide();
+
+            System.out.println("Loading ForgotPasswordLayout.fxml");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/ForgotPasswordLayout.fxml"));
             Parent root = loader.load();
 
-            // Tạo cảnh cho màn hình quên mật khẩu
             Scene forgotPasswordScene = new Scene(root);
-            
-            // Thêm CSS vào cảnh
             forgotPasswordScene.getStylesheets().add(getClass().getResource("/application/assets/css/ForgotPassword.css").toExternalForm());
 
-            // Hiển thị màn hình quên mật khẩu
             Stage forgotPasswordStage = new Stage();
             forgotPasswordStage.setWidth(800);
             forgotPasswordStage.setHeight(600);
@@ -114,9 +124,8 @@ private void handleLogin() {
             forgotPasswordStage.show();
 
         } catch (IOException e) {
+            System.out.println("Error loading ForgotPasswordLayout.fxml: " + e.getMessage());
             e.printStackTrace();
         }
     }
-   
 }
-

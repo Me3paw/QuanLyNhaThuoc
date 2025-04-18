@@ -1,5 +1,7 @@
 package application.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 public class NhanVien {
     private String maNhanVien;
     private String tenNhanVien;
@@ -10,34 +12,44 @@ public class NhanVien {
     private double heSoLuong;
     private double luongCoBan;
     private TaiKhoan taiKhoan;
-
+    private int caLam;
+    private final BooleanProperty selected = new SimpleBooleanProperty(false);
     // Constructor
-    public NhanVien(String maNhanVien, String tenNhanVien, String gioiTinh, int namSinh, String soDienThoai, 
-                    String email, double heSoLuong, double luongCoBan, TaiKhoan taiKhoan) {
-        this.maNhanVien = maNhanVien;
-        this.tenNhanVien = tenNhanVien;
-        this.gioiTinh = gioiTinh;
-        this.namSinh = namSinh;
-        this.soDienThoai = soDienThoai;
-        this.email = email;
-        this.heSoLuong = heSoLuong;
-        this.luongCoBan = luongCoBan;
-        this.taiKhoan = taiKhoan;
-    }
-    public NhanVien( String tenNhanVien, String gioiTinh, int namSinh, String soDienThoai, 
-    		String email, double heSoLuong, double luongCoBan, TaiKhoan taiKhoan) {
-    	
-    	this.tenNhanVien = tenNhanVien;
-    	this.gioiTinh = gioiTinh;
-    	this.namSinh = namSinh;
-    	this.soDienThoai = soDienThoai;
-    	this.email = email;
-    	this.heSoLuong = heSoLuong;
-    	this.luongCoBan = luongCoBan;
-    	this.taiKhoan = taiKhoan;
+    public NhanVien(String maNhanVien, String tenNhanVien, String gioiTinh, int namSinh, String soDienThoai,
+            String email, double heSoLuong, double luongCoBan, TaiKhoan taiKhoan, int caLam) {
+			this.maNhanVien = maNhanVien;
+			this.tenNhanVien = tenNhanVien;
+			this.gioiTinh = gioiTinh;
+			this.namSinh = namSinh;
+			this.soDienThoai = soDienThoai;
+			this.email = email;
+			this.heSoLuong = heSoLuong;
+			this.luongCoBan = luongCoBan;
+			this.taiKhoan = taiKhoan;
+			this.caLam = caLam;
+	}
+    public NhanVien() {
+		// TODO Auto-generated constructor stub
+	}
+	public BooleanProperty selectedProperty() {
+        return selected;
     }
 
+    public boolean isSelected() {
+        return selected.get();
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected.set(selected);
+    }
     // Getters and Setters
+    public int getCaLam() {
+        return caLam;
+    }
+
+    public void setCaLam(int caLam) {
+        this.caLam = caLam;
+    }
     public String getMaNhanVien() {
         return maNhanVien;
     }
@@ -128,6 +140,7 @@ public class NhanVien {
                 ", heSoLuong=" + heSoLuong +
                 ", luongCoBan=" + luongCoBan +
                 ", taiKhoan=" + taiKhoan +
+                ", caLam=" + caLam +
                 '}';
     }
 }
