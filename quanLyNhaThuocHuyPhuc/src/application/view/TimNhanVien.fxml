@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml"
+<StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="application.view.controller.TimNhanVienController"
            stylesheets="@../assets/css/SearchMedicine.css">
     <VBox spacing="10" alignment="TOP_CENTER" styleClass="container">
@@ -16,7 +16,7 @@
             <Button text="Tìm" onAction="#handleSearch" styleClass="button"/>
         </HBox>
 
-        <TableView fx:id="tableNhanVien" prefHeight="450" prefWidth="1000" styleClass="table-view">
+        <TableView fx:id="tableNhanVien">
             <columns>
                 <TableColumn fx:id="colMaNV" text="Mã NV"/>
                 <TableColumn fx:id="colTenNV" text="Tên NV"/>
