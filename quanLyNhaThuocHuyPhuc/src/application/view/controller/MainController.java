@@ -193,9 +193,9 @@ public class MainController {
 
     @FXML
     private void handleChiaCaLamViecClick() {
-        loadPage("chiacalamviec.fxml"); // Load "Chi Tiết Ca Làm Việc" view
+        loadPage("ChiaCaLamViec.fxml"); // Load "Chi Tiết Ca Làm Việc" view
     }
-    //QuanLyNhanVien
+
     @FXML
     private void handleNhanVienClick() {
         resetSidebarStyle();
