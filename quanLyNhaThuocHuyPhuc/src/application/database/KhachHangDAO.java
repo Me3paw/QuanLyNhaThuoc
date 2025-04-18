@@ -5,6 +5,9 @@ import application.model.KhachHang;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KhachHangDAO {
 
@@ -77,5 +80,32 @@ public class KhachHangDAO {
         }
 
         return "KH001"; // fallback
+    }
+    public List<KhachHang> getAllKhachHang() {
+        List<KhachHang> customerList = new ArrayList<>();
+        String sql = "SELECT maKhachHang, tenKH, gioiTinh, soDienThoai FROM KhachHang ORDER BY maKhachHang";
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                String maKH = rs.getString("maKhachHang");
+                String tenKH = rs.getString("tenKH");
+                String gioiTinh = rs.getString("gioiTinh");
+                String sdt = rs.getString("soDienThoai");
+
+                if (maKH != null && !maKH.trim().isEmpty() && tenKH != null && !tenKH.trim().isEmpty()) {
+                    KhachHang kh = new KhachHang(maKH, tenKH, gioiTinh, sdt);
+                    customerList.add(kh);
+                } else {
+                     System.err.println("DAO cảnh báo: Bỏ qua dòng KhachHang không hợp lệ trong DB (MaKH: " + maKH + ", TenKH: " + tenKH + ")");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>(); 
+        }
+        return customerList;
     }
 }

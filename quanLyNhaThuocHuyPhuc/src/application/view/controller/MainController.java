@@ -226,7 +226,7 @@ public class MainController {
 
     @FXML
     private void handleDanhSachKhachHangClick() {
-        loadPage("danhsachkhachhang.fxml"); // Load "Danh Sách Khách Hàng" view
+        loadPage("DanhSachKhachHang.fxml"); // Load "Danh Sách Khách Hàng" view
     }
 
  
