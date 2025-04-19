@@ -192,7 +192,7 @@ public class MainController {
     }
     @FXML
     private void handleDoanhThuClick() {
-        loadPage("doanhthu.fxml"); 
+        loadPage("DoanhThu.fxml"); 
     }
     @FXML
     private void handleBaoCaoNhapClick() {
@@ -240,6 +240,8 @@ public class MainController {
     private void handleTimNhanVienClick() {
     	loadPage("TimNhanVien.fxml"); 
     }
+    
+    
     
     //KhachHang
     @FXML

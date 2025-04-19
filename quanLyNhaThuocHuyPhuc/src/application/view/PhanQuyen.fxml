@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<StackPane styleClass="dashboard-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="application.view.controller.PhanQuyenController"
+           stylesheets="@../assets/css/SearchMedicine.css"> 
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="15.0" alignment="TOP_CENTER">
+            <children>
+                <Label text="Phân Quyền Tài Khoản" styleClass="form-title" style="-fx-font-size: 30px;"/>
+
+                <HBox spacing="10" alignment="CENTER" style="-fx-padding-bottom: 10;">
+                    <TextField fx:id="txtSearch" promptText="Nhập mã NV, tên NV hoặc SĐT" styleClass="text-field" HBox.hgrow="ALWAYS"/>
+                    <Button text="Tìm" onAction="#handleSearch" styleClass="button"/>
+                    <Button text="Làm Mới" onAction="#handleResetSearch" styleClass="button"/>
+                </HBox>
+
+                <TableView fx:id="tableTaiKhoan" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colChon" text="Chọn" prefWidth="60"/>
+                        <TableColumn fx:id="colMaNhanVien" text="Mã Nhân Viên" prefWidth="150"/>
+                        <TableColumn fx:id="colTenNhanVien" text="Tên Nhân Viên" prefWidth="250"/>
+                        <TableColumn fx:id="colSdtNV" text="Số Điện Thoại" prefWidth="150"/>
+                        <TableColumn fx:id="colVaiTro" text="Vai Trò" prefWidth="150"/>
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+
+                <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding-top: 15;">
+                    <Label text="Gán vai trò mới:" styleClass="label"/>
+                    <ComboBox fx:id="cboNewRole" promptText="Chọn vai trò" styleClass="combo-box" prefWidth="180"/>
+                    <Button fx:id="btnApplyRole" text="Áp dụng Vai Trò" onAction="#handleApplyRole" styleClass="accent-button"/>
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</StackPane>

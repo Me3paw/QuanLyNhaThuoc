@@ -162,6 +162,10 @@
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <Label text="Thêm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
+                    <HBox onMouseClicked="#handlePhanQuyenClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Phân quyền" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
                 </VBox>
 
                 <!-- Ca làm việc -->

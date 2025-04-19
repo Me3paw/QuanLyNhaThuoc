@@ -2,6 +2,9 @@ package application.model;
 
 import java.time.LocalDate;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 public class TaiKhoan {
     private String maTaiKhoan;
     private String tenDangNhap;
@@ -9,6 +12,9 @@ public class TaiKhoan {
     private String vaiTro;
     private LocalDate ngayVaoLam;
     private NhanVien nhanVien;
+    private final BooleanProperty selected = new SimpleBooleanProperty(false);
+
+    
     public TaiKhoan() {
 		this("", "", "", "", LocalDate.now());
 	}
@@ -77,7 +83,17 @@ public class TaiKhoan {
         this.ngayVaoLam = ngayVaoLam;
     }
 
-    // To String method for easy printing
+    public boolean isSelected() {
+        return selected.get();
+    }    
+    public BooleanProperty selectedProperty() {
+        return selected;
+    } 
+    
+    public final void setSelected(boolean selected) {
+        this.selected.set(selected);
+    }
+    
     @Override
     public String toString() {
         return "TaiKhoan{" +

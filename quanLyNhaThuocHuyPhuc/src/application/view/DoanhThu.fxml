@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
+
+<StackPane styleClass="dashboard-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="application.view.controller.DoanhThuController"
+           stylesheets="@../assets/css/DoanhThu.css">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="24.0">
+
+            <!-- Section 1: KPI Cards -->
+            <HBox spacing="24.0" alignment="CENTER_LEFT">
+                <!-- Card Thuốc kho -->
+                <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                            <children>
+                                <StackPane styleClass="kpi-icon-background">
+                                    <children>
+                                        <Region styleClass="kpi-icon, icon-folder"/>
+                                    </children>
+                                </StackPane>
+                                <VBox>
+                                    <children>
+                                        <Label text="Thuốc kho" styleClass="kpi-title"/>
+                                        <Label fx:id="thuocKhoValueLabel" text="4.732" styleClass="kpi-value"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <!-- Card Khách hàng -->
+                <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                            <children>
+                                <StackPane styleClass="kpi-icon-background">
+                                    <children>
+                                        <Region styleClass="kpi-icon, icon-profile-2user"/>
+                                    </children>
+                                </StackPane>
+                                <VBox>
+                                    <children>
+                                        <Label text="Khách hàng" styleClass="kpi-title"/>
+                                        <Label fx:id="khachHangValueLabel" text="1.627" styleClass="kpi-value"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <!-- Card Số dư quỹ -->
+                 <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                     <children>
+                         <HBox spacing="15" alignment="CENTER_LEFT">
+                            <children>
+                                <StackPane styleClass="kpi-icon-background">
+                                     <children>
+                                         <Region styleClass="kpi-icon, icon-clipboard-text"/>
+                                     </children>
+                                </StackPane>
+                                <VBox>
+                                    <children>
+                                        <Label text="Số dư quỹ (x1000)" styleClass="kpi-title"/>
+                                        <Label fx:id="soDuQuyValueLabel" text="300.000" styleClass="kpi-value"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <!-- Card Nhân viên -->
+                <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                     <children>
+                         <HBox spacing="15" alignment="CENTER_LEFT">
+                            <children>
+                                <StackPane styleClass="kpi-icon-background">
+                                    <children>
+                                        <Region styleClass="kpi-icon, icon-people"/>
+                                    </children>
+                                </StackPane>
+                                <VBox>
+                                    <children>
+                                        <Label text="Nhân viên" styleClass="kpi-title"/>
+                                        <Label fx:id="nhanVienValueLabel" text="30" styleClass="kpi-value"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </HBox>
+
+            <!-- Section 2: Charts -->
+            <HBox spacing="24.0">
+                <!-- Chart Doanh thu năm -->
+                <VBox styleClass="chart-panel" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Doanh Thu Năm" styleClass="chart-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <ComboBox fx:id="doanhThuYearCombo" promptText="2024" styleClass="year-combo">
+                                     <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="2024"/> <String fx:value="2023"/> <String fx:value="2022"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </children>
+                        </HBox>
+                        <BarChart fx:id="doanhThuChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="bar-chart-custom" animated="false">
+                            <xAxis>
+                                <CategoryAxis fx:id="doanhThuXAxis" side="BOTTOM"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="doanhThuYAxis" side="LEFT" label="" upperBound="110" tickUnit="20" autoRanging="false"/>
+                            </yAxis>
+                            <!-- Dữ liệu sẽ được load từ Controller -->
+                        </BarChart>
+                        <HBox styleClass="chart-legend" spacing="20" alignment="CENTER">
+                             <children>
+                                 <HBox alignment="CENTER_LEFT" spacing="5">
+                                      <children>
+                                          <Region styleClass="legend-marker, marker-thu-nhap"/>
+                                          <Label text="Thu nhập" styleClass="legend-label"/>
+                                      </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" spacing="5">
+                                      <children>
+                                          <Region styleClass="legend-marker, marker-chi-phi"/>
+                                          <Label text="Chi Phí" styleClass="legend-label"/>
+                                      </children>
+                                 </HBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- Chart Lợi nhuận năm -->
+                <VBox styleClass="chart-panel" HBox.hgrow="ALWAYS">
+                    <children>
+                         <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Lợi Nhuận Năm" styleClass="chart-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <ComboBox fx:id="loiNhuanYearCombo" promptText="2024" styleClass="year-combo">
+                                     <items>
+                                         <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="2024"/> <String fx:value="2023"/> <String fx:value="2022"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </children>
+                        </HBox>
+                        <LineChart fx:id="loiNhuanChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="line-chart-custom" createSymbols="true" animated="false">
+                             <xAxis>
+                                <CategoryAxis fx:id="loiNhuanXAxis" side="BOTTOM"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="loiNhuanYAxis" side="LEFT" label="" upperBound="110" tickUnit="20" autoRanging="false"/>
+                            </yAxis>
+                             <!-- Dữ liệu sẽ được load từ Controller -->
+                        </LineChart>
+                         <HBox styleClass="chart-legend" spacing="20" alignment="CENTER">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="5">
+                                     <children>
+                                         <Region styleClass="legend-marker, marker-tong-doanh-thu"/>
+                                         <Label text="Tổng Doanh Thu" styleClass="legend-label"/>
+                                     </children>
+                                </HBox>
+                                 <HBox alignment="CENTER_LEFT" spacing="5">
+                                     <children>
+                                         <Region styleClass="legend-marker, marker-tong-loi-nhuan"/>
+                                         <Label text="Tổng Lợi Nhuận" styleClass="legend-label"/>
+                                     </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </HBox>
+
+             <!-- Section 3: Mini KPI Cards -->
+            <HBox spacing="24.0" alignment="CENTER_LEFT">
+
+                <!-- Card Nhân viên  -->
+                <HBox styleClass="mini-kpi-card" alignment="CENTER_LEFT" prefWidth="248.0" HBox.hgrow="ALWAYS" spacing="10">
+                    <children>
+                    <!-- Bên trái -->
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Nhân viên mới" styleClass="mini-kpi-title"/>
+                            <Label fx:id="nhanVienMoiValueLabel" text="0" styleClass="mini-kpi-value"/>
+                            <Label fx:id="nhanVienMoiPercentageLabel" text="+0%" styleClass="mini-kpi-percentage"/>
+                        </VBox>
+                        <!-- Bên phải -->
+                        <BarChart fx:id="nhanVienMoiChart"
+                                  prefHeight="50" maxHeight="50" minHeight="50"
+                                  prefWidth="50" maxWidth="50" minWidth="50"
+                                  legendVisible="false" styleClass="mini-bar-chart" animated="false">
+                           <xAxis><CategoryAxis side="BOTTOM" visible="false" tickLabelsVisible="false" opacity="0"/></xAxis>
+                           <yAxis><NumberAxis side="LEFT" visible="false" tickLabelsVisible="false" opacity="0"/></yAxis>
+                        </BarChart>
+                    </children>
+                </HBox>
+
+                <!-- Card Doanh thu -->
+                <HBox styleClass="mini-kpi-card" alignment="CENTER_LEFT" prefWidth="248.0" HBox.hgrow="ALWAYS" spacing="10">
+                     <children>
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Doanh thu (x1000)" styleClass="mini-kpi-title"/>
+                            <Label fx:id="doanhThuMiniValueLabel" text="đ0" styleClass="mini-kpi-value"/>
+                            <Label fx:id="doanhThuMiniPercentageLabel" text="+0%" styleClass="mini-kpi-percentage"/>
+                        </VBox>
+                         <BarChart fx:id="doanhThuMiniChart"
+                                   prefHeight="50" maxHeight="50" minHeight="50"
+                                   prefWidth="50" maxWidth="50" minWidth="50"
+                                   legendVisible="false" styleClass="mini-bar-chart" animated="false">
+                            <xAxis><CategoryAxis side="BOTTOM" visible="false" tickLabelsVisible="false" opacity="0"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" visible="false" tickLabelsVisible="false" opacity="0"/></yAxis>
+                         </BarChart>
+                    </children>
+                </HBox>
+
+                <!-- Card Chi phí -->
+                 <HBox styleClass="mini-kpi-card" alignment="CENTER_LEFT" prefWidth="248.0" HBox.hgrow="ALWAYS" spacing="10">
+                    <children>
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Chi Phí (x1000)" styleClass="mini-kpi-title"/>
+                            <Label fx:id="chiPhiMiniValueLabel" text="đ0" styleClass="mini-kpi-value"/>
+                            <Label fx:id="chiPhiMiniPercentageLabel" text="+0%" styleClass="mini-kpi-percentage"/>
+                        </VBox>
+                         <BarChart fx:id="chiPhiMiniChart"
+                                   prefHeight="50" maxHeight="50" minHeight="50"
+                                   prefWidth="50" maxWidth="50" minWidth="50"
+                                   legendVisible="false" styleClass="mini-bar-chart" animated="false">
+                            <xAxis><CategoryAxis side="BOTTOM" visible="false" tickLabelsVisible="false" opacity="0"/></xAxis>
+                            <yAxis><NumberAxis side="LEFT" visible="false" tickLabelsVisible="false" opacity="0"/></yAxis>
+                         </BarChart>
+                     </children>
+                </HBox>
+
+                <!-- Card Lợi nhuận -->
+                 <HBox styleClass="mini-kpi-card" alignment="CENTER_LEFT" prefWidth="248.0" HBox.hgrow="ALWAYS" spacing="10">
+                     <children>
+                        <VBox spacing="2" HBox.hgrow="ALWAYS">
+                            <Label text="Lợi Nhuận (x1000)" styleClass="mini-kpi-title"/>
+                            <Label fx:id="loiNhuanMiniValueLabel" text="đ0" styleClass="mini-kpi-value"/>
+                            <Label fx:id="loiNhuanMiniPercentageLabel" text="+0%" styleClass="mini-kpi-percentage"/>
+                        </VBox>
+                         <BarChart fx:id="loiNhuanMiniChart"
+                                   prefHeight="50" maxHeight="50" minHeight="50"
+                                   prefWidth="50" maxWidth="50" minWidth="50"
+                                   legendVisible="false" styleClass="mini-bar-chart" animated="false">
+                           <xAxis><CategoryAxis side="BOTTOM" visible="false" tickLabelsVisible="false" opacity="0"/></xAxis>
+                           <yAxis><NumberAxis side="LEFT" visible="false" tickLabelsVisible="false" opacity="0"/></yAxis>
+                         </BarChart>
+                     </children>
+                </HBox>
+            </HBox>
+
+        </VBox>
+    </children>
+</StackPane>

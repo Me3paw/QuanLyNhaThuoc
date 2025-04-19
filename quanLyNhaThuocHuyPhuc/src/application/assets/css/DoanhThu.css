@@ -1,0 +1,223 @@
+.dashboard-background {
+    -fx-background-color: #151212; 
+}
+
+/* KPI Cards (Section 1) */
+.kpi-card {
+    -fx-background-color: #120C0D; /* Màu nền của card */
+    -fx-padding: 20;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+
+}
+
+.kpi-icon-background {
+    -fx-background-color: #1f1b1c; 
+    -fx-pref-width: 56;
+    -fx-pref-height: 56;
+    -fx-background-radius: 28; /* Làm tròn */
+    -fx-border-radius: 28;
+     -fx-border-color: #191919;
+     -fx-border-width: 1;
+     -fx-alignment: center;
+}
+
+.kpi-icon {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+
+}
+.icon-folder { -fx-background-color: #ED6214; /*...*/ }
+.icon-profile-2user { -fx-background-color: #ED6214; /*...*/ }
+.icon-clipboard-text { -fx-background-color: #ED6214; /*...*/ }
+.icon-people { -fx-background-color: #ED6214; /*...*/ }
+
+
+.kpi-title {
+    -fx-text-fill: #ED6214;
+    -fx-font-size: 15px;
+    -fx-font-weight: 500;
+}
+
+.kpi-value {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: 600;
+}
+
+/* Chart Panel (Section 2) */
+.chart-panel {
+    -fx-background-color: #120C0D;
+    -fx-padding: 20;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-spacing: 15; 
+}
+
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+}
+
+.year-combo {
+    -fx-background-color: #1f1b1c;
+    -fx-border-color: #191919;
+    -fx-border-width: 1;
+    -fx-text-fill: white;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+}
+
+.bar-chart-custom .chart-bar {
+     -fx-bar-fill: #ED6214;
+}
+.bar-chart-custom .chart-bar.series0 { /* Series Thu nhập */
+     -fx-bar-fill: #ED6214;
+}
+.bar-chart-custom .chart-bar.series1 { /* Series Chi phí */
+     -fx-bar-fill: #891D06;
+}
+.bar-chart-custom .axis {
+    -fx-tick-label-fill: #BABABA;
+    -fx-tick-mark-visible: false;
+    -fx-border-color: transparent; 
+}
+.bar-chart-custom .axis-label {
+     -fx-text-fill: #BABABA;
+}
+.bar-chart-custom .chart-plot-background {
+    -fx-background-color: transparent;
+}
+.bar-chart-custom .chart-vertical-grid-lines {
+     -fx-stroke: #191919; 
+}
+.bar-chart-custom .chart-horizontal-grid-lines {
+     -fx-stroke: #191919; 
+}
+
+
+.line-chart-custom .chart-series-line.series0 { -fx-stroke: #ED6214; } /* Tổng DT */
+.line-chart-custom .chart-series-line.series1 { -fx-stroke: #891D06; } /* Tổng LN */
+.line-chart-custom .chart-line-symbol.series0 { -fx-background-color: #ED6214, #120C0D; -fx-background-radius: 6; -fx-padding: 4px;}
+.line-chart-custom .chart-line-symbol.series1 { -fx-background-color: #891D06, #120C0D; -fx-background-radius: 6; -fx-padding: 4px;}
+
+.line-chart-custom .axis {
+    -fx-tick-label-fill: #BABABA;
+    -fx-tick-mark-visible: false;
+    -fx-border-color: transparent;
+}
+.line-chart-custom .axis-label {
+     -fx-text-fill: #BABABA;
+}
+.line-chart-custom .chart-plot-background {
+    -fx-background-color: transparent;
+}
+.line-chart-custom .chart-vertical-grid-lines {
+     -fx-stroke: #191919;
+}
+.line-chart-custom .chart-horizontal-grid-lines {
+     -fx-stroke: #191919;
+}
+
+.chart-legend {
+    -fx-padding-top: 10;
+}
+
+.legend-marker {
+    -fx-pref-width: 12;
+    -fx-pref-height: 12;
+    -fx-background-radius: 6; /* Tròn */
+}
+.marker-thu-nhap { -fx-background-color: #ED6214; }
+.marker-chi-phi { -fx-background-color: #891D06; }
+.marker-tong-doanh-thu { -fx-background-color: #ED6214; }
+.marker-tong-loi-nhuan { -fx-background-color: #891D06; }
+
+
+.legend-label {
+     -fx-text-fill: white;
+     -fx-font-size: 12px;
+     -fx-font-weight: 600;
+}
+
+/* Mini KPI Cards (Section 3) */
+.mini-kpi-card {
+    -fx-background-color: #120C0D;
+    -fx-padding: 15 20; 
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-spacing: 5;
+}
+
+.mini-kpi-title {
+    -fx-text-fill: #BABABA; 
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.mini-kpi-value {
+    -fx-text-fill: white;
+    -fx-font-size: 20px; 
+    -fx-font-weight: 700;
+}
+
+.mini-kpi-percentage {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.percentage-up {
+    -fx-text-fill: #33B843;
+}
+
+.percentage-down {
+    -fx-text-fill: #D82027; 
+}
+
+
+.mini-kpi-card {
+    -fx-alignment: center-left; 
+}
+
+.mini-bar-chart {
+    -fx-padding: 0; 
+    -fx-vertical-grid-lines-visible: false;
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-background-color: transparent; 
+    -fx-pref-width: 80; 
+    -fx-max-height: 50; 
+    -fx-min-height: 50;
+    -fx-bar-gap: 1px;      
+    -fx-category-gap: 2px; 
+}
+
+.mini-bar-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.mini-bar-chart .chart-bar {
+    -fx-bar-fill: #ED6214; 
+    -fx-background-radius: 2; 
+    -fx-border-radius: 2;
+    -fx-padding: 0 1px; 
+    -fx-background-insets: 0;
+}
+
+.mini-bar-chart .axis {
+    -fx-opacity: 0; /* Ẩn trục */
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+}
+
+.mini-kpi-percentage {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+.percentage-up { -fx-text-fill: #33B843; }
+.percentage-down { -fx-text-fill: #D82027; }
+.percentage-neutral { -fx-text-fill: #BABABA; } /* Màu cho 0% */
