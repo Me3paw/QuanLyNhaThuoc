@@ -5,8 +5,11 @@ import application.model.Thuoc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ThuocDAO {
 
@@ -192,5 +195,81 @@ public class ThuocDAO {
         return t;
     }
 
+    public boolean addThuoc(Thuoc thuoc) {
+        String sql = "INSERT INTO Thuoc (maThuoc, tenThuoc, thanhPhan, congDung, hanSuDung, giaBan, giaNhap, soLuongTon, maNhaCungCap, hinhAnh) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        if (thuoc == null) {
+            return false;
+        }
+        String generatedMaThuoc = generateNextMaThuoc(thuoc.getTenThuoc()); //tạo mã thuốc
+        thuoc.setMaThuoc(generatedMaThuoc); 
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, thuoc.getMaThuoc());
+            ps.setString(2, thuoc.getTenThuoc());
+            ps.setString(3, thuoc.getThanhPhan());
+            ps.setString(4, thuoc.getCongDung());
+            ps.setString(5, thuoc.getHanSuDung()); 
+            ps.setDouble(6, thuoc.getGiaBan());
+            ps.setDouble(7, thuoc.getGiaNhap());
+            ps.setInt(8, thuoc.getSoLuongTon());
+            ps.setString(9, thuoc.getMaNhaCungCap());
+            ps.setString(10, thuoc.getHinhAnh());
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public String generateNextMaThuoc(String tenThuoc) {
+
+        String namePart = tenThuoc.trim().toUpperCase();
+        namePart = namePart.replaceAll("^[^A-Z]+", ""); 
+        if (namePart.length() > 3) {
+            namePart = namePart.substring(0, 3);
+        } else if (namePart.isEmpty()) {
+             namePart = "XXX"; 
+        }
+
+        String prefix = "TH-" + namePart + "-"; 
+
+        String sql = "SELECT maThuoc FROM Thuoc WHERE maThuoc LIKE ? ORDER BY maThuoc DESC LIMIT 1";
+        int nextSequence = 1; 
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, prefix + "%"); 
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String lastMa = rs.getString("maThuoc");
+                    Pattern pattern = Pattern.compile(Pattern.quote(prefix) + "(\\d+)$");
+                    Matcher matcher = pattern.matcher(lastMa);
+
+                    if (matcher.find()) {
+                        try {
+                            int lastSequence = Integer.parseInt(matcher.group(1)); 
+                            nextSequence = lastSequence + 1;
+                        } catch (NumberFormatException e) {
+                            System.err.println("Lỗi" + lastMa);
+                        }
+                    } else {
+                         System.err.println("Không khớp định dạng");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "ERROR"; 
+        }
+
+        return prefix + String.format("%04d", nextSequence); 
+    }
 }

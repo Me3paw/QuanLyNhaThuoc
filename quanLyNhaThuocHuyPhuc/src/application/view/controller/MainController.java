@@ -181,7 +181,7 @@ public class MainController {
 
     @FXML
     private void handleThemThuocClick() {
-        loadPage("themthuoc.fxml"); // Load "Thêm Thuốc" view
+        loadPage("ThemThuoc.fxml"); // Load "Thêm Thuốc" view
     }
     //ThongKe
     @FXML
@@ -251,7 +251,7 @@ public class MainController {
 
     @FXML
     private void handleDanhSachKhachHangClick() {
-        loadPage("danhsachkhachhang.fxml"); // Load "Danh Sách Khách Hàng" view
+        loadPage("DanhSachKhachHang.fxml"); // Load "Danh Sách Khách Hàng" view
     }
 
  
