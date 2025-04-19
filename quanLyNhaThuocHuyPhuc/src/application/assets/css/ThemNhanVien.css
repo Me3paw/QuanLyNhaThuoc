@@ -92,32 +92,34 @@
 }
 
 /* ComboBox */
+/* ComboBox giống input-field */
 .combo-box {
-     -fx-font-size: 20px;
-   
-    -fx-min-height: 48px;
-    
     -fx-background-color: #3a3a3a;
-    -fx-background-radius: 8px;
+    -fx-background-radius: 6px;
     -fx-border-color: #555555;
-    -fx-border-radius: 8px;
-    -fx-text-fill: white;
-    -fx-pref-width: 500px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width:600px;
+    -fx-font-size: 20px;
     
+    -fx-min-height: 48px;
 }
 
-/* Prompt text (chữ mặc định "Chọn vai trò") */
-.combo-box .prompt-text {
-    -fx-text-fill: white; /* Màu chữ là trắng */
-    -fx-background-color:#555555; 
+.combo-box:focused {
+    -fx-border-color: #4caf50;
+    -fx-background-color: #2e2e2e;
 }
 
 /* Mũi tên của ComboBox */
 .combo-box .arrow-button {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: transparent;
 }
 
-/* Mục trong ComboBox */
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+/* Item trong danh sách */
 .combo-box .list-cell {
     -fx-background-color: #3a3a3a;
     -fx-text-fill: white;
@@ -128,21 +130,18 @@
     -fx-background-color: #555555;
 }
 
-.combo-box .list-cell:selected {
-    -fx-background-color: #4caf50;
+/* Khi chưa chọn */
+.combo-box .text {
     -fx-text-fill: white;
 }
 
-/* ComboBox Popup */
+/* Popup list */
 .combo-box-popup .list-view {
     -fx-background-color: #2e2e2e;
 }
-
-/* Fix màu chữ promptText khi chưa chọn */
-.combo-box .text {
-    -fx-text-fill: white; /* Màu chữ khi chưa chọn gì */
+.combo-box .promptext{
+	 -fx-text-fill: #555555;
 }
-
 /* DatePicker */
 .date-picker {
     -fx-font-size: 20px;
@@ -152,7 +151,7 @@
     -fx-border-color: #555555;
     -fx-border-radius: 8px;
     -fx-text-fill: white;
-    -fx-pref-width: 500px;
+    -fx-pref-width: 600px;
     -fx-pref-height: 50px;
 }
 

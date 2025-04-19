@@ -222,7 +222,7 @@
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                          <ImageView fx:id="nhanVienIcon" fitHeight="24.0" fitWidth="24.0" preserveRatio="true" styleClass="sidebar-icon-placeholder">
 				        <image>
-				            <Image url="@/application/assets/icon/nhanvien2.png" />
+				            <Image url="@/application/assets/icon/nhanvien3.png" />
 				        </image>
 				    </ImageView>
                         <Label text="Cập nhật nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
@@ -231,7 +231,7 @@
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                          <ImageView fx:id="nhanVienIcon" fitHeight="24.0" fitWidth="24.0" preserveRatio="true" styleClass="sidebar-icon-placeholder">
 				        <image>
-				            <Image url="@/application/assets/icon/nhanvien3.png" />
+				            <Image url="@/application/assets/icon/nhanvien4.png" />
 				        </image>
 				    </ImageView>
                         <Label text="Thêm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
