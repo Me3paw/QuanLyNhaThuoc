@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContentDisplay?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?> <!-- Add Image import -->
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<StackPane xmlns="http://javafx.com/javafx" 
+           xmlns:fx="http://javafx.com/fxml" 
+           fx:controller="application.view.controller.ThongTinCaLamViecController"
+           stylesheets="@../assets/css/SearchMedicine.css">
+
+    <VBox spacing="15" alignment="TOP_CENTER" prefWidth="600" prefHeight="400">
+        <!-- Button for Chấm công -->
+        <Button text="Chấm công" fx:id="btnChamCong" styleClass="button"/>
+		<TableView fx:id="tableNhanVienByCa" prefWidth="580" prefHeight="300">
+        <columns>
+            <TableColumn text="Ca 1" fx:id="colCa1" />
+            <TableColumn text="Ca 2" fx:id="colCa2" />
+        </columns>
+   		</TableView>
+        <!-- TableView for Lịch sử ca làm -->
+        <TableView fx:id="tableLichSuCaLam" prefWidth="580" prefHeight="300">
+            <columns>
+                <!-- Column for Mã Nhân Viên -->
+                <TableColumn text="Mã Nhân Viên" fx:id="colMaNhanVien" />
+
+                <!-- Column for Ngày Làm -->
+                <TableColumn text="Ngày Làm" fx:id="colNgayLam" />
+
+                <!-- Column for Ca Làm -->
+                <TableColumn text="Ca Làm" fx:id="colCaLam" />
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>

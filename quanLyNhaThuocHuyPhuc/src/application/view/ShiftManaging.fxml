@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContentDisplay?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?> <!-- Add Image import -->
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<StackPane xmlns="http://javafx.com/javafx" 
+           xmlns:fx="http://javafx.com/fxml" 
+           fx:controller="application.view.controller.ChiaCaLamViecController"
+           stylesheets="@../assets/css/SearchMedicine.css">
+
+    <VBox spacing="15" alignment="TOP_CENTER">
+
+
+        <!-- Input to find nhân viên -->
+        <Label text="Tìm Nhân Viên" styleClass="title-label" style="-fx-font-size: 40px;"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="txtSearch" promptText="Nhập mã hoặc tên nhân viên" styleClass="text-field"/>
+            <Button text="Tìm" onAction="#handleSearch" styleClass="button"/>
+        </HBox>
+
+        <!-- Table to display nhân viên with checkboxes -->
+        <TableView fx:id="tableNhanVien" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="colChon" text="Chọn"/>
+                <TableColumn fx:id="colMaNhanVien" text="Mã Nhân Viên"/>
+                <TableColumn fx:id="colTenNhanVien" text="Tên Nhân Viên"/>
+                <TableColumn fx:id="colSDT" text="Số Điện Thoại"/>
+                <TableColumn fx:id="colCaLam" text="Ca Làm"/>
+            </columns>
+        </TableView>
+
+        <!-- Box to choose ca làm -->
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Chọn ca làm:"/>
+            <ComboBox fx:id="comboCaLam" promptText="Chọn ca (1, 2)" prefWidth="100"/>
+        </HBox>
+
+        <!-- Button to save -->
+        <Button fx:id="btnLuuCaLam" text="Lưu ca làm việc" onAction="#handleLuuCaLam"/>
+    </VBox>
+</StackPane>

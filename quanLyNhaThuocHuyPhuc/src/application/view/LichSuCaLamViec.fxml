@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="application.view.controller.LichSuCaLamViecController"
+           stylesheets="@../assets/css/SearchMedicine.css">
+    <VBox spacing="10" alignment="TOP_CENTER" styleClass="container">
+        <Label text="Lịch Sử Ca Làm Việc" styleClass="title-label" style="-fx-font-size: 40px;"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Tìm theo tên nhân viên:" styleClass="label"/>
+            <TextField fx:id="txtSearch" promptText="Nhập tên nhân viên" styleClass="text-field"/>
+            <Button text="Tìm" onAction="#handleSearch" styleClass="button"/>
+        </HBox>
+
+        <TableView fx:id="tableLichSuCaLam">
+            <columns>
+                <TableColumn fx:id="colMaNhanVien" text="Mã Nhân Viên"/>
+                <TableColumn fx:id="colNgayLam" text="Ngày Làm"/>
+                <TableColumn fx:id="colCaLam" text="Ca Làm"/>
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>
