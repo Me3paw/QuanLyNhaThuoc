@@ -1,5 +1,6 @@
 package application.database;
 
+import application.model.NhanVien;
 import application.model.TaiKhoan;
 import java.sql.*;
 import java.util.ArrayList;
@@ -210,4 +211,56 @@ public class TaiKhoanDAO {
 
         return tenNguoiDung;
     }
+    
+    public List<TaiKhoan> getAllTaiKhoanJoinNhanVien() {
+        List<TaiKhoan> list = new ArrayList<>();
+        String sql = "SELECT tk.maTaiKhoan, tk.tenDangNhap, tk.matKhau, tk.vaiTro, tk.ngayVaoLam, " +
+                     "nv.maNhanVien, nv.tenNhanVien, nv.soDienThoai " + 
+                     "FROM taikhoan tk LEFT JOIN NhanVien nv ON tk.maTaiKhoan = nv.taiKhoan " +
+                     "ORDER BY tk.maTaiKhoan";
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                TaiKhoan taiKhoan = new TaiKhoan();
+                taiKhoan.setMaTaiKhoan(rs.getString("maTaiKhoan"));
+                taiKhoan.setTenDangNhap(rs.getString("tenDangNhap"));
+                taiKhoan.setMatKhau(rs.getString("matKhau"));
+                taiKhoan.setVaiTro(rs.getString("vaiTro"));
+                Date ngayVaoLamDb = rs.getDate("ngayVaoLam");
+                taiKhoan.setNgayVaoLam(ngayVaoLamDb != null ? ngayVaoLamDb.toLocalDate() : null);
+
+                String maNV = rs.getString("maNhanVien");
+                if (maNV != null) {
+                    NhanVien nv = new NhanVien();
+                    nv.setMaNhanVien(maNV);
+                    nv.setTenNhanVien(rs.getString("tenNhanVien"));
+                    nv.setSoDienThoai(rs.getString("soDienThoai"));
+                    taiKhoan.setNhanVien(nv); 
+                } else {
+                    taiKhoan.setNhanVien(null); 
+                }
+
+                list.add(taiKhoan);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public boolean updateTaiKhoanRole(String maTaiKhoan, String newRole) {
+        String sql = "UPDATE taikhoan SET vaiTro = ? WHERE maTaiKhoan = ?";
+        if (maTaiKhoan == null || newRole == null) { return false; }
+        try (Connection conn = DatabaseConnector.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newRole);
+            ps.setString(2, maTaiKhoan);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) { e.printStackTrace(); }
+        return false;
+    }
+    
+    
 }
