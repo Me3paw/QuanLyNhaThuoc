@@ -8,6 +8,7 @@ public class TaiKhoan {
     private String matKhau;
     private String vaiTro;
     private LocalDate ngayVaoLam;
+    private NhanVien nhanVien;
     public TaiKhoan() {
 		this("", "", "", "", LocalDate.now());
 	}
@@ -19,6 +20,13 @@ public class TaiKhoan {
         this.matKhau = matKhau;
         this.vaiTro = vaiTro;
         this.ngayVaoLam = ngayVaoLam;
+    }
+    public NhanVien getNhanVien() {
+        return nhanVien;
+    }
+
+    public void setNhanVien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
     }
     public TaiKhoan( String tenDangNhap, String matKhau, String vaiTro, LocalDate ngayVaoLam) {
     	

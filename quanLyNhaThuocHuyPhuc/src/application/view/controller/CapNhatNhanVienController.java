@@ -86,7 +86,8 @@ public class CapNhatNhanVienController {
                 email,
                 heSoLuong,
                 luongCoBan,
-                currentTaiKhoan
+                currentTaiKhoan, 
+                (Integer) null
             );
             boolean successNV = new NhanVienDAO().updateNhanVien(nhanVien);
 

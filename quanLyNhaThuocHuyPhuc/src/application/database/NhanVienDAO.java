@@ -25,6 +25,36 @@ public class NhanVienDAO {
                 TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
 
                 NhanVien nhanVien = new NhanVien(
+                        rs.getString("maNhanVien"),
+                        rs.getString("tenNhanVien"),
+                        rs.getString("gioiTinh"),
+                        rs.getInt("namSinh"),
+                        rs.getString("soDienThoai"),
+                        rs.getString("email"),
+                        rs.getDouble("heSoLuong"),
+                        rs.getDouble("luongCoBan"),
+                        taiKhoan,
+                        rs.getInt("caLam") // Map caLam
+                    );
+                    list.add(nhanVien);
+                }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+    public NhanVien getNhanVienByTaiKhoan(String maTaiKhoan) {
+        String sql = "SELECT * FROM nhanvien WHERE taiKhoan = ?";
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, maTaiKhoan);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
+
+                return new NhanVien(
                     rs.getString("maNhanVien"),
                     rs.getString("tenNhanVien"),
                     rs.getString("gioiTinh"),
@@ -33,16 +63,14 @@ public class NhanVienDAO {
                     rs.getString("email"),
                     rs.getDouble("heSoLuong"),
                     rs.getDouble("luongCoBan"),
-                    taiKhoan
+                    taiKhoan,
+                    rs.getInt("caLam")
                 );
-                list.add(nhanVien);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return list;
+        return null;
     }
 
     // Tìm nhân viên theo mã nhân viên
@@ -57,16 +85,18 @@ public class NhanVienDAO {
                 TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
 
                 NhanVien nhanVien = new NhanVien(
-                    rs.getString("maNhanVien"),
-                    rs.getString("tenNhanVien"),
-                    rs.getString("gioiTinh"),
-                    rs.getInt("namSinh"),
-                    rs.getString("soDienThoai"),
-                    rs.getString("email"),
-                    rs.getDouble("heSoLuong"),
-                    rs.getDouble("luongCoBan"),
-                    taiKhoan
-                );
+                        rs.getString("maNhanVien"),
+                        rs.getString("tenNhanVien"),
+                        rs.getString("gioiTinh"),
+                        rs.getInt("namSinh"),
+                        rs.getString("soDienThoai"),
+                        rs.getString("email"),
+                        rs.getDouble("heSoLuong"),
+                        rs.getDouble("luongCoBan"),
+                        taiKhoan,
+                        rs.getInt("caLam") // Map caLam
+                    );
+
                 return nhanVien;
             }
         } catch (SQLException e) {
@@ -180,16 +210,17 @@ public class NhanVienDAO {
                 TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
 
                 NhanVien nhanVien = new NhanVien(
-                    rs.getString("maNhanVien"),
-                    rs.getString("tenNhanVien"),
-                    rs.getString("gioiTinh"),
-                    rs.getInt("namSinh"),
-                    rs.getString("soDienThoai"),
-                    rs.getString("email"),
-                    rs.getDouble("heSoLuong"),
-                    rs.getDouble("luongCoBan"),
-                    taiKhoan
-                );
+                        rs.getString("maNhanVien"),
+                        rs.getString("tenNhanVien"),
+                        rs.getString("gioiTinh"),
+                        rs.getInt("namSinh"),
+                        rs.getString("soDienThoai"),
+                        rs.getString("email"),
+                        rs.getDouble("heSoLuong"),
+                        rs.getDouble("luongCoBan"),
+                        taiKhoan,
+                        rs.getInt("caLam") // Map caLam
+                    );
                 list.add(nhanVien);
             }
 
@@ -199,6 +230,23 @@ public class NhanVienDAO {
 
         return list;
     }
+    public boolean setCaLam(String maNhanVien, int caLam) {
+        String sql = "UPDATE nhanvien SET caLam = ? WHERE maNhanVien = ?";
+
+        try (Connection conn = DatabaseConnector.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, caLam); // Set the new caLam value
+            ps.setString(2, maNhanVien); // Specify the employee by maNhanVien
+
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0; // Return true if the update was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Return false if an error occurred
+    }
+
     public String generateMaNhanVienTuDong() {
         String maMoi = "";
         String yyMM = java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("yyMM"));

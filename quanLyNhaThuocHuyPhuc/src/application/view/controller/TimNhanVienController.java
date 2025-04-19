@@ -25,6 +25,7 @@ public class TimNhanVienController {
     @FXML private TableColumn<NhanVien, String> colTenDangNhap;
     @FXML private TableColumn<NhanVien, String> colVaiTro;
     @FXML private TableColumn<NhanVien, String> colNgayVaoLam;
+    @FXML private TableColumn<NhanVien, Integer> colCaLam;
 
     private final NhanVienDAO nhanVienDAO = new NhanVienDAO(); // DAO cho Nhân viên
 
@@ -53,8 +54,8 @@ public class TimNhanVienController {
         colNgayVaoLam.setCellValueFactory(cellData -> Bindings.createStringBinding(() -> 
                 cellData.getValue().getTaiKhoan().getNgayVaoLam().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
         ));
+        colCaLam.setCellValueFactory(cellData -> Bindings.createObjectBinding(cellData.getValue()::getCaLam)); // Bind caLam
     }
-
     private void hienThiTatCa() {
         // Lấy tất cả nhân viên từ database và cập nhật bảng
         ObservableList<NhanVien> danhSach = FXCollections.observableArrayList(nhanVienDAO.getAllNhanVien());

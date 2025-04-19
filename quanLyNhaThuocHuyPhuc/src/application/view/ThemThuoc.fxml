@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.image.ImageView?>
+
+
+<StackPane fx:controller="application.view.controller.ThemThuocController"
+           xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+           style="-fx-padding: 20;" stylesheets="@/application/assets/css/ThemNhanVien.css">
+
+    <VBox spacing="15" StackPane.alignment="CENTER" style="-fx-padding: 20;">
+
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Thêm Thuốc Mới" styleClass="form-title"/>
+        </VBox>
+
+        <!-- Layout 3 cột -->
+        <HBox spacing="25" HBox.hgrow="ALWAYS">
+
+            <!-- Cột 1 -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS">
+
+                <Label text="Tên thuốc:" styleClass="form-label"/>
+                <TextField fx:id="txtTenThuoc" promptText="Nhập tên thuốc" styleClass="input-field"/>
+
+                <Label text="Thành phần:" styleClass="form-label"/>
+                <TextArea fx:id="txtThanhPhan" promptText="Nhập thành phần" styleClass="input-field" prefRowCount="3" wrapText="true"/>
+
+                 <Label text="Công dụng:" styleClass="form-label"/>
+                 <TextArea fx:id="txtCongDung" promptText="Nhập công dụng" styleClass="input-field" prefRowCount="3" wrapText="true"/>
+            </VBox>
+
+            <!-- Cột 2 -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS">
+                 <Label text="Hạn sử dụng:" styleClass="form-label"/>
+                 <DatePicker fx:id="dpHanSuDung" promptText="Chọn hạn sử dụng" styleClass="date-picker" prefWidth="Infinity"/>
+
+                <Label text="Giá bán:" styleClass="form-label"/>
+                <TextField fx:id="txtGiaBan" promptText="Nhập giá bán" styleClass="input-field"/>
+
+                <Label text="Giá nhập:" styleClass="form-label"/>
+                <TextField fx:id="txtGiaNhap" promptText="Nhập giá nhập" styleClass="input-field"/>
+
+                 <Label text="Số lượng tồn:" styleClass="form-label"/>
+                 <TextField fx:id="txtSoLuongTon" promptText="Nhập số lượng ban đầu" styleClass="input-field"/>
+
+            </VBox>
+
+            <!-- Cột 3 -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS">
+                <Label text="Nhà cung cấp:" styleClass="form-label"/>
+                <ComboBox fx:id="cboNhaCungCap" promptText="Chọn nhà cung cấp" styleClass="combo-box" prefWidth="Infinity"/>
+
+                <Label text="Hình ảnh:" styleClass="form-label"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtHinhAnhPath" promptText="Đường dẫn hình ảnh" styleClass="input-field" HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnBrowseImage" text="Chọn..." onAction="#handleBrowseImage" styleClass="button" prefWidth="100"/>
+                </HBox>
+
+                 <ImageView fx:id="imgPreview" fitHeight="200" fitWidth="200" preserveRatio="true"/> 
+            </VBox>
+        </HBox>
+
+        <!-- Nút -->
+        <HBox spacing="20" alignment="CENTER" style="-fx-padding-top: 25;">
+            <Button fx:id="btnHuy" text="Hủy" onAction="#handleHuyAction" styleClass="button" prefWidth="150"/>
+            <Button fx:id="btnThemThuoc" text="Thêm Thuốc" onAction="#handleThemThuocAction" styleClass="primary-button" prefWidth="200"/>
+        </HBox>
+
+    </VBox>
+</StackPane>
