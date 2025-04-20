@@ -1,0 +1,159 @@
+/* Tổng thể giao diện */
+.root {
+    -fx-background-color: #1e1e1e; /* Màu nền tối toàn bộ ứng dụng */
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-padding: 20px;
+}
+
+/* Form container */
+.anchor-pane {
+    -fx-background-color: #2a2a2a; /* Nền tối cho form */
+    -fx-border-color: #444444;
+    -fx-border-width: 1px;
+    -fx-background-radius: 15px;
+    -fx-padding: 40px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.1, 0, 4);
+    -fx-max-width: 900px;
+    -fx-min-height: 600px;
+}
+
+/* Tiêu đề */
+.form-title {
+    -fx-font-size: 50px;
+    -fx-text-fill: #ff9800; /* Cam sáng */
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 30px 0;
+    -fx-text-alignment: center;
+}
+
+/* Label trong form */
+.form-label {
+    -fx-font-size: 22px;
+    -fx-text-fill: #e0e0e0; /* Màu xám sáng cho chữ */
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 5px 0;
+    -fx-halignment: LEFT;
+    -fx-text-alignment: left;
+}
+
+/* Trường nhập liệu chung */
+.input-field {
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 6px;
+    -fx-border-color: #555555;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 100%;
+    -fx-min-height: 48px;
+}
+
+.input-field:focused {
+    -fx-border-color: #4caf50;
+    -fx-background-color: #2e2e2e;
+}
+
+/* Nút chính */
+.primary-button {
+    -fx-font-size: 22px;
+    -fx-padding: 14px 30px;
+    -fx-background-color: #ff5722; /* Cam */
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-border-width: 0;
+    -fx-pref-width: 220px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #ff7043;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #e64a19;
+}
+
+/* GridPane spacing */
+.grid-pane {
+    -fx-hgap: 30px;
+    -fx-vgap: 40px;
+}
+
+/* HBox chứa nút */
+.hbox-buttons {
+    -fx-spacing: 60px;
+    -fx-alignment: center;
+    -fx-padding: 30px 0;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-font-size: 20px;
+    -fx-padding: 12px;
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 8px;
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+    -fx-text-fill: white;
+    -fx-pref-width: 350px;
+    -fx-pref-height: 50px;
+}
+
+/* Prompt text (chữ mặc định "Chọn vai trò") */
+.combo-box .prompt-text {
+    -fx-text-fill: white; /* Màu chữ là trắng */
+    -fx-background-color:#555555; 
+}
+
+/* Mũi tên của ComboBox */
+.combo-box .arrow-button {
+    -fx-background-color: #3a3a3a;
+}
+
+/* Mục trong ComboBox */
+.combo-box .list-cell {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #555555;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+}
+
+/* ComboBox Popup */
+.combo-box-popup .list-view {
+    -fx-background-color: #2e2e2e;
+}
+
+/* Fix màu chữ promptText khi chưa chọn */
+.combo-box .text {
+    -fx-text-fill: white; /* Màu chữ khi chưa chọn gì */
+}
+
+/* DatePicker */
+.date-picker {
+    -fx-font-size: 20px;
+    -fx-padding: 12px;
+    -fx-background-color: #2e2e2e;
+    -fx-background-radius: 8px;
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+    -fx-text-fill: white;
+    -fx-pref-width: 350px;
+    -fx-pref-height: 50px;
+}
+
+.date-picker:focused {
+    -fx-border-color: #4caf50;
+}
+
+
+

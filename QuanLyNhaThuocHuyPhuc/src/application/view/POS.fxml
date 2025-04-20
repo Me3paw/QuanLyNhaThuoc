@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContentDisplay?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?> <!-- Add Image import -->
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="application.view.controller.POSController">
+            <!-- Center Content: Drug Info | Cart & Invoice -->
+            <HBox spacing="20.0" styleClass="main-area-background" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <!-- Left Column: Drug Info -->
+               <VBox maxWidth="310.0" prefWidth="310.0" spacing="15.0" styleClass="component-panel" HBox.hgrow="NEVER">
+                   <padding>
+                       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                   </padding>
+                   <Label styleClass="panel-title" text="Thông tin thuốc" />
+                   <Separator />
+                   <VBox alignment="CENTER" prefHeight="280.0">
+                       <ImageView fx:id="imgDrug" fitHeight="260.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" />
+                   </VBox>
+                   <Label fx:id="lblDrugName" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="drug-name-label"  />
+                   <Label fx:id="lblDrugID" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="drug-id-label"  />
+                   <Separator />
+                   <Label styleClass="form-label" />
+                   <TextArea fx:id="txtThanhPhan" editable="false" prefRowCount="4" styleClass="readonly-textarea" wrapText="true" />
+                   <Label styleClass="form-label" text="Giá tiền" />
+                   <TextField fx:id="txtGiaTien" editable="false" styleClass="readonly-textfield" />
+                   <HBox alignment="CENTER_LEFT" spacing="10.0">
+                       <Label styleClass="form-label" text="Số lượng" />
+                       <HBox alignment="CENTER_LEFT" spacing="5.0">
+                            <Button fx:id="btnDecrease" mnemonicParsing="false" styleClass="quantity-button" text="-" />
+						    <TextField fx:id="txtQuantity" alignment="CENTER" styleClass="quantity-value" text="1" minWidth="40" maxWidth="50"/>
+						    <Button fx:id="btnIncrease" mnemonicParsing="false" styleClass="quantity-button" text="+" />
+                       </HBox>
+                   </HBox>
+                   <VBox VBox.vgrow="ALWAYS" /> <!-- Spacer -->
+                   <HBox alignment="CENTER" spacing="10.0">
+                       <Button onAction="#handleXemChiTietThuoc"  mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Xem chi tiết thuốc" textAlignment="CENTER" contentDisplay="CENTER"/>
+                       <Button onAction="#handleThemThuocVaoGio" mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Thêm">
+                           <graphic>
+                               <Region prefHeight="18.0" prefWidth="18.0" styleClass="icon-cart"/>
+                           </graphic>
+                       </Button>
+                   </HBox>
+               </VBox>
+
+               <!-- Right Column: Cart & Invoice -->
+               <VBox spacing="15.0" styleClass="component-panel" HBox.hgrow="ALWAYS">
+                   <padding> <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /> </padding>
+
+                   <!-- Top Half: Cart -->
+                   <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+				    <!-- Input bar pushed to right -->
+				    <HBox alignment="CENTER_LEFT" spacing="10.0">
+				        <Label styleClass="panel-title" text="Giỏ hàng" />
+				        <Region HBox.hgrow="ALWAYS" />
+				        <TextField fx:id="txtMaThuocInput" promptText="Nhập mã thuốc..." prefWidth="300" />
+				        <Button text="Tìm" onAction="#handleThongTinThuoc"/>
+				    </HBox>
+					    <HBox alignment="CENTER_LEFT">
+					        <padding><Insets bottom="10.0" top="5.0" /></padding>
+					        <Label styleClass="table-header-label" text="ID" prefWidth="80"/>
+					        <Label styleClass="table-header-label" text="Tên thuốc" alignment="CENTER_LEFT" prefWidth="180" HBox.hgrow="ALWAYS"/>
+					        <Label styleClass="table-header-label" text="Số lượng" alignment="CENTER" prefWidth="80"/>
+					        <Label styleClass="table-header-label" text="Đơn giá" alignment="CENTER_RIGHT" prefWidth="100"/>
+					    </HBox>
+					
+					    <Separator />
+					
+					    <!-- ScrollPane chống tràn giỏ hàng -->
+					    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="150.0" prefHeight="100.0" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+					        <content>
+					            <TableView fx:id="cartTable" styleClass="cart-table">
+					                <columnResizePolicy>
+					                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+					                </columnResizePolicy>
+					
+					                <columns>
+					                    <TableColumn text="ID" prefWidth="80">
+					                        <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory>
+					                    </TableColumn>
+					                    <TableColumn text="Tên thuốc" prefWidth="180">
+					                        <cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory>
+					                        <style>-fx-alignment: center-left;</style>
+					                    </TableColumn>
+					                    <TableColumn text="Số lượng" prefWidth="80">
+					                        <cellValueFactory><PropertyValueFactory property="quantity" /></cellValueFactory>
+					                        <style>-fx-alignment: center;</style>
+					                    </TableColumn>
+					                    <TableColumn text="Đơn giá" prefWidth="100">
+					                        <cellValueFactory><PropertyValueFactory property="price" /></cellValueFactory>
+					                        <style>-fx-alignment: center-right;</style>
+					                    </TableColumn>
+					                </columns>
+					
+					                <placeholder>
+					                    <Label text="Giỏ hàng trống" />
+					                </placeholder>
+					            </TableView>
+					        </content>
+					    </ScrollPane>
+					
+					    <HBox alignment="CENTER_RIGHT">
+					        <padding><Insets top="10.0" /></padding>
+					        <Button mnemonicParsing="false" styleClass="delete-button" onAction="#handleRemoveFromCart">
+					            <graphic>
+					                <Region prefHeight="20.0" prefWidth="20.0" styleClass="icon-trash"/>
+					            </graphic>
+					        </Button>
+					    </HBox>
+					</VBox>
+                   <!-- Bottom Half: Invoice  -->
+                   <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                       <HBox spacing="30.0" VBox.vgrow="ALWAYS">
+                           <!-- Invoice Form Left-->
+                           <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                               <Label styleClass="panel-title" text="Hóa đơn" />
+                               <Separator/>
+                               <GridPane hgap="10.0" vgap="12.0" VBox.vgrow="SOMETIMES">
+                                   <columnConstraints>
+                                       <ColumnConstraints hgrow="NEVER" minWidth="70.0" prefWidth="70.0" />
+                                       <ColumnConstraints hgrow="ALWAYS" />
+                                   </columnConstraints>
+                                   <Label styleClass="form-label" text="Hóa đơn" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                   <TextField fx:id="txtMaHoaDon" editable="false" styleClass="text-field" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="150"/>
+
+                                   <Label styleClass="form-label" text="SĐT" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                   <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                                       <TextField fx:id="txtSDT" HBox.hgrow="ALWAYS"/>
+                                       <Button onAction="#handleLookupKH" mnemonicParsing="false" styleClass="icon-button-inline">
+                                           <graphic><Region prefHeight="16.0" prefWidth="16.0" styleClass="icon-search"/></graphic>
+                                       </Button>
+                                   </HBox>
+
+                                   <Label styleClass="form-label" text="Tên KH" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                   <HBox alignment="CENTER_LEFT"  spacing="5.0" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                                        <TextField fx:id="txtTenKH" editable="false" HBox.hgrow="ALWAYS"/>
+                                         <!-- ComboBox with items -->
+                                         <ComboBox fx:id="cboGioiTinh" disable="true" prefWidth="80.0" styleClass="combo-box" value="Nam">
+                                             <items>
+                                                 <FXCollections  fx:factory="observableArrayList">
+                                                     <String fx:value="Nam" />
+                                                     <String fx:value="Nữ" />
+                                                     <String fx:value="Khác" />
+                                                 </FXCollections>
+                                             </items>
+                                         </ComboBox>
+                                   </HBox>
+
+                                   <Label styleClass="form-label-accent" text="Tổng tiền" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+									<TextField fx:id="txtTongTien" editable="false" styleClass="readonly-textfield-accent" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+									
+									<Label styleClass="form-label" text="Tiền đưa" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+									<TextField fx:id="txtTienDua" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+									
+									<Label styleClass="form-label" text="Tiền thừa" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+									<TextField fx:id="txtTienThua" editable="false" styleClass="readonly-textfield" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                               </GridPane>
+
+                               <VBox VBox.vgrow="ALWAYS"/>
+
+                               <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                   <padding><Insets top="15.0" /></padding>
+                                   <Button mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Hủy đơn" onAction="#handleHuyDon"/>
+                                   <Button mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Thanh toán" onAction="#handleCheckout" />
+                               </HBox>
+                           </VBox>
+
+                           <!-- Payment Methods Right -->
+                           <VBox alignment="TOP_LEFT" spacing="10.0">
+                               <Label styleClass="panel-title" text="Phương thức thanh toán">
+                                   <padding><Insets bottom="5.0"/></padding>
+                               </Label>
+                               <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" VBox.vgrow="SOMETIMES">
+                                   <columnConstraints>
+                                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity"/>
+                                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity"/>
+                                   </columnConstraints>
+                                   <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon, payment-icon-selected" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                                       <image><Image url="@/application/assets/images/visa.png" requestedHeight="161.0" smooth="true"/></image>
+                                   </ImageView>
+                                   <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                                        <image><Image url="@/application/assets/images/momo.png" requestedHeight="161.0" smooth="true"/></image>
+                                   </ImageView>
+                                   <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                                        <image><Image url="@/application/assets/images/cash.png" requestedHeight="161.0" smooth="true"/></image>
+                                   </ImageView>
+                                   <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                                        <image><Image url="@/application/assets/images/vietqr.png" requestedHeight="161.0" smooth="true"/></image>
+                                   </ImageView>
+                               </GridPane>
+                           </VBox>
+                       </HBox>
+                   </VBox>
+               </VBox>
+            </HBox>
+</StackPane>

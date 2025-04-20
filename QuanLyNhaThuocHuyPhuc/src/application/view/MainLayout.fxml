@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContentDisplay?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane prefHeight="750.0" prefWidth="1440.0" styleClass="root"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.view.controller.MainController">
+
+    <!-- TOP HEADER -->
+    <top>
+        <HBox alignment="CENTER_RIGHT" spacing="20.0" styleClass="header" HBox.hgrow="ALWAYS" prefHeight="100.0">
+            <VBox alignment="CENTER" prefHeight="100.0">
+                <padding><Insets top="20.0" bottom="10.0" left="20.0" right="20.0"/></padding>
+                <ImageView fitHeight="60.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="false">
+                    <image>
+                        <Image url="@/application/assets/images/logo.png" requestedHeight="60.0" smooth="true"/>
+                    </image>
+                </ImageView>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button onAction="#handleSignOut" styleClass="icon-button">
+		    <graphic>
+		        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+		            <image>
+		                <Image url="@/application/assets/icon/logout.png" />
+		            </image>
+		        </ImageView>
+		    </graphic>
+		</Button>
+           <VBox alignment="CENTER_LEFT" spacing="2.0">
+			    <Label fx:id="nameLabel" styleClass="header-name-label" text="Nguyễn Văn A"/>
+			    <Label fx:id="roleLabel" styleClass="header-role-label" text="Quản lý"/>
+			</VBox>
+        </HBox>
+    </top>
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+    <ScrollPane fitToWidth="true" fitToHeight="true" BorderPane.alignment="CENTER">
+        <content>
+        <VBox prefWidth="300.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+                <padding><Insets top="10.0" bottom="10.0" left="20.0" right="20.0"/></padding>
+
+                <!-- Hóa đơn -->
+                <HBox fx:id="hoaDonItem" onMouseClicked="#handleHoaDonClick" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets top="15.0" bottom="15.0" left="15.0" right="10.0"/></padding>
+                    <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
+                    <Label text="Hóa đơn" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                </HBox>
+                <VBox fx:id="hoaDonSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Lập hóa đơn" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox onMouseClicked="#handleTimKiemHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Tìm kiếm hóa đơn" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Thống kê -->
+                <HBox fx:id="thongKeItem" onMouseClicked="#handleThongKeClick" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                    <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
+                    <Label text="Thống kê" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                </HBox>
+                <VBox fx:id="thongKeSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleDoanhThuClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Doanh thu" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Khách hàng -->
+                <HBox fx:id="khachHangItem" onMouseClicked="#handleKhachHangClick" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                    <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
+                    <Label text="Khách hàng" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                </HBox>
+                <VBox fx:id="khachHangSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleDanhSachKhachHangClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Danh sách khách hàng" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Thuốc -->
+                <HBox fx:id="thuocItem" onMouseClicked="#handleThuocClick" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                    <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
+                    <Label text="Thuốc" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                </HBox>
+                <VBox fx:id="thuocSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Thêm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox onMouseClicked="#handleTimThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Tìm kiếm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Quản lí nhân viên -->
+                <HBox fx:id="nhanVienItem" onMouseClicked="#handleNhanVienClick" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                    <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
+                    <Label text="Quản lí nhân viên" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                </HBox>
+                <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleTimNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Tìm kiếm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox onMouseClicked="#handleCapNhatNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Cập nhật nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox onMouseClicked="#handleThemNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Thêm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox onMouseClicked="#handlePhanQuyenClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Phân quyền" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Ca làm việc -->
+                <HBox fx:id="caLamViecItem" onMouseClicked="#handleCaLamViecClick" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                    <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                    <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
+                    <Label text="Ca làm việc" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                </HBox>
+                <VBox fx:id="caLamViecSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleThongTinCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Thông tin ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox fx:id="chiaCaButton" onMouseClicked="#handleChiaCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Chia ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                    <HBox fx:id="thongKeCaButton" onMouseClicked="#handleLichSuCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Thống kê lịch sử ca" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Tài khoản -->
+ 
+                <HBox fx:id="accountItem" onMouseClicked="#handleDoiDangNhap" alignment="CENTER_LEFT"
+                      styleClass="sidebar-item" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <Label text="Tài khoản" styleClass="sidebar-label"/>
+                   
+                </HBox>
+            </VBox>
+        </VBox>
+         </content>
+    </ScrollPane>
+    </left>
+
+    <!-- CENTER CONTENT -->
+    <center>
+        <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+
+        
+    </center>
+</BorderPane>

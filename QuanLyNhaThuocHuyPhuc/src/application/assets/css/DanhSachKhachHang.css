@@ -1,0 +1,106 @@
+/* Tổng thể giao diện */
+.root {
+    -fx-background-color: #1E1E1E;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: white;
+    -fx-padding: 20px; /* Thêm padding để giống ThemNhanVien */
+}
+
+/* TextField */
+.text-field {
+    -fx-background-color: #2E2E2E;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #AAAAAA;
+    -fx-border-color: #ED6214;
+    -fx-border-radius: 6px; /* Thay đổi radius để giống ThemNhanVien */
+    -fx-background-radius: 6px; /* Thay đổi radius */
+    -fx-pref-width: 400px; /* Thêm kích thước như ThemNhanVien */
+    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
+    -fx-padding: 10px; /* Padding khớp với ThemNhanVien */
+    -fx-min-height: 48px; /* Chiều cao khớp với ThemNhanVien */
+}
+
+.text-field:focused {
+    -fx-border-color: #4CAF50;
+    -fx-background-color: #2E2E2E;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #2E2E2E;
+    -fx-border-color: #ED6214;
+    -fx-border-radius: 6px; /* Thay đổi radius */
+    -fx-background-radius: 6px; /* Thay đổi radius */
+    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
+    -fx-text-fill: white;
+    -fx-pref-width: 400px; /* Thêm kích thước giống ThemNhanVien */
+    -fx-min-height: 48px; /* Chiều cao giống ThemNhanVien */
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #2E2E2E;
+}
+
+/* Button */
+.button {
+    -fx-background-color: #ED6214;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px; /* Thay đổi radius */
+    -fx-cursor: hand;
+    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
+    -fx-min-height: 48px; /* Chiều cao giống ThemNhanVien */
+    -fx-pref-width: 300px; /* Kích thước giống ThemNhanVien */
+}
+
+.button:hover {
+    -fx-background-color: #FF7A36;
+}
+
+.button:pressed {
+    -fx-background-color: #E64A19;
+}
+
+/* Label */
+.label {
+    -fx-text-fill: #ED6214;
+    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 5px 0;
+    -fx-halignment: LEFT;
+    -fx-text-alignment: left;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #2E2E2E;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #ED6214;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-size: 40px;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.table-view .label {
+    -fx-text-fill: white;
+}
+
+.table-row-cell {
+    -fx-background-color: #2E2E2E;
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:filled:selected, .table-row-cell:focused:selected {
+    -fx-background-color: #ED6214;
+    -fx-text-fill: white;
+}

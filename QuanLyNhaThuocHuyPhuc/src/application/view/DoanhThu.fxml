@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
+
+<StackPane styleClass="dashboard-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="application.view.controller.DoanhThuController"
+           stylesheets="@../assets/css/DoanhThu.css">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+    </padding>
+    <VBox spacing="24.0">
+
+        <!-- Section 1: KPI Cards -->
+        <HBox spacing="24.0" alignment="CENTER_LEFT">
+            <!-- Card Thuốc kho -->
+            <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <children>
+                            <StackPane styleClass="kpi-icon-background">
+                                <children>
+                                    <Region styleClass="kpi-icon, icon-folder"/>
+                                </children>
+                            </StackPane>
+                            <VBox>
+                                <children>
+                                    <Label text="Thuốc kho" styleClass="kpi-title"/>
+                                    <Label fx:id="thuocKhoValueLabel" text="0" styleClass="kpi-value"/>
+                                </children>
+                            </VBox>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <!-- Card Khách hàng -->
+            <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <children>
+                            <StackPane styleClass="kpi-icon-background">
+                                <children>
+                                    <Region styleClass="kpi-icon, icon-profile-2user"/>
+                                </children>
+                            </StackPane>
+                            <VBox>
+                                <children>
+                                    <Label text="Khách hàng" styleClass="kpi-title"/>
+                                    <Label fx:id="khachHangValueLabel" text="0" styleClass="kpi-value"/>
+                                </children>
+                            </VBox>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+
+            <!-- Card Nhân viên -->
+            <VBox styleClass="kpi-card" prefWidth="248.0" HBox.hgrow="ALWAYS">
+                <children>
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <children>
+                            <StackPane styleClass="kpi-icon-background">
+                                <children>
+                                    <Region styleClass="kpi-icon, icon-people"/>
+                                </children>
+                            </StackPane>
+                            <VBox>
+                                <children>
+                                    <Label text="Nhân viên" styleClass="kpi-title"/>
+                                    <Label fx:id="nhanVienValueLabel" text="0" styleClass="kpi-value"/>
+                                </children>
+                            </VBox>
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+        </HBox>
+
+        <!-- Section 2: Charts -->
+        <HBox spacing="24.0">
+            <!-- Chart Doanh thu năm -->
+            <VBox styleClass="chart-panel" HBox.hgrow="ALWAYS">
+                <children>
+                    <HBox alignment="CENTER_LEFT">
+                            <Label text="Doanh Thu" styleClass="chart-title"/>
+
+                    </HBox>
+                    <BarChart fx:id="doanhThuChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="bar-chart-custom" animated="false">
+                        <xAxis>
+                            <CategoryAxis fx:id="doanhThuXAxis" side="BOTTOM"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis fx:id="doanhThuYAxis" side="LEFT" label="" autoRanging="true"/>
+                        </yAxis>
+                    </BarChart>
+                </children>
+            </VBox>
+
+            <!-- Chart Lợi nhuận năm -->
+            <VBox styleClass="chart-panel" HBox.hgrow="ALWAYS">
+                <children>
+                    <HBox alignment="CENTER_LEFT">
+                            <Label text="Lợi Nhuận Năm" styleClass="chart-title"/>
+                    </HBox>
+                    <LineChart fx:id="loiNhuanChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="line-chart-custom" createSymbols="true" animated="false">
+                        <xAxis>
+                        </xAxis>
+                        <yAxis>
+                        </yAxis>
+                    </LineChart>
+                </children>
+            </VBox>
+        </HBox>
+
+    </VBox>
+</StackPane>
