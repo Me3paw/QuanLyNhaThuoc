@@ -1,14 +1,14 @@
 package application.database;
 
-import application.model.HoaDon;
-import application.model.HoaDonView;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import entity.HoaDon;
+import entity.HoaDonView;
 
 public class HoaDonDAO {
 

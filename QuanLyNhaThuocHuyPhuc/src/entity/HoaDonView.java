@@ -1,4 +1,4 @@
-package application.model;
+package entity;
 
 public class HoaDonView {
     private String maHoaDon;

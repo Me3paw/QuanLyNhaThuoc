@@ -1,8 +1,8 @@
 package application.view.controller;
 
 import application.database.TaiKhoanDAO;
-import application.model.TaiKhoan;
 import application.util.SessionManager;
+import entity.TaiKhoan;
 
 import java.io.IOException;
 

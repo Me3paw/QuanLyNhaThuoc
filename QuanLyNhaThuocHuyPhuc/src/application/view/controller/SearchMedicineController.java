@@ -1,7 +1,7 @@
 package application.view.controller;
 
 import application.database.ThuocDAO;
-import application.model.Thuoc;
+import entity.Thuoc;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

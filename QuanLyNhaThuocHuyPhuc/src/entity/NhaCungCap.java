@@ -1,4 +1,4 @@
-package application.model;
+package entity;
 
 public class NhaCungCap {
 	private String maNhaCungCap;

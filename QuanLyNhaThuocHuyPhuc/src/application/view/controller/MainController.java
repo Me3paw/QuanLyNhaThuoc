@@ -1,8 +1,7 @@
 package application.view.controller;
-import application.model.NhanVien;
-import application.model.TaiKhoan;
 import application.util.SessionManager;
-
+import entity.NhanVien;
+import entity.TaiKhoan;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

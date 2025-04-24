@@ -1,8 +1,8 @@
 package application.util;
 
 import application.database.NhanVienDAO;
-import application.model.TaiKhoan;
-import application.model.NhanVien;
+import entity.NhanVien;
+import entity.TaiKhoan;
 
 public class SessionManager {
     private static TaiKhoan loggedInUser;

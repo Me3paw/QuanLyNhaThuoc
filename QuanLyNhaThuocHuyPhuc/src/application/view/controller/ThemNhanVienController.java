@@ -2,8 +2,8 @@ package application.view.controller;
 
 import application.database.NhanVienDAO;
 import application.database.TaiKhoanDAO;
-import application.model.NhanVien;
-import application.model.TaiKhoan;
+import entity.NhanVien;
+import entity.TaiKhoan;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;

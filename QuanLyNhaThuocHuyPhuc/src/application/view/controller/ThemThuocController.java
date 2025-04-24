@@ -2,8 +2,8 @@ package application.view.controller;
 
 import application.database.NhaCungCapDAO;
 import application.database.ThuocDAO;
-import application.model.NhaCungCap;
-import application.model.Thuoc;
+import entity.NhaCungCap;
+import entity.Thuoc;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -93,65 +93,86 @@ public class ThemThuocController {
 
 
     @FXML
-    private void handleThemThuocAction() {
-        String tenThuoc = txtTenThuoc.getText().trim();
-        String thanhPhan = txtThanhPhan.getText().trim();
-        String congDung = txtCongDung.getText().trim();
-        LocalDate hanSuDungDate = dpHanSuDung.getValue();
-        String giaBanStr = txtGiaBan.getText().trim();
-        String giaNhapStr = txtGiaNhap.getText().trim();
-        String soLuongTonStr = txtSoLuongTon.getText().trim();
-        NhaCungCap selectedNCC = cboNhaCungCap.getValue();
-        String hinhAnhRelativePath = "";
+private void handleThemThuocAction() {
+    String tenThuoc = txtTenThuoc.getText().trim();
+    String thanhPhan = txtThanhPhan.getText().trim();
+    String congDung = txtCongDung.getText().trim();
+    LocalDate hanSuDungDate = dpHanSuDung.getValue();
+    String giaBanStr = txtGiaBan.getText().trim();
+    String giaNhapStr = txtGiaNhap.getText().trim();
+    String soLuongTonStr = txtSoLuongTon.getText().trim();
+    NhaCungCap selectedNCC = cboNhaCungCap.getValue();
+    String hinhAnhRelativePath = "";
 
-        // Validate dữ liệu
-        if (!validateInputs(tenThuoc, hanSuDungDate, giaBanStr, giaNhapStr, soLuongTonStr, selectedNCC)) {
+    // Validate dữ liệu
+    if (!validateInputs(tenThuoc, hanSuDungDate, giaBanStr, giaNhapStr, soLuongTonStr, selectedNCC)) {
+        return;
+    }
+
+    double giaBan = Double.parseDouble(giaBanStr);
+    double giaNhap = Double.parseDouble(giaNhapStr);
+    int soLuongTon = Integer.parseInt(soLuongTonStr);
+
+    // Additional validation
+    if (hanSuDungDate.isBefore(LocalDate.now())) {
+        showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Hạn sử dụng phải lớn hơn ngày hôm nay.");
+        dpHanSuDung.requestFocus();
+        return;
+    }
+    if (giaBan <= giaNhap) {
+        showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Giá bán phải lớn hơn giá nhập.");
+        txtGiaBan.requestFocus();
+        return;
+    }
+    if (soLuongTon <= 0) {
+        showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Số lượng tồn phải lớn hơn 0.");
+        txtSoLuongTon.requestFocus();
+        return;
+    }
+
+    // Xử lý hình ảnh
+    if (selectedImageFile != null) {
+        try {
+            Path destinationFolder = Paths.get("src", "application", "assets", "images", "thuoc");
+            if (!Files.exists(destinationFolder)) {
+                Files.createDirectories(destinationFolder);
+            }
+            String newFileName = selectedImageFile.getName(); // Dễ bị trùng tên
+            Path destinationPath = destinationFolder.resolve(newFileName);
+            Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            hinhAnhRelativePath = "/application/assets/images/thuoc" + newFileName;
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi File", "Không thể sao chép file hình ảnh: " + e.getMessage());
+            e.printStackTrace();
             return;
         }
-        double giaBan = Double.parseDouble(giaBanStr);
-        double giaNhap = Double.parseDouble(giaNhapStr);
-        int soLuongTon = Integer.parseInt(soLuongTonStr);
-
-        //Xử lý hình ảnh
-        if (selectedImageFile != null) {
-            try {
-                Path destinationFolder = Paths.get("src", "application", "assets", "images", "thuoc");
-                if (!Files.exists(destinationFolder)) { Files.createDirectories(destinationFolder); }
-                String newFileName = selectedImageFile.getName(); // Dễ bị trùng tên
-                Path destinationPath = destinationFolder.resolve(newFileName);
-                Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                hinhAnhRelativePath = "/application/assets/images/thuoc" + newFileName;
-            } catch (IOException e) {
-                 showAlert(Alert.AlertType.ERROR, "Lỗi File", "Không thể sao chép file hình ảnh: " + e.getMessage());
-                 e.printStackTrace(); return;
-            }
-        } else {
-            hinhAnhRelativePath = txtHinhAnhPath.getText().trim();
-        }
-
-        //Tạo mã thuốc tự động 
-        String maThuoc = thuocDAO.generateNextMaThuoc(tenThuoc);
-
-        Thuoc newThuoc = new Thuoc();
-        newThuoc.setMaThuoc(maThuoc); 
-        newThuoc.setTenThuoc(tenThuoc);
-        newThuoc.setThanhPhan(thanhPhan);
-        newThuoc.setCongDung(congDung);
-        newThuoc.setHanSuDung(hanSuDungDate.toString());
-        newThuoc.setGiaBan(giaBan);
-        newThuoc.setGiaNhap(giaNhap);
-        newThuoc.setSoLuongTon(soLuongTon);
-        newThuoc.setMaNhaCungCap(selectedNCC.getMaNhaCungCap());
-        newThuoc.setHinhAnh(hinhAnhRelativePath);
-
-
-        if (thuocDAO.addThuoc(newThuoc)) {
-            showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm thuốc '" + tenThuoc + "' với mã '" + maThuoc + "' thành công!");
-            clearForm();
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thuốc thất bại.");
-        }
+    } else {
+        hinhAnhRelativePath = txtHinhAnhPath.getText().trim();
     }
+
+    // Tạo mã thuốc tự động
+    String maThuoc = thuocDAO.generateNextMaThuoc(tenThuoc);
+
+    Thuoc newThuoc = new Thuoc();
+    newThuoc.setMaThuoc(maThuoc);
+    newThuoc.setTenThuoc(tenThuoc);
+    newThuoc.setThanhPhan(thanhPhan);
+    newThuoc.setCongDung(congDung);
+    newThuoc.setHanSuDung(hanSuDungDate.toString());
+    newThuoc.setGiaBan(giaBan);
+    newThuoc.setGiaNhap(giaNhap);
+    newThuoc.setSoLuongTon(soLuongTon);
+    newThuoc.setMaNhaCungCap(selectedNCC.getMaNhaCungCap());
+    newThuoc.setHinhAnh(hinhAnhRelativePath);
+
+    if (thuocDAO.addThuoc(newThuoc)) {
+        showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm thuốc '" + tenThuoc + "' với mã '" + maThuoc + "' thành công!");
+        clearForm();
+    } else {
+        showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thuốc thất bại.");
+    }
+}
+
 
     private boolean validateInputs(String tenThuoc, LocalDate hanSuDungDate, String giaBanStr, String giaNhapStr, String soLuongTonStr, NhaCungCap selectedNCC) {
         if (tenThuoc.isEmpty()) { showAlert(Alert.AlertType.WARNING, "Thiếu thông tin", "Vui lòng nhập Tên Thuốc."); txtTenThuoc.requestFocus(); return false; }

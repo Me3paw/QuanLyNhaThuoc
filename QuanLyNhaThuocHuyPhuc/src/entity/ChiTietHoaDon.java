@@ -1,24 +1,23 @@
-package application.model;
+package entity;
 
-public class ChiTietHoaDon extends HoaDon {
+public class ChiTietHoaDon {
+    private String maHoaDon;
     private String maThuoc;
     private int soLuong;
     private double donGia;
 
-    public ChiTietHoaDon(String maHoaDon, String maKhachHang, String maNhanVien, String maThuoc, int soLuong, double donGia) {
-        super(maHoaDon, null, maKhachHang, maNhanVien);
+    public ChiTietHoaDon(String maHoaDon, String maThuoc, int soLuong, double donGia) {
+        this.maHoaDon = maHoaDon;
         this.maThuoc = maThuoc;
         this.soLuong = soLuong;
         this.donGia = donGia;
     }
+
     public ChiTietHoaDon() {
     }
-	public ChiTietHoaDon(String maHoaDon, String maThuoc, int soLuong, double donGia) {
-		super(maHoaDon);
-		this.maThuoc = maThuoc;
-		this.soLuong = soLuong;
-		this.donGia = donGia;
-	}
+
+    public String getMaHoaDon() { return maHoaDon; }
+    public void setMaHoaDon(String maHoaDon) { this.maHoaDon = maHoaDon; }
 
     public String getMaThuoc() { return maThuoc; }
     public void setMaThuoc(String maThuoc) { this.maThuoc = maThuoc; }

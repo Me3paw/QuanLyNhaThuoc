@@ -1,4 +1,4 @@
-package application.model;
+package entity;
 
 public class NhanVienByCa {
     private final String ca1;

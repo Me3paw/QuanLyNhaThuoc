@@ -1,5 +1,5 @@
 
-package application.model;
+package entity;
 
 public class CartItem {
     private String id;

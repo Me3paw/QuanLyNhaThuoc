@@ -1,12 +1,12 @@
 package application.view.controller;
 
-import application.model.NhanVien;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import application.database.*;
+import entity.NhanVien;
 
 import java.time.format.DateTimeFormatter;
 

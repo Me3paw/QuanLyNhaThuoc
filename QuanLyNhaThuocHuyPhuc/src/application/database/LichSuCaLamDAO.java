@@ -1,11 +1,11 @@
 package application.database;
 
-import application.model.LichSuCaLam;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import entity.LichSuCaLam;
 
 public class LichSuCaLamDAO {
 

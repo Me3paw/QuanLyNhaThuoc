@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
@@ -28,9 +29,16 @@
             
             <!-- Cột 1 -->
             <VBox spacing="20" HBox.hgrow="ALWAYS" >
-                <Label text="Mã nhân viên:" styleClass="form-label"/>
-                <TextField fx:id="maNhanVienTextField" promptText="Nhập mã nhân viên" onAction="#onMaNhanVienEntered" styleClass="input-field" editable="true"/>
-                
+            	<Label text="Mã nhân viên:" styleClass="form-label"/>
+                	 <Button onAction="#handleLookupNhanVien" mnemonicParsing="false" styleClass="icon-button-inline">
+				        <graphic>
+				            <Region prefHeight="16.0" prefWidth="16.0" styleClass="icon-search"/>
+				        </graphic>
+				    </Button>
+                <!-- TextField cho mã nhân viên --> 
+				    <TextField fx:id="maNhanVienTextField" promptText="Nhập mã nhân viên" onAction="#onMaNhanVienEntered" styleClass="input-field" editable="true" HBox.hgrow="ALWAYS"/>
+				   
+
                 <Label text="Tên nhân viên:" styleClass="form-label"/>
                 <TextField fx:id="tenNhanVienTextField" promptText="Nhập tên nhân viên" styleClass="input-field"/>
                 

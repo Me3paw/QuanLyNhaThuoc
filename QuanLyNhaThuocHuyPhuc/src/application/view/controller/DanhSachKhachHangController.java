@@ -1,7 +1,7 @@
 package application.view.controller;
 
 import application.database.KhachHangDAO;
-import application.model.KhachHang;
+import entity.KhachHang;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

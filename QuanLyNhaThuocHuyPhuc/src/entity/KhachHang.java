@@ -1,4 +1,4 @@
-package application.model;
+package entity;
 
 public class KhachHang {
     private String maKhachHang;

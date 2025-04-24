@@ -2,8 +2,8 @@ package application.view.controller;
 
 import application.database.ChiTietHoaDonDAO;
 import application.database.HoaDonDAO;
-import application.model.ChiTietHoaDon;
-import application.model.HoaDonView;
+import entity.ChiTietHoaDon;
+import entity.HoaDonView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

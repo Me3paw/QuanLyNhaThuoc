@@ -2,10 +2,10 @@ package application.view.controller;
 
 import application.database.LichSuCaLamDAO;
 import application.database.NhanVienDAO;
-import application.model.LichSuCaLam;
-import application.model.NhanVien;
-import application.model.NhanVienByCa;
 import application.util.SessionManager;
+import entity.LichSuCaLam;
+import entity.NhanVien;
+import entity.NhanVienByCa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

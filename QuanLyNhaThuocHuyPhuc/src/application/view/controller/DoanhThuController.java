@@ -49,12 +49,7 @@ public class DoanhThuController {
         loadDoanhThuChart();
         loadLoiNhuanChart();
 
-        // Set up year combo boxes
-        doanhThuYearCombo.setItems(FXCollections.observableArrayList("2024", "2023", "2022"));
-        loiNhuanYearCombo.setItems(FXCollections.observableArrayList("2024", "2023", "2022"));
-
-        doanhThuYearCombo.setOnAction(event -> loadDoanhThuChart());
-        loiNhuanYearCombo.setOnAction(event -> loadLoiNhuanChart());
+        // Set up year combo boxe
     }
 
     private void loadKPIValues() {

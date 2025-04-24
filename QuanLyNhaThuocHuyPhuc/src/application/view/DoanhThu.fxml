@@ -91,10 +91,10 @@
                     </HBox>
                     <BarChart fx:id="doanhThuChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="bar-chart-custom" animated="false">
                         <xAxis>
-                            <CategoryAxis fx:id="doanhThuXAxis" side="BOTTOM"/>
+                            <CategoryAxis side="BOTTOM"/>
                         </xAxis>
                         <yAxis>
-                            <NumberAxis fx:id="doanhThuYAxis" side="LEFT" label="" autoRanging="true"/>
+                            <NumberAxis side="LEFT" label="" autoRanging="true"/>
                         </yAxis>
                     </BarChart>
                 </children>
@@ -106,12 +106,14 @@
                     <HBox alignment="CENTER_LEFT">
                             <Label text="Lợi Nhuận Năm" styleClass="chart-title"/>
                     </HBox>
-                    <LineChart fx:id="loiNhuanChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="line-chart-custom" createSymbols="true" animated="false">
-                        <xAxis>
-                        </xAxis>
-                        <yAxis>
-                        </yAxis>
-                    </LineChart>
+	                    <LineChart fx:id="loiNhuanChart" VBox.vgrow="ALWAYS" legendVisible="false" styleClass="line-chart-custom" createSymbols="true" animated="false">
+	                         <xAxis>
+						        <CategoryAxis label="Danh mục"/>
+						    </xAxis>
+						    <yAxis>
+						        <NumberAxis label="Giá trị"/>
+						    </yAxis>
+	                    </LineChart>
                 </children>
             </VBox>
         </HBox>

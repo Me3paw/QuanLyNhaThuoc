@@ -1,10 +1,11 @@
 package application.database;
 
-import application.model.NhanVien;
-import application.model.TaiKhoan;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import entity.NhanVien;
+import entity.TaiKhoan;
 
 public class TaiKhoanDAO {
 

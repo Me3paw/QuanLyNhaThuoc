@@ -1,4 +1,4 @@
-package application.model;
+package entity;
 
 public class Thuoc {
     private String maThuoc;

@@ -4,11 +4,12 @@ import application.database.ThuocDAO;
 import application.database.ChiTietHoaDonDAO;
 import application.database.HoaDonDAO;
 import application.database.KhachHangDAO;
-import application.model.HoaDon;
-import application.model.KhachHang;
-import application.model.Thuoc;
-import application.model.CartItem;
-import application.model.ChiTietHoaDon;
+import application.util.SessionManager;
+import entity.CartItem;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
+import entity.KhachHang;
+import entity.Thuoc;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -104,7 +105,7 @@ public class POSController {
         cboGioiTinh.setDisable(true);
     }
 
-    @FXML
+ @FXML
 private void handleCheckout() {
     if (cartData.isEmpty()) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -113,6 +114,7 @@ private void handleCheckout() {
         alert.showAndWait();
         return;
     }
+
     double tienThua;
     try {
         tienThua = Double.parseDouble(txtTienThua.getText());
@@ -127,6 +129,7 @@ private void handleCheckout() {
         alert.showAndWait();
         return;
     }
+
     String sdt = txtSDT.getText().trim();
     String tenKH = txtTenKH.getText().trim();
     KhachHang kh = (sdt.isEmpty()) ? null : khachHangDAO.getKhachHangBySDT(sdt);
@@ -145,7 +148,13 @@ private void handleCheckout() {
         maKH = kh.getMaKhachHang();
     }
 
-    HoaDon hd = new HoaDon(maHoaDon, LocalDate.now(), maKH, "NV001");
+    // Retrieve logged-in NhanVien from SessionManager
+    String maNhanVien = SessionManager.getLoggedInNhanVien() != null
+            ? SessionManager.getLoggedInNhanVien().getMaNhanVien()
+            : "Unknown";
+
+    // Create and insert HoaDon
+    HoaDon hd = new HoaDon(maHoaDon, LocalDate.now(), maKH, maNhanVien);
     hoaDonDAO.insertHoaDon(hd);
 
     // Insert ChiTietHoaDon
@@ -168,10 +177,49 @@ private void handleCheckout() {
         }
     }
 
+    // Show success alert with "In Hóa Đơn" button
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Thông báo");
     alert.setHeaderText("Thanh toán thành công!");
-    alert.showAndWait();
+    alert.setContentText("Bạn có muốn in hóa đơn không?");
+
+    ButtonType btnInHoaDon = new ButtonType("In Hóa Đơn");
+    ButtonType btnClose = new ButtonType("Đóng", ButtonBar.ButtonData.CANCEL_CLOSE);
+    alert.getButtonTypes().setAll(btnInHoaDon, btnClose);
+
+    alert.showAndWait().ifPresent(response -> {
+        if (response == btnInHoaDon) {
+            // Generate and display invoice details
+            StringBuilder content = new StringBuilder();
+            content.append("Mã Hóa Đơn: ").append(hd.getMaHoaDon()).append("\n");
+            content.append("Tên KH: ").append(tenKH).append("\n");
+            content.append("SĐT: ").append(sdt).append("\n");
+            content.append("Ngày Lập: ").append(hd.getNgayLap()).append("\n");
+            content.append("-------------------------\n");
+
+            double tongTien = 0;
+
+            for (CartItem item : cartData) {
+                double thanhTien = item.getQuantity() * item.getPrice();
+                tongTien += thanhTien;
+
+                content.append("Thuốc: ").append(item.getName())
+                       .append(" | SL: ").append(item.getQuantity())
+                       .append(" | Đơn giá: ").append(item.getPrice())
+                       .append(" | Thành tiền: ").append(thanhTien)
+                       .append("\n");
+            }
+
+            content.append("-------------------------\n");
+            content.append("Tổng tiền: ").append(tongTien).append(" VND");
+
+            Alert printAlert = new Alert(Alert.AlertType.INFORMATION);
+            printAlert.setTitle("Hóa Đơn");
+            printAlert.setHeaderText("Chi Tiết Hóa Đơn");
+            printAlert.setContentText(content.toString());
+            printAlert.showAndWait();
+        }
+    });
 
     // Reload POS Page
     try {
@@ -182,6 +230,8 @@ private void handleCheckout() {
         e.printStackTrace();
     }
 }
+
+
 
 
 
@@ -296,31 +346,47 @@ private void handleCheckout() {
     }
 
     private void setSoLuong() {
-        txtQuantity.setText(String.valueOf(quantity));
+    txtQuantity.setText(String.valueOf(quantity));
 
-        btnIncrease.setOnAction(event -> {
+    btnIncrease.setOnAction(event -> {
+        if (currentThuoc != null && quantity < currentThuoc.getSoLuongTon()) {
             quantity++;
             txtQuantity.setText(String.valueOf(quantity));
-        });
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Không đủ thuốc!");
+            alert.showAndWait();
+        }
+    });
 
-        btnDecrease.setOnAction(event -> {
-            if (quantity > 1) {
-                quantity--;
-                txtQuantity.setText(String.valueOf(quantity));
-            }
-        });
+    btnDecrease.setOnAction(event -> {
+        if (quantity > 1) {
+            quantity--;
+            txtQuantity.setText(String.valueOf(quantity));
+        }
+    });
 
-        txtQuantity.textProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                int num = Integer.parseInt(newValue);
-                if (num > 0) {
-                    quantity = num;
+    txtQuantity.textProperty().addListener((observable, oldValue, newValue) -> {
+        try {
+            int num = Integer.parseInt(newValue);
+            if (num > 0) {
+                if (currentThuoc != null && num > currentThuoc.getSoLuongTon()) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText("Không đủ thuốc!");
+                    alert.showAndWait();
+                    txtQuantity.setText(String.valueOf(currentThuoc.getSoLuongTon()));
                 } else {
-                    txtQuantity.setText(String.valueOf(quantity));
+                    quantity = num;
                 }
-            } catch (NumberFormatException e) {
+            } else {
                 txtQuantity.setText(String.valueOf(quantity));
             }
-        });
-    }
+        } catch (NumberFormatException e) {
+            txtQuantity.setText(String.valueOf(quantity));
+        }
+    });
+}
+
 }

@@ -1,7 +1,7 @@
 package application.view.controller;
 
 import application.database.NhanVienDAO;
-import application.model.NhanVien;
+import entity.NhanVien;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

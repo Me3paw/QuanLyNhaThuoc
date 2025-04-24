@@ -1,7 +1,7 @@
 package application.view.controller;
 
 import application.database.LichSuCaLamDAO;
-import application.model.LichSuCaLam;
+import entity.LichSuCaLam;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
