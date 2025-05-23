@@ -131,6 +131,15 @@ public class ThemNhanVienController {
         ngayVaoLamDatePicker.setValue(null);
     }
 
+    public void handleXoaNhanVien(MouseEvent event) {
+    	
+    }
+    public void handleSuaNhanVien(MouseEvent event) {
+    	
+    }
+    public void handleTimNhanVien(MouseEvent event) {
+    	
+    }
     // Hàm hiển thị thông báo
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);

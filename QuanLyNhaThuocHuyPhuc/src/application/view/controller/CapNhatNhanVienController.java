@@ -108,8 +108,7 @@ private void handleCapNhatNhanVien() {
             email,
             heSoLuong,
             luongCoBan,
-            currentTaiKhoan,
-            (Integer) null
+            currentTaiKhoan
         );
         boolean successNV = new NhanVienDAO().updateNhanVien(nhanVien);
 

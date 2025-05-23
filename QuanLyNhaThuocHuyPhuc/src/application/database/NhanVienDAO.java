@@ -12,18 +12,14 @@ public class NhanVienDAO {
     // Lấy tất cả nhân viên
     public List<NhanVien> getAllNhanVien() {
         List<NhanVien> list = new ArrayList<>();
-        String sql = "SELECT * FROM nhanvien";
-
-        try (Connection conn = DatabaseConnector.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
+        try{
+        	Connection conn = DatabaseConnector.getConnection();
+        	String sql = "SELECT * FROM nhanvien";
+            PreparedStatement ps = conn.prepareStatement(sql);
+        	ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String maTaiKhoan = rs.getString("taiKhoan");
-                
-                // Lấy thông tin tài khoản từ lớp TaiKhoanDAO
                 TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
-
                 NhanVien nhanVien = new NhanVien(
                         rs.getString("maNhanVien"),
                         rs.getString("tenNhanVien"),
@@ -34,26 +30,25 @@ public class NhanVienDAO {
                         rs.getDouble("heSoLuong"),
                         rs.getDouble("luongCoBan"),
                         taiKhoan,
-                        rs.getInt("caLam") // Map caLam
+                        rs.getInt("caLam")
                     );
-                    list.add(nhanVien);
+                list.add(nhanVien);
                 }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return list;
     }
     public NhanVien getNhanVienByTaiKhoan(String maTaiKhoan) {
-        String sql = "SELECT * FROM nhanvien WHERE taiKhoan = ?";
-        try (Connection conn = DatabaseConnector.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try{
+        	Connection conn = DatabaseConnector.getConnection();
+        	String sql = "SELECT * FROM nhanvien WHERE taiKhoan = ?";        	
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, maTaiKhoan);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
-
                 return new NhanVien(
                     rs.getString("maNhanVien"),
                     rs.getString("tenNhanVien"),
@@ -74,16 +69,16 @@ public class NhanVienDAO {
     }
 
     // Tìm nhân viên theo mã nhân viên
-    public NhanVien getNhanVienByMa(String maNhanVien) {
-        String sql = "SELECT * FROM nhanvien WHERE maNhanVien = ?";
-        try (Connection conn = DatabaseConnector.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+    public NhanVien getNhanVienByMa(String maNhanVien) {        
+        try{
+        	Connection conn = DatabaseConnector.getConnection();
+        	String sql = "SELECT * FROM nhanvien WHERE maNhanVien = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);        	
             ps.setString(1, maNhanVien);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String maTaiKhoan = rs.getString("taiKhoan");
                 TaiKhoan taiKhoan = new TaiKhoanDAO().getTaiKhoanByMa(maTaiKhoan);
-
                 NhanVien nhanVien = new NhanVien(
                         rs.getString("maNhanVien"),
                         rs.getString("tenNhanVien"),
@@ -94,7 +89,7 @@ public class NhanVienDAO {
                         rs.getDouble("heSoLuong"),
                         rs.getDouble("luongCoBan"),
                         taiKhoan,
-                        rs.getInt("caLam") // Map caLam
+                        rs.getInt("caLam")
                     );
 
                 return nhanVien;

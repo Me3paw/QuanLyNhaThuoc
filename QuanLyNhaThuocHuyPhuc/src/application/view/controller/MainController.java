@@ -161,25 +161,27 @@ public class MainController {
 
     @FXML
     private void handleTimKiemHoaDonClick() {
-        loadPage("PurchaseLookup.fxml"); // Load "Tìm Kiếm Hóa Đơn" view
+        loadPage("PurchaseLookup.fxml"); 
     }
-
-
+    
     @FXML
     private void handleDoiDangNhap() {
-        loadPage("DoiDangNhap.fxml"); // Load "Phân quyền Tài Khoản" view
+        loadPage("DoiDangNhap.fxml"); 
     }
+    
     @FXML
     private void handlePhanQuyenClick() {
-        loadPage("PhanQuyen.fxml"); // Load "Phân quyền Tài Khoản" view
+        loadPage("PhanQuyen.fxml"); 
+    }
+    
+    @FXML
+    private void handleQuanLyNhanVienClick() {
+    	loadPage("QuanLyNhanVien.fxml"); 
     }
 
-   
-    //Thuoc
     @FXML
     private void handleThuocClick() {
         resetSidebarStyle();
-        thuocItem.getStyleClass().add("sidebar-item-selected");
         toggleSubMenu(thuocSubMenu);
     }
 

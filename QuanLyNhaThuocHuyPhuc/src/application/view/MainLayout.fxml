@@ -175,32 +175,15 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleTimNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-					        <image>
-					            <Image url="@/application/assets/icon/nhanvien2.png"/>
-					        </image>
-					    </ImageView>
-                        <Label text="Tìm kiếm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
-                    <HBox onMouseClicked="#handleCapNhatNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-					        <image>
-					            <Image url="@/application/assets/icon/nhanvien3.png"/>
-					        </image>
-					    </ImageView>
-                        <Label text="Cập nhật nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
-                    <HBox onMouseClicked="#handleThemNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                    
+                    <HBox onMouseClicked="#handleQuanLyNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 					        <image>
 					            <Image url="@/application/assets/icon/nhanvien4.png"/>
 					        </image>
 					    </ImageView>
-                        <Label text="Thêm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
+                        <Label text="Quản lý nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handlePhanQuyenClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>

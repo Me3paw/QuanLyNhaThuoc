@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<StackPane fx:controller="application.view.controller.ThemNhanVienController"
+           xmlns="http://javafx.com/javafx/8.0.171"
+           xmlns:fx="http://javafx.com/fxml/1"
+           style="-fx-padding: 20;"
+           stylesheets="@/application/assets/css/ThemNhanVien.css">
+
+    <VBox spacing="20" StackPane.alignment="CENTER" style="-fx-padding: 20;">
+        
+        <!-- Tiêu đề -->
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="QUẢN LÝ NHÂN VIÊN" styleClass="form-title"/>
+        </HBox>
+
+        <!-- Layout 3 cột -->
+        <HBox spacing="20" HBox.hgrow="ALWAYS">
+            
+            <!-- Cột 1 -->
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Tên nhân viên:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="tenNhanVienTextField" promptText="Nhập tên nhân viên" styleClass="input-field"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Giới tính:" styleClass="form-label" minWidth="150"/>
+                    <ComboBox fx:id="gioiTinhComboBox" promptText="Chọn giới tính" styleClass="combo-box">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Nam"/>
+                                <String fx:value="Nữ"/>
+                                <String fx:value="Khác"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Năm sinh:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="namSinhTextField" promptText="Nhập năm sinh" styleClass="input-field"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Số điện thoại:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="soDienThoaiTextField" promptText="Nhập số điện thoại" styleClass="input-field"/>
+                </HBox>
+            </VBox>
+
+            <!-- Cột 2 -->
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Email:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="emailTextField" promptText="Nhập email" styleClass="input-field"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Hệ số lương:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="heSoLuongTextField" promptText="Nhập hệ số lương" styleClass="input-field"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Lương cơ bản:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="luongCoBanTextField" promptText="Nhập lương cơ bản" styleClass="input-field"/>
+                </HBox>
+                
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Ngày vào làm:" styleClass="form-label" minWidth="150"/>
+                    <DatePicker fx:id="ngayVaoLamDatePicker" promptText="Chọn ngày vào làm" styleClass="date-picker"/>
+                </HBox>
+            </VBox>
+
+            <!-- Cột 3 -->
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Tên đăng nhập:" styleClass="form-label" minWidth="150"/>
+                    <TextField fx:id="usernameTextField" promptText="Nhập tên đăng nhập" styleClass="input-field"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Mật khẩu:" styleClass="form-label" minWidth="150"/>
+                    <PasswordField fx:id="passwordField" promptText="Nhập mật khẩu" styleClass="input-field"/>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label text="Vai trò:" styleClass="form-label" minWidth="150"/>
+                    <ComboBox fx:id="vaiTroComboBox" promptText="Chọn vai trò" styleClass="combo-box">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Admin"/>
+                                <String fx:value="Nhân viên"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </HBox>
+
+                
+            </VBox>
+        </HBox>
+		
+		<!-- Bảng danh sách nhân viên -->
+		<TableView fx:id="nhanVienTable" prefHeight="350" styleClass="table-view" >
+		    <columns>
+		        <TableColumn fx:id="maNhanVienCol" text="Mã NV" prefWidth="100"/>
+		        <TableColumn fx:id="tenNhanVienCol" text="Tên Nhân Viên" prefWidth="150"/>
+		        <TableColumn fx:id="gioiTinhCol" text="Giới Tính" prefWidth="100"/>
+		        <TableColumn fx:id="namSinhCol" text="Năm Sinh" prefWidth="100"/>
+		        <TableColumn fx:id="soDienThoaiCol" text="SĐT" prefWidth="120"/>
+		        <TableColumn fx:id="emailCol" text="Email" prefWidth="200"/>
+		        <TableColumn fx:id="heSoLuongCol" text="Hệ Số Lương" prefWidth="120"/>
+		        <TableColumn fx:id="luongCoBanCol" text="Lương Cơ Bản" prefWidth="130"/>
+		        <TableColumn fx:id="ngayVaoLamCol" text="Ngày Vào Làm" prefWidth="130"/>
+		        <TableColumn fx:id="usernameCol" text="Tên Đăng Nhập" prefWidth="130"/>
+		        <TableColumn fx:id="passwordCol" text="Mật Khẩu" prefWidth="130"/>
+		        <TableColumn fx:id="vaiTroCol" text="Vai Trò" prefWidth="100"/>
+		    </columns>
+		</TableView>
+		
+        <!-- Nút thêm -->
+        <HBox spacing="10" alignment="CENTER" StackPane.alignment="BOTTOM_CENTER">
+            <Button text="Thêm Nhân Viên" fx:id="themNhanVienButton" onMouseClicked="#handleThemNhanVien" styleClass="primary-button"/>
+        
+            <Button text="Xóa Nhân Viên" fx:id="xoaNhanVienButton" onMouseClicked="#handleXoaNhanVien" styleClass="primary-button"/>
+        
+            <Button text="Sửa Nhân Viên" fx:id="suaNhanVienButton" onMouseClicked="#handleSuaNhanVien" styleClass="primary-button"/>
+        
+            <Button text="Tìm Nhân Viên" fx:id="timNhanVienButton" onMouseClicked="#handleTimNhanVien" styleClass="primary-button"/>
+        </HBox>
+
+    </VBox>
+</StackPane>
