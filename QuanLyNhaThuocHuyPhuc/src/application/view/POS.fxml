@@ -204,16 +204,16 @@
                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="-Infinity"/>
                                    </columnConstraints>
                                    <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon, payment-icon-selected" GridPane.rowIndex="0" GridPane.columnIndex="0">
-                                       <image><Image url="@/application/assets/images/visa.png" requestedHeight="161.0" smooth="true"/></image>
+                                       <image><Image url="@/application/assets/images/visa2.png" requestedHeight="161.0" smooth="true"/></image>
                                    </ImageView>
                                    <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon" GridPane.rowIndex="0" GridPane.columnIndex="1">
                                         <image><Image url="@/application/assets/images/momo.png" requestedHeight="161.0" smooth="true"/></image>
                                    </ImageView>
                                    <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon" GridPane.rowIndex="1" GridPane.columnIndex="0">
-                                        <image><Image url="@/application/assets/images/cash.png" requestedHeight="161.0" smooth="true"/></image>
+                                        <image><Image url="@/application/assets/images/cash2.png" requestedHeight="161.0" smooth="true"/></image>
                                    </ImageView>
                                    <ImageView fitHeight="161.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="false" styleClass="payment-icon" GridPane.rowIndex="1" GridPane.columnIndex="1">
-                                        <image><Image url="@/application/assets/images/vietqr.png" requestedHeight="161.0" smooth="true"/></image>
+                                        <image><Image url="@/application/assets/images/vietqr2.png" requestedHeight="161.0" smooth="true"/></image>
                                    </ImageView>
                                </GridPane>
                            </VBox>

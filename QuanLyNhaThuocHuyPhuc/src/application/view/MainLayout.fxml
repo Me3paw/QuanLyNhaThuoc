@@ -56,6 +56,7 @@
 			    <Label fx:id="nameLabel" styleClass="header-name-label" text="Nguyễn Văn A"/>
 			    <Label fx:id="roleLabel" styleClass="header-role-label" text="Quản lý"/>
 			</VBox>
+			<padding><Insets top="0" bottom="0" left="0" right="40.0"/></padding>
         </HBox>
     </top>
 
@@ -78,10 +79,20 @@
                 <VBox fx:id="hoaDonSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/hoadon2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Lập hóa đơn" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleTimKiemHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/hoadon3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Tìm kiếm hóa đơn" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -97,6 +108,11 @@
                 <VBox fx:id="thongKeSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleDoanhThuClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thongke2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Doanh thu" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -112,6 +128,11 @@
                 <VBox fx:id="khachHangSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleDanhSachKhachHangClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/khachhang2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Danh sách khách hàng" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -127,10 +148,20 @@
                 <VBox fx:id="thuocSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thuoc2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thêm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleTimThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thuoc3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Tìm kiếm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -146,18 +177,38 @@
                 <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleTimNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/nhanvien2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Tìm kiếm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleCapNhatNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/nhanvien3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Cập nhật nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleThemNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/nhanvien4.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thêm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handlePhanQuyenClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/nhanvien5.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Phân quyền" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -173,14 +224,29 @@
                 <VBox fx:id="caLamViecSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleThongTinCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/calamviec2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thông tin ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox fx:id="chiaCaButton" onMouseClicked="#handleChiaCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/calamviec3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Chia ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox fx:id="thongKeCaButton" onMouseClicked="#handleLichSuCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/calamviec4.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thống kê lịch sử ca" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -189,7 +255,12 @@
  
                 <HBox fx:id="accountItem" onMouseClicked="#handleDoiDangNhap" alignment="CENTER_LEFT"
                       styleClass="sidebar-item" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/taikhoan1.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Tài khoản" styleClass="sidebar-label"/>
                    
                 </HBox>

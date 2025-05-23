@@ -62,7 +62,7 @@ public class Main extends Application {
         KeyFrame keyFrame = new KeyFrame(Duration.millis(40), e -> {
             // Cập nhật thanh tiến trình trên UI thread
             javafx.application.Platform.runLater(() -> {
-                double progress = progressBar.getProgress() + 0.02;
+                double progress = progressBar.getProgress() + 0.1;
                 if (progress <= 1.0) {
                     progressBar.setProgress(progress);
                 } else {
@@ -70,9 +70,9 @@ public class Main extends Application {
 
                     try {
                         // Load màn hình login
-                        Parent loginRoot = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
-                        Scene loginScene = new Scene(loginRoot, 800, 600);
-                        loginScene.getStylesheets().add(getClass().getResource("assets/css/Login.css").toExternalForm());
+                        Parent loginRoot = FXMLLoader.load(getClass().getResource("view/MainLayout.fxml"));
+                        Scene loginScene = new Scene(loginRoot);
+                        loginScene.getStylesheets().add(getClass().getResource("assets/css/style.css").toExternalForm());
 
                         Stage loginStage = new Stage(); // Mở stage mới cho login
                         loginStage.setTitle("Màn Hình Đăng Nhập");
