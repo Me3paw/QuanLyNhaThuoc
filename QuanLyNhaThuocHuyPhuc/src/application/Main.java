@@ -59,7 +59,7 @@ public class Main extends Application {
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
 
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(100), e -> {
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(40), e -> {
             // Cập nhật thanh tiến trình trên UI thread
             javafx.application.Platform.runLater(() -> {
                 double progress = progressBar.getProgress() + 0.02;
@@ -70,7 +70,7 @@ public class Main extends Application {
 
                     try {
                         // Load màn hình login
-                        Parent loginRoot = FXMLLoader.load(getClass().getResource("view/login.fxml"));
+                        Parent loginRoot = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
                         Scene loginScene = new Scene(loginRoot, 800, 600);
                         loginScene.getStylesheets().add(getClass().getResource("assets/css/Login.css").toExternalForm());
 

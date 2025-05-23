@@ -229,10 +229,12 @@ public class MainController {
             Stage currentStage = (Stage) nameLabel.getScene().getWindow();
 
             // Set the login scene
-            Scene loginScene = new Scene(loginRoot);
+            Scene loginScene = new Scene(loginRoot,800,600);
             loginScene.getStylesheets().add(getClass().getResource("/application/assets/css/Login.css").toExternalForm());
+            
             currentStage.setScene(loginScene);
             currentStage.setTitle("Login");
+            currentStage.centerOnScreen();
 
         } catch (Exception e) {
             e.printStackTrace();

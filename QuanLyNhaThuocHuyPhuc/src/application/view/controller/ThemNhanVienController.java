@@ -93,10 +93,11 @@ public class ThemNhanVienController {
         // Tạo đối tượng TaiKhoan
         TaiKhoan taiKhoan = new TaiKhoan(username, password, vaiTro, ngayVaoLam);
 
+        String maNhanVien = nhanVienDAO.generateMaNhanVienTuDong();
         // Tạo đối tượng NhanVien
-        NhanVien nhanVien = new NhanVien(maNhanVienTextField.getText(),tenNhanVienTextField.getText(), 
+        NhanVien nhanVien = new NhanVien(maNhanVien,tenNhanVienTextField.getText(), 
                                          gioiTinhComboBox.getValue(), namSinh, 
-                                         soDienThoai, email, heSoLuong, luongCoBan, taiKhoan, (Integer) null);
+                                         soDienThoai, email, heSoLuong, luongCoBan, taiKhoan, 0);
 
         // Thêm tài khoản vào cơ sở dữ liệu
         if (taiKhoanDAO.addTaiKhoan(taiKhoan)) {
