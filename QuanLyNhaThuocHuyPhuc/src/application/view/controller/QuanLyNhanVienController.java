@@ -152,6 +152,18 @@ public class QuanLyNhanVienController {
         NhanVien selected = nhanVienTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
+            	if (!checkTen(tenNhanVienTextField.getText())
+                        || !checkNamSinh(namSinhTextField.getText())
+                        || !checkSoDienThoai(soDienThoaiTextField.getText())
+                        || !checkEmail(emailTextField.getText())
+                        || !checkHeSoLuong(heSoLuongTextField.getText())
+                        || !checkLuongCoBan(luongCoBanTextField.getText())
+                        || !checkTenDangNhap(usernameTextField.getText())
+                        || !checkMatKhau(passwordField.getText())
+                        || !checkVaiTro(vaiTroComboBox.getValue())
+                        || !checkNgayVaoLam(ngayVaoLamDatePicker.getValue())) {
+                    return; // Dừng lại nếu có lỗi
+                }
                 selected.setTenNhanVien(tenNhanVienTextField.getText());
                 selected.setGioiTinh(gioiTinhComboBox.getValue());
                 selected.setNamSinh(Integer.parseInt(namSinhTextField.getText()));
@@ -214,6 +226,7 @@ public class QuanLyNhanVienController {
         usernameTextField.clear();
         passwordField.clear();
         vaiTroComboBox.getSelectionModel().clearSelection();
+        tenNhanVienTextField.requestFocus();
     }
 
     private void showAlert(String title, String content) {

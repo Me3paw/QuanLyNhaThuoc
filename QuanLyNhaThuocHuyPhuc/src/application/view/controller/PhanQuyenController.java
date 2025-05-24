@@ -248,6 +248,7 @@ public class PhanQuyenController {
 	    if (successCount > 0) {
 	    	message += "Đã cập nhật thành công vai trò cho " + successCount + " tài khoản.\n";
 	    	btnChonTatCa.setText("Chọn tất cả");
+	    	loadTaiKhoanData();
 	    }
 	    if (failCount > 0) message += "Cập nhật thất bại cho " + failCount + " tài khoản.\n" + failedInfo.toString();
 	    if (message.isEmpty() && !accountsToUpdate.isEmpty()) message = "Không có tài khoản nào cần cập nhật (vai trò đã giống nhau).";

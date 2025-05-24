@@ -150,6 +150,15 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thuocSubMenu" visible="false" managed="false">
+                    <HBox onMouseClicked="#handleNhapLoThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thuoc2.png"/>
+					        </image>
+					    </ImageView>
+                        <Label text="Nhập lô thuốc" styleClass="sidebar-label sidebar-label-sub"/>
+                    </HBox>
                     <HBox onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
