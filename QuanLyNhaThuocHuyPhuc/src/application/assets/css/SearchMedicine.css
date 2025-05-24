@@ -3,7 +3,7 @@
     -fx-background-color: #1E1E1E;
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-text-fill: white;
-    -fx-padding: 20px; /* Thêm padding để giống ThemNhanVien */
+    -fx-padding: 20px; 
 }
 
 /* TextField */
@@ -12,12 +12,12 @@
     -fx-text-fill: white;
     -fx-prompt-text-fill: #AAAAAA;
     -fx-border-color: #ED6214;
-    -fx-border-radius: 6px; /* Thay đổi radius để giống ThemNhanVien */
-    -fx-background-radius: 6px; /* Thay đổi radius */
-    -fx-pref-width: 400px; /* Thêm kích thước như ThemNhanVien */
-    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
-    -fx-padding: 10px; /* Padding khớp với ThemNhanVien */
-    -fx-min-height: 48px; /* Chiều cao khớp với ThemNhanVien */
+    -fx-border-radius: 6px; 
+    -fx-background-radius: 6px; 
+    -fx-pref-width: 400px; 
+    -fx-font-size: 20px; 
+    -fx-padding: 10px;
+    -fx-min-height: 48px; 
 }
 
 .text-field:focused {
@@ -29,12 +29,12 @@
 .combo-box {
     -fx-background-color: #2E2E2E;
     -fx-border-color: #ED6214;
-    -fx-border-radius: 6px; /* Thay đổi radius */
-    -fx-background-radius: 6px; /* Thay đổi radius */
-    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
+    -fx-border-radius: 6px; 
+    -fx-background-radius: 6px; 
+    -fx-font-size: 20px; 
     -fx-text-fill: white;
-    -fx-pref-width: 400px; /* Thêm kích thước giống ThemNhanVien */
-    -fx-min-height: 48px; /* Chiều cao giống ThemNhanVien */
+    -fx-pref-width: 400px; 
+    -fx-min-height: 48px; 
 }
 
 .combo-box .list-cell {
@@ -47,11 +47,11 @@
     -fx-background-color: #ED6214;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 6px; /* Thay đổi radius */
+    -fx-background-radius: 6px; 
     -fx-cursor: hand;
-    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
-    -fx-min-height: 48px; /* Chiều cao giống ThemNhanVien */
-    -fx-pref-width: 300px; /* Kích thước giống ThemNhanVien */
+    -fx-font-size: 20px; 
+    -fx-min-height: 48px; 
+    -fx-pref-width: 300px;
 }
 
 .button:hover {
@@ -65,7 +65,7 @@
 /* Label */
 .label {
     -fx-text-fill: #ED6214;
-    -fx-font-size: 20px; /* Cỡ chữ giống ThemNhanVien */
+    -fx-font-size: 20px; 
     -fx-font-weight: bold;
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 5px 0;
@@ -78,6 +78,7 @@
     -fx-background-color: #2E2E2E;
     -fx-table-cell-border-color: transparent;
     -fx-padding: 10;
+    -fx-background-radius: 10px; /* Bo góc bảng */
 }
 
 .table-view .column-header-background {
@@ -89,6 +90,7 @@
     -fx-size: 40px;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-background-radius: 10px 10px 0 0;
 }
 
 .table-view .label {

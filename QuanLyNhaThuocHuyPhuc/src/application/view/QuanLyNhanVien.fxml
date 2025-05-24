@@ -5,12 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
-<StackPane fx:controller="application.view.controller.ThemNhanVienController"
+<StackPane fx:controller="application.view.controller.QuanLyNhanVienController"
            xmlns="http://javafx.com/javafx/8.0.171"
            xmlns:fx="http://javafx.com/fxml/1"
            style="-fx-padding: 20;"
-           stylesheets="@/application/assets/css/ThemNhanVien.css">
+           stylesheets="@/application/assets/css/QuanLyNhanVien.css">
 
     <VBox spacing="20" StackPane.alignment="CENTER" style="-fx-padding: 20;">
         
@@ -108,11 +110,11 @@
 		<TableView fx:id="nhanVienTable" prefHeight="350" styleClass="table-view" >
 		    <columns>
 		        <TableColumn fx:id="maNhanVienCol" text="Mã NV" prefWidth="100"/>
-		        <TableColumn fx:id="tenNhanVienCol" text="Tên Nhân Viên" prefWidth="150"/>
+		        <TableColumn fx:id="tenNhanVienCol" text="Tên Nhân Viên" prefWidth="200"/>
 		        <TableColumn fx:id="gioiTinhCol" text="Giới Tính" prefWidth="100"/>
 		        <TableColumn fx:id="namSinhCol" text="Năm Sinh" prefWidth="100"/>
 		        <TableColumn fx:id="soDienThoaiCol" text="SĐT" prefWidth="120"/>
-		        <TableColumn fx:id="emailCol" text="Email" prefWidth="200"/>
+		        <TableColumn fx:id="emailCol" text="Email" prefWidth="180"/>
 		        <TableColumn fx:id="heSoLuongCol" text="Hệ Số Lương" prefWidth="120"/>
 		        <TableColumn fx:id="luongCoBanCol" text="Lương Cơ Bản" prefWidth="130"/>
 		        <TableColumn fx:id="ngayVaoLamCol" text="Ngày Vào Làm" prefWidth="130"/>
@@ -124,13 +126,42 @@
 		
         <!-- Nút thêm -->
         <HBox spacing="10" alignment="CENTER" StackPane.alignment="BOTTOM_CENTER">
-            <Button text="Thêm Nhân Viên" fx:id="themNhanVienButton" onMouseClicked="#handleThemNhanVien" styleClass="primary-button"/>
-        
-            <Button text="Xóa Nhân Viên" fx:id="xoaNhanVienButton" onMouseClicked="#handleXoaNhanVien" styleClass="primary-button"/>
-        
-            <Button text="Sửa Nhân Viên" fx:id="suaNhanVienButton" onMouseClicked="#handleSuaNhanVien" styleClass="primary-button"/>
-        
-            <Button text="Tìm Nhân Viên" fx:id="timNhanVienButton" onMouseClicked="#handleTimNhanVien" styleClass="primary-button"/>
+            <Button text="Thêm Nhân Viên" fx:id="themNhanVienButton" onMouseClicked="#handleThemNhanVien" styleClass="primary-button">
+	          	<graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/nhanvien4.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    </Button>
+            <Button text="Sửa Nhân Viên" fx:id="suaNhanVienButton" onMouseClicked="#handleSuaNhanVien" styleClass="primary-button">
+        		<graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/nhanvien3.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    </Button>
+        	<Button text="Làm Mới" fx:id="lamMoiButton" onMouseClicked="#handleLamMoi" styleClass="primary-button">
+	            <graphic>
+				        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+				            <image>
+				                <Image url="@/application/assets/icon/lammoi.png" />
+				            </image>
+				        </ImageView>
+				    </graphic>	
+		    </Button>
+            <Button text="Tìm Nhân Viên" fx:id="timNhanVienButton" onMouseClicked="#handleTimNhanVien" styleClass="primary-button">
+				<graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/nhanvien2.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    </Button>
         </HBox>
 
     </VBox>

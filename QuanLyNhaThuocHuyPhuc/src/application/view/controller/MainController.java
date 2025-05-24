@@ -106,10 +106,6 @@ public class MainController {
 	    }
 	}
 
-
-
-
-
     private void loadPage(String fxmlFileName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/" + fxmlFileName));
@@ -120,7 +116,6 @@ public class MainController {
         }
     }
 
-
     private void resetSidebarStyle() {
         hoaDonItem.getStyleClass().remove("sidebar-item-selected");
         accountItem.getStyleClass().remove("sidebar-item-selected");
@@ -128,6 +123,7 @@ public class MainController {
         khachHangItem.getStyleClass().remove("sidebar-item-selected");
         nhanVienItem.getStyleClass().remove("sidebar-item-selected");
         caLamViecItem.getStyleClass().remove("sidebar-item-selected");
+        thongKeItem.getStyleClass().remove("sidebar-item-selected");
     }
 
     // Toggle submenus (ẩn hiện các submenu)
@@ -177,11 +173,13 @@ public class MainController {
     @FXML
     private void handleQuanLyNhanVienClick() {
     	loadPage("QuanLyNhanVien.fxml"); 
+    	
     }
 
     @FXML
     private void handleThuocClick() {
-        resetSidebarStyle();
+    	resetSidebarStyle(); 
+        thuocItem.getStyleClass().add("sidebar-item-selected");
         toggleSubMenu(thuocSubMenu);
     }
 

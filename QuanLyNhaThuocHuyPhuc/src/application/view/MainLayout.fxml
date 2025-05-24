@@ -74,7 +74,8 @@
                     <padding><Insets top="15.0" bottom="15.0" left="15.0" right="10.0"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Hóa đơn" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
-                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16" />
                 </HBox>
                 <VBox fx:id="hoaDonSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
@@ -103,6 +104,7 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Thống kê" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thongKeSubMenu" visible="false" managed="false">
@@ -123,6 +125,7 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Khách hàng" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="khachHangSubMenu" visible="false" managed="false">
@@ -143,6 +146,7 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Thuốc" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thuocSubMenu" visible="false" managed="false">
@@ -172,6 +176,7 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Quản lí nhân viên" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
@@ -180,7 +185,7 @@
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 					        <image>
-					            <Image url="@/application/assets/icon/nhanvien4.png"/>
+					            <Image url="@/application/assets/icon/nhanvien1.png"/>
 					        </image>
 					    </ImageView>
                         <Label text="Quản lý nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
@@ -202,6 +207,7 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Ca làm việc" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="caLamViecSubMenu" visible="false" managed="false">
