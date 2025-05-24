@@ -41,9 +41,6 @@
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                 </columnResizePolicy>
-                 <placeholder>
-			        <Label text="Không có tài khoản nào được tìm thấy."/>
-			    </placeholder>
             </TableView>
         </VBox>
 

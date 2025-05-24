@@ -27,14 +27,6 @@ public class TaiKhoan {
         this.vaiTro = vaiTro;
         this.ngayVaoLam = ngayVaoLam;
     }
-    public TaiKhoan( String tenDangNhap, String matKhau, String vaiTro, LocalDate ngayVaoLam) {
-    	
-    	this.tenDangNhap = tenDangNhap;
-    	this.matKhau = matKhau;
-    	this.vaiTro = vaiTro;
-    	this.ngayVaoLam = ngayVaoLam;
-    }
-    
     public NhanVien getNhanVien() {
         return nhanVien;
     }
@@ -42,7 +34,13 @@ public class TaiKhoan {
     public void setNhanVien(NhanVien nhanVien) {
         this.nhanVien = nhanVien;
     }
-    
+    public TaiKhoan( String tenDangNhap, String matKhau, String vaiTro, LocalDate ngayVaoLam) {
+    	
+    	this.tenDangNhap = tenDangNhap;
+    	this.matKhau = matKhau;
+    	this.vaiTro = vaiTro;
+    	this.ngayVaoLam = ngayVaoLam;
+    }
 
     // Getters and Setters
     public String getMaTaiKhoan() {

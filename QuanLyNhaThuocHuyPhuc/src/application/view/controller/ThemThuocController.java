@@ -160,7 +160,7 @@ private void handleThemThuocAction() {
             String newFileName = selectedImageFile.getName(); // Dễ bị trùng tên
             Path destinationPath = destinationFolder.resolve(newFileName);
             Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            hinhAnhRelativePath = "/application/assets/images/thuoc/" + newFileName;
+            hinhAnhRelativePath = "/application/assets/images/thuoc" + newFileName;
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Lỗi File", "Không thể sao chép file hình ảnh: " + e.getMessage());
             e.printStackTrace();
@@ -188,8 +188,6 @@ private void handleThemThuocAction() {
     if (thuocDAO.addThuoc(newThuoc)) {
         showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm thuốc '" + tenThuoc + "' với mã '" + maThuoc + "' thành công!");
         clearForm();
-        loadDataToTable();
-
     } else {
         showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thuốc thất bại.");
     }
