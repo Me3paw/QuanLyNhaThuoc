@@ -4,6 +4,9 @@ import application.database.NhaCungCapDAO;
 import application.database.ThuocDAO;
 import entity.NhaCungCap;
 import entity.Thuoc;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,6 +41,18 @@ public class ThemThuocController {
     @FXML private ImageView imgPreview;
     @FXML private Button btnThemThuoc;
     @FXML private Button btnHuy;
+    
+    @FXML private TableView<Thuoc> medicineTable;
+    @FXML private TableColumn<Thuoc, String> codeColumn;
+    @FXML private TableColumn<Thuoc, String> nameColumn;
+    @FXML private TableColumn<Thuoc, String> thanhPhanColumn;
+    @FXML private TableColumn<Thuoc, String> congDungColumn;
+    @FXML private TableColumn<Thuoc, String> hanSuDungColumn;
+    @FXML private TableColumn<Thuoc, Double> giaBanColumn;
+    @FXML private TableColumn<Thuoc, Double> giaNhapColumn;
+    @FXML private TableColumn<Thuoc, Integer> soLuongTonColumn;
+    @FXML private TableColumn<Thuoc, String> maNhaCungCapColumn;
+    @FXML private TableColumn<Thuoc, String> hinhAnhColumn;
 
     private ThuocDAO thuocDAO = new ThuocDAO();
     private NhaCungCapDAO nccDAO = new NhaCungCapDAO();
@@ -46,10 +61,15 @@ public class ThemThuocController {
 
     @FXML
     public void initialize() {
+    	imgPreview.setImage(new Image(getClass().getResourceAsStream("/application/assets/images/thuocmacdinh.png")));
+    	loadDataToTable();
         loadNhaCungCapData();
-        if (imgPreview != null) {
-            imgPreview.setImage(null);
-        }
+        
+        medicineTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                fillFormWithThuoc(newSelection);
+            }
+        });
     }
 
 
@@ -231,4 +251,62 @@ private void handleThemThuocAction() {
         }
         return "";
     }
+    
+    public void loadDataToTable() {
+        List<Thuoc> listThuoc = thuocDAO.getAllThuoc();
+        ObservableList<Thuoc> data = FXCollections.observableArrayList(listThuoc);
+
+        codeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaThuoc()));
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTenThuoc()));
+        thanhPhanColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getThanhPhan()));
+        congDungColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCongDung()));
+        hanSuDungColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHanSuDung()));
+        giaBanColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getGiaBan()).asObject());
+        giaNhapColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getGiaNhap()).asObject());
+        soLuongTonColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getSoLuongTon()).asObject());
+        maNhaCungCapColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaNhaCungCap()));
+        hinhAnhColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHinhAnh()));
+
+        medicineTable.setItems(data);
+    }
+    
+    private void fillFormWithThuoc(Thuoc thuoc) {
+        txtTenThuoc.setText(thuoc.getTenThuoc());
+        txtThanhPhan.setText(thuoc.getThanhPhan());
+        txtCongDung.setText(thuoc.getCongDung());
+        
+        // Đổi String sang LocalDate cho dpHanSuDung
+        if (thuoc.getHanSuDung() != null && !thuoc.getHanSuDung().isEmpty()) {
+            dpHanSuDung.setValue(LocalDate.parse(thuoc.getHanSuDung()));
+        } else {
+            dpHanSuDung.setValue(null);
+        }
+        
+        txtGiaBan.setText(String.valueOf(thuoc.getGiaBan()));
+        txtGiaNhap.setText(String.valueOf(thuoc.getGiaNhap()));
+        txtSoLuongTon.setText(String.valueOf(thuoc.getSoLuongTon()));
+
+        // Chọn NhaCungCap trong ComboBox dựa vào mã nhà cung cấp
+        for (NhaCungCap ncc : cboNhaCungCap.getItems()) {
+            if (ncc.getMaNhaCungCap().equals(thuoc.getMaNhaCungCap())) {
+                cboNhaCungCap.getSelectionModel().select(ncc);
+                break;
+            }
+        }
+
+        txtHinhAnhPath.setText(thuoc.getHinhAnh());
+
+        // Hiển thị hình ảnh preview (nếu có)
+        if (thuoc.getHinhAnh() != null && !thuoc.getHinhAnh().isEmpty()) {
+            try {
+                Image image = new Image(getClass().getResourceAsStream(thuoc.getHinhAnh()));
+                imgPreview.setImage(image);
+            } catch (Exception e) {
+                imgPreview.setImage(null);
+            }
+        } else {
+            imgPreview.setImage(null);
+        }
+    }
+
 }

@@ -7,16 +7,19 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.image.ImageView?>
 
-
 <StackPane fx:controller="application.view.controller.ThemThuocController"
            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-           style="-fx-padding: 20;" stylesheets="@/application/assets/css/ThemNhanVien.css">
+           style="-fx-padding: 20;" stylesheets="@/application/assets/css/QuanLyNhanVien.css">
 
     <VBox spacing="15" StackPane.alignment="CENTER" style="-fx-padding: 20;">
 
         <VBox alignment="CENTER" spacing="5">
-            <Label text="Thêm Thuốc Mới" styleClass="form-title"/>
+            <Label text="THÊM THUỐC MỚI" styleClass="form-title"/>
         </VBox>
+        
+        <StackPane prefHeight="200" prefWidth="200">
+		    <ImageView fx:id="imgPreview" fitWidth="400" fitHeight="200" preserveRatio="false" smooth="true" />
+		</StackPane>
 
         <!-- Layout 3 cột -->
         <HBox spacing="25" HBox.hgrow="ALWAYS">
@@ -24,50 +27,83 @@
             <!-- Cột 1 -->
             <VBox spacing="15" HBox.hgrow="ALWAYS">
 
-                <Label text="Tên thuốc:" styleClass="form-label"/>
-                <TextField fx:id="txtTenThuoc" promptText="Nhập tên thuốc" styleClass="input-field"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Tên thuốc:" styleClass="form-label" />
+                    <TextField fx:id="txtTenThuoc" promptText="Nhập tên thuốc" styleClass="input-field" HBox.hgrow="ALWAYS"/>
+                </HBox>
 
-                <Label text="Thành phần:" styleClass="form-label"/>
-                <TextArea fx:id="txtThanhPhan" promptText="Nhập thành phần" styleClass="input-field" prefRowCount="3" wrapText="true"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Thành phần:" styleClass="form-label" />
+                    <TextArea fx:id="txtThanhPhan" promptText="Nhập thành phần" styleClass="text-area" wrapText="true" HBox.hgrow="ALWAYS" />
+                </HBox>
 
-                 <Label text="Công dụng:" styleClass="form-label"/>
-                 <TextArea fx:id="txtCongDung" promptText="Nhập công dụng" styleClass="input-field" prefRowCount="3" wrapText="true"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Công dụng:" styleClass="form-label" />
+                    <TextArea fx:id="txtCongDung" promptText="Nhập công dụng" styleClass="text-area" wrapText="true" HBox.hgrow="ALWAYS" />
+                </HBox>
             </VBox>
 
             <!-- Cột 2 -->
             <VBox spacing="15" HBox.hgrow="ALWAYS">
-                 <Label text="Hạn sử dụng:" styleClass="form-label"/>
-                 <DatePicker fx:id="dpHanSuDung" promptText="Chọn hạn sử dụng" styleClass="date-picker" prefWidth="Infinity"/>
 
-                <Label text="Giá bán:" styleClass="form-label"/>
-                <TextField fx:id="txtGiaBan" promptText="Nhập giá bán" styleClass="input-field"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Hạn sử dụng:" styleClass="form-label" />
+                    <DatePicker fx:id="dpHanSuDung" promptText="Chọn hạn sử dụng" styleClass="date-picker" prefWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                </HBox>
 
-                <Label text="Giá nhập:" styleClass="form-label"/>
-                <TextField fx:id="txtGiaNhap" promptText="Nhập giá nhập" styleClass="input-field"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Giá bán:" styleClass="form-label" />
+                    <TextField fx:id="txtGiaBan" promptText="Nhập giá bán" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                </HBox>
 
-                 <Label text="Số lượng tồn:" styleClass="form-label"/>
-                 <TextField fx:id="txtSoLuongTon" promptText="Nhập số lượng ban đầu" styleClass="input-field"/>
-
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Giá nhập:" styleClass="form-label" />
+                    <TextField fx:id="txtGiaNhap" promptText="Nhập giá nhập" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                </HBox>
             </VBox>
 
             <!-- Cột 3 -->
             <VBox spacing="15" HBox.hgrow="ALWAYS">
-                <Label text="Nhà cung cấp:" styleClass="form-label"/>
-                <ComboBox fx:id="cboNhaCungCap" promptText="Chọn nhà cung cấp" styleClass="combo-box" prefWidth="Infinity"/>
-
-                <Label text="Hình ảnh:" styleClass="form-label"/>
+				<HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Số lượng tồn:" styleClass="form-label" />
+                    <TextField fx:id="txtSoLuongTon" promptText="Nhập số lượng ban đầu" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                </HBox>
+				
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <TextField fx:id="txtHinhAnhPath" promptText="Đường dẫn hình ảnh" styleClass="input-field" HBox.hgrow="ALWAYS"/>
-                    <Button fx:id="btnBrowseImage" text="Chọn..." onAction="#handleBrowseImage" styleClass="button" prefWidth="100"/>
+                    <Label text="Nhà cung cấp:" styleClass="form-label" />
+                    <ComboBox fx:id="cboNhaCungCap" promptText="Chọn nhà cung cấp" styleClass="combo-box" prefWidth="Infinity" HBox.hgrow="ALWAYS"/>
                 </HBox>
 
-                 <ImageView fx:id="imgPreview" fitHeight="200" fitWidth="200" preserveRatio="true"/> 
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Hình ảnh:" styleClass="form-label" />
+                    <HBox spacing="10" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="txtHinhAnhPath" promptText="Đường dẫn hình ảnh" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnBrowseImage" text="Chọn..." onAction="#handleBrowseImage" styleClass="button" prefWidth="100"/>
+                    </HBox>
+                </HBox>
             </VBox>
         </HBox>
-
+		
+		
+		
+		<TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="codeColumn" text="Mã Thuốc" prefWidth="150"  maxWidth="200"/>
+                <TableColumn fx:id="nameColumn" text="Tên Thuốc" prefWidth="200"  maxWidth="200"/>
+                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" prefWidth="170"  maxWidth="200"/>
+                <TableColumn fx:id="congDungColumn" text="Công Dụng" prefWidth="170"  maxWidth="200"/>
+                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" prefWidth="150"  maxWidth="200"/>
+                <TableColumn fx:id="giaBanColumn" text="Giá Bán" prefWidth="110"  maxWidth="200"/>
+                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" prefWidth="110"  maxWidth="200"/>
+                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" prefWidth="150"  maxWidth="200"/>
+                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" prefWidth="200"  maxWidth="200"/>
+                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" prefWidth="150"  maxWidth="200"/>
+            </columns>
+        </TableView>
+        
         <!-- Nút -->
-        <HBox spacing="20" alignment="CENTER" style="-fx-padding-top: 25;">
-            <Button fx:id="btnHuy" text="Hủy" onAction="#handleHuyAction" styleClass="button" prefWidth="150"/>
+        <HBox spacing="20" alignment="CENTER">
+            <Button fx:id="btnHuy" text="Hủy" onAction="#handleHuyAction" styleClass="primary-button" prefWidth="200"/>
             <Button fx:id="btnThemThuoc" text="Thêm Thuốc" onAction="#handleThemThuocAction" styleClass="primary-button" prefWidth="200"/>
         </HBox>
 

@@ -23,6 +23,7 @@
     -fx-padding: 5px 0;
     -fx-halignment: LEFT;
     -fx-text-alignment: left;
+    -fx-min-width: 150px;
 }
 
 /* Trường nhập liệu TextField, PasswordField */
@@ -204,4 +205,59 @@
 .table-row-cell {
     -fx-background-color: #3a3a3a; /* Nền hàng giống input-field */
     -fx-text-fill: white;
+}
+.text-area {
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 6px;
+    -fx-border-color: #ED6214;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-pref-width: 400px;
+    -fx-min-width: 200px;
+    -fx-min-height: 48px; 
+    -fx-pref-height: 48px;
+}
+
+.text-area:focused {
+    -fx-border-color: #4caf50;
+    -fx-background-color: #2e2e2e;
+}
+
+/* Loại bỏ viền bên trong scroll pane */
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+}
+
+/* Vùng chứa nội dung */
+.text-area .content {
+    -fx-background-color: transparent;
+    -fx-padding: 0 5px 0 5px; /* Padding ngang */
+}
+
+/* Văn bản trong TextArea */
+.text-area .text {
+    -fx-fill: white;
+    -fx-font-size: 20px;
+}
+
+/* Thanh cuộn */
+.text-area .scroll-bar:vertical,
+.text-area .scroll-bar:horizontal {
+    -fx-background-color: #2e2e2e;
+    -fx-padding: 2px;
+    -fx-opacity: 0.5;
+}
+
+.text-area .scroll-bar .thumb {
+    -fx-background-color: #555;
+    -fx-background-radius: 4px;
+}
+
+.text-area .scroll-bar .thumb:hover {
+    -fx-background-color: #777;
 }

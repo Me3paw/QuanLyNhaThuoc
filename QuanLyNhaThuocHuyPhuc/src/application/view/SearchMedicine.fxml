@@ -51,16 +51,16 @@
         <!-- Bảng thuốc -->
         <TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="codeColumn" text="Mã Thuốc"  />
-                <TableColumn fx:id="nameColumn" text="Tên Thuốc" />
-                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" />
-                <TableColumn fx:id="congDungColumn" text="Công Dụng" />
-                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" />
-                <TableColumn fx:id="giaBanColumn" text="Giá Bán" />
-                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" />
-                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" />
-                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" />
-                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" />
+                <TableColumn fx:id="codeColumn" text="Mã Thuốc"  prefWidth="100"/>
+                <TableColumn fx:id="nameColumn" text="Tên Thuốc" prefWidth="200"/>
+                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" prefWidth="100"/>
+                <TableColumn fx:id="congDungColumn" text="Công Dụng" prefWidth="100"/>
+                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" prefWidth="100"/>
+                <TableColumn fx:id="giaBanColumn" text="Giá Bán" prefWidth="100"/>
+                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" prefWidth="100"/>
+                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" prefWidth="100"/>
+                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" prefWidth="100"/>
+                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" prefWidth="100"/>
             </columns>
         </TableView>
         <!-- cần fix : add scrollpane để cuộn trang / render hình ảnh trong comlumn hình ảnh -->

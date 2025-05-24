@@ -250,8 +250,7 @@
 					            <Image url="@/application/assets/icon/taikhoan1.png"/>
 					        </image>
 					    </ImageView>
-                        <Label text="Tài khoản" styleClass="sidebar-label"/>
-                   
+                        <Label text="Tài khoản" styleClass="sidebar-label"/>                   
                 </HBox>
             </VBox>
         </VBox>
@@ -261,8 +260,6 @@
 
     <!-- CENTER CONTENT -->
     <center>
-        <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
-
-        
+        <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>        
     </center>
 </BorderPane>

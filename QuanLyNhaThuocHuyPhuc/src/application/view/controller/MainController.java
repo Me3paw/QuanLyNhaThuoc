@@ -163,6 +163,7 @@ public class MainController {
     @FXML
     private void handleDoiDangNhap() {
         loadPage("DoiDangNhap.fxml"); 
+        accountItem.getStyleClass().add("sidebar-item-selected");
     }
     
     @FXML
