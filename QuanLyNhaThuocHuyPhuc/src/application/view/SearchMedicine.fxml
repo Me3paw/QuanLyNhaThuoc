@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.image.ImageView?>
 
 <StackPane styleClass="dashboard-background"
            xmlns="http://javafx.com/javafx/19"
@@ -18,8 +19,9 @@
 
     <VBox spacing="20" alignment="TOP_CENTER" maxWidth="1400" maxHeight="800">
         
-        <!-- TIÊU ĐỀ -->
-        <Label fx:id="resultLabel" text="KẾT QUẢ TÌM KIẾM: 0 thuốc tìm thấy" styleClass="form-title"/>
+       <StackPane prefHeight="200" prefWidth="200">
+				    <ImageView fx:id="imgPreview" fitWidth="400" fitHeight="200" preserveRatio="false" smooth="true" />
+		</StackPane>
 
         <!-- KHỐI TÌM KIẾM -->
         <VBox spacing="10" style="-fx-background-color: #2d2d2d; -fx-background-radius: 12; -fx-padding: 15;">

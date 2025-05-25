@@ -14,13 +14,9 @@
     <VBox spacing="15" StackPane.alignment="CENTER" style="-fx-padding: 20;">
 
         <VBox alignment="CENTER" spacing="5">
-            <Label text="THÊM THUỐC MỚI" styleClass="form-title"/>
+            <Label text="THÊM THUỐC" styleClass="form-title"/>
         </VBox>
-        
-        <StackPane prefHeight="200" prefWidth="200">
-		    <ImageView fx:id="imgPreview" fitWidth="400" fitHeight="200" preserveRatio="false" smooth="true" />
-		</StackPane>
-
+       
         <!-- Layout 3 cột -->
         <HBox spacing="25" HBox.hgrow="ALWAYS">
 
@@ -86,25 +82,26 @@
 		
 		
 		
-		<TableView fx:id="medicineTable" VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn fx:id="codeColumn" text="Mã Thuốc" prefWidth="150"  maxWidth="200"/>
-                <TableColumn fx:id="nameColumn" text="Tên Thuốc" prefWidth="200"  maxWidth="200"/>
-                <TableColumn fx:id="thanhPhanColumn" text="Thành Phần" prefWidth="170"  maxWidth="200"/>
-                <TableColumn fx:id="congDungColumn" text="Công Dụng" prefWidth="170"  maxWidth="200"/>
-                <TableColumn fx:id="hanSuDungColumn" text="Hạn Sử Dụng" prefWidth="150"  maxWidth="200"/>
-                <TableColumn fx:id="giaBanColumn" text="Giá Bán" prefWidth="110"  maxWidth="200"/>
-                <TableColumn fx:id="giaNhapColumn" text="Giá Nhập" prefWidth="110"  maxWidth="200"/>
-                <TableColumn fx:id="soLuongTonColumn" text="Số Lượng Tồn" prefWidth="150"  maxWidth="200"/>
-                <TableColumn fx:id="maNhaCungCapColumn" text="Mã Nhà Cung Cấp" prefWidth="200"  maxWidth="200"/>
-                <TableColumn fx:id="hinhAnhColumn" text="Hình Ảnh" prefWidth="150"  maxWidth="200"/>
-            </columns>
-        </TableView>
-        
+		<TableView fx:id="danhSachThuoc" VBox.vgrow="ALWAYS">
+		    <columns>
+		        <TableColumn text="Tên thuốc" fx:id="colTenThuoc" prefWidth="150" />
+		        <TableColumn text="Thành phần" fx:id="colThanhPhan" prefWidth="200" />
+		        <TableColumn text="Công dụng" fx:id="colCongDung" prefWidth="200" />
+		        <TableColumn text="Hạn sử dụng" fx:id="colHanSuDung" prefWidth="120" />
+		        <TableColumn text="Giá bán" fx:id="colGiaBan" prefWidth="100" />
+		        <TableColumn text="Giá nhập" fx:id="colGiaNhap" prefWidth="160" />
+		        <TableColumn text="Số lượng tồn" fx:id="colSoLuongTon" prefWidth="100" />
+		        <TableColumn text="Nhà cung cấp" fx:id="colNhaCungCap" prefWidth="250" />
+		        <TableColumn text="Hình ảnh" fx:id="colHinhAnh" prefWidth="250" />
+		    </columns>
+		</TableView>
+
         <!-- Nút -->
         <HBox spacing="20" alignment="CENTER">
             <Button fx:id="btnHuy" text="Hủy" onAction="#handleHuyAction" styleClass="primary-button" prefWidth="200"/>
             <Button fx:id="btnThemThuoc" text="Thêm Thuốc" onAction="#handleThemThuocAction" styleClass="primary-button" prefWidth="200"/>
+            <Button fx:id="btnNhapFile" text="Nhập file" onAction="#handleNhapFileAction" styleClass="primary-button" prefWidth="200"/>
+            <Button fx:id="btnNhapTatCa" text="Thêm toàn bộ" onAction="#handleThemTatCaThuocAction" styleClass="primary-button" prefWidth="200"/>
         </HBox>
 
     </VBox>
