@@ -95,6 +95,14 @@ public class SearchMedicineController {
 
         searchCriteriaCombo.setItems(FXCollections.observableArrayList("Tên Thuốc", "Mã Thuốc", "Công Dụng"));
         searchCriteriaCombo.getSelectionModel().select(0);
+        
+        try {
+            Image defaultImage = new Image(getClass().getResourceAsStream("/application/assets/images/thuoc/thuocmacdinh.png"));
+            imgPreview.setImage(defaultImage);
+        } catch (Exception e) {
+            System.out.println("Không thể tải ảnh mặc định.");
+            imgPreview.setImage(null);
+        }
 
         loadAllMedicines();
         medicineTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {

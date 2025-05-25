@@ -62,10 +62,14 @@
                    <VBox VBox.vgrow="ALWAYS" /> <!-- Spacer -->
                    <HBox alignment="CENTER" spacing="10.0">
                        <Button onAction="#handleXemChiTietThuoc"  mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Xem chi tiết thuốc" textAlignment="CENTER" contentDisplay="CENTER"/>
-                       <Button onAction="#handleThemThuocVaoGio" mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="Thêm">
+                       <Button onAction="#handleThemThuocVaoGio" mnemonicParsing="false" prefHeight="50.0" styleClass="accent-button" text="">
                            <graphic>
-                               <Region prefHeight="18.0" prefWidth="18.0" styleClass="icon-cart"/>
-                           </graphic>
+						        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+						            <image>
+						                <Image url="@/application/assets/icon/addcart.png" />
+						            </image>
+						        </ImageView>
+						    </graphic>	
                        </Button>
                    </HBox>
                </VBox>

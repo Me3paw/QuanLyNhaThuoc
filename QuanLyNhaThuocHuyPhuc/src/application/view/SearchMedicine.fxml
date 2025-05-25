@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
 <StackPane styleClass="dashboard-background"
@@ -32,17 +33,34 @@
                 <ComboBox fx:id="searchCriteriaCombo"
                           styleClass="combo-box"
                           style="-fx-pref-height: 70px; -fx-pref-width: 250px;">
-                    <items>
+		                 <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Tên Thuốc"/>
                             <String fx:value="Thành Phần"/>
                             <String fx:value="Công Dụng"/>
                         </FXCollections>
                     </items>
+                    
                 </ComboBox>
 
-                <Button text="Tìm kiếm" onAction="#handleSearchClick" styleClass="primary-button"/>
-                <Button text="Làm Mới" onAction="#handleResetClick" styleClass="primary-button"/>
+                <Button text="Tìm kiếm" onAction="#handleSearchClick" styleClass="primary-button">
+	                <graphic>
+				        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+				            <image>
+				                <Image url="@/application/assets/icon/search.png" />
+				            </image>
+				        </ImageView>
+				    </graphic>	
+				 </Button>
+                <Button text="Làm Mới" onAction="#handleResetClick" styleClass="primary-button">
+	                <graphic>
+				        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+				            <image>
+				                <Image url="@/application/assets/icon/lammoi.png" />
+				            </image>
+				        </ImageView>
+				    </graphic>	
+				 </Button>
             </HBox>
         </VBox>
 

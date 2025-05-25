@@ -43,7 +43,28 @@
                 </ImageView>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button onAction="#handleSignOut" styleClass="icon-button">
+   
+           <VBox alignment="CENTER_LEFT" spacing="2.0">
+			    <Label fx:id="nameLabel" styleClass="header-name-label" text="Nguyễn Văn A">
+			    <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/nhanvien1.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    	</Label>
+			    <Label fx:id="roleLabel" styleClass="header-role-label" text="Quản lý">
+			    <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/taikhoan2.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    	</Label>
+			</VBox>
+			<Button fx:id="signOut" onAction="#handleSignOut" styleClass="icon-button">
 		    <graphic>
 		        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 		            <image>
@@ -52,11 +73,7 @@
 		        </ImageView>
 		    </graphic>
 		</Button>
-           <VBox alignment="CENTER_LEFT" spacing="2.0">
-			    <Label fx:id="nameLabel" styleClass="header-name-label" text="Nguyễn Văn A"/>
-			    <Label fx:id="roleLabel" styleClass="header-role-label" text="Quản lý"/>
-			</VBox>
-			<padding><Insets top="0" bottom="0" left="0" right="40.0"/></padding>
+			<padding><Insets top="0" bottom="0" left="0" right="20.0"/></padding>
         </HBox>
     </top>
 
@@ -78,7 +95,7 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16" />
                 </HBox>
                 <VBox fx:id="hoaDonSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="lapHoaDon" onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 					        <image>
@@ -150,7 +167,7 @@
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thuocSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="themThuoc" onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 					        <image>
@@ -159,7 +176,7 @@
 					    </ImageView>
                         <Label text="Thêm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
-                    <HBox onMouseClicked="#handleTimThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="timThuoc" onMouseClicked="#handleTimThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 					        <image>
@@ -181,7 +198,7 @@
                 </HBox>
                 <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
                     
-                    <HBox onMouseClicked="#handleQuanLyNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="themNhanVien" onMouseClicked="#handleQuanLyNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 					        <image>

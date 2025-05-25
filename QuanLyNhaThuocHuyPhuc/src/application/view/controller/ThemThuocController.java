@@ -8,6 +8,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -27,6 +28,7 @@ import javafx.util.Callback;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 public class ThemThuocController {
 
@@ -110,7 +112,10 @@ public class ThemThuocController {
                             	String resourcePath = "/application/assets/images/thuoc/" + imagePath;
                             	Image image = new Image(getClass().getResourceAsStream(resourcePath));
                             	imageView.setImage(image);
-                            	setGraphic(imageView);
+                            	HBox box = new HBox(imageView);
+                                box.setAlignment(Pos.CENTER);
+                                box.setMaxWidth(Double.MAX_VALUE);
+                                setGraphic(box);
                             } catch (Exception e) {
                                 setGraphic(null); // trường hợp lỗi đường dẫn ảnh
                             }
@@ -345,8 +350,7 @@ public class ThemThuocController {
 
     @FXML
     private void handleHuyAction() {
-        Stage stage = (Stage) btnHuy.getScene().getWindow();
-        stage.close();
+        danhSachThuoc.getItems().clear();
     }
     @FXML
     private void handleThemTatCaThuocAction() {

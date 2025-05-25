@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
 <StackPane fx:controller="application.view.controller.ThemThuocController"
@@ -98,10 +99,42 @@
 
         <!-- Nút -->
         <HBox spacing="20" alignment="CENTER">
-            <Button fx:id="btnHuy" text="Hủy" onAction="#handleHuyAction" styleClass="primary-button" prefWidth="200"/>
-            <Button fx:id="btnThemThuoc" text="Thêm Thuốc" onAction="#handleThemThuocAction" styleClass="primary-button" prefWidth="200"/>
-            <Button fx:id="btnNhapFile" text="Nhập file" onAction="#handleNhapFileAction" styleClass="primary-button" prefWidth="200"/>
-            <Button fx:id="btnNhapTatCa" text="Thêm toàn bộ" onAction="#handleThemTatCaThuocAction" styleClass="primary-button" prefWidth="200"/>
+            <Button fx:id="btnHuy" text="Hủy" onAction="#handleHuyAction" styleClass="primary-button" prefWidth="200">
+            <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/cancel.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+			 </Button>
+            <Button fx:id="btnThemThuoc" text="Thêm Thuốc" onAction="#handleThemThuocAction" styleClass="primary-button" prefWidth="200">
+            <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/add.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+			 </Button>
+            <Button fx:id="btnNhapFile" text="Nhập file" onAction="#handleNhapFileAction" styleClass="primary-button" prefWidth="200">
+            <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/import.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+			 </Button>
+            <Button fx:id="btnNhapTatCa" text="Thêm toàn bộ" onAction="#handleThemTatCaThuocAction" styleClass="primary-button" prefWidth="200">
+            <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/addall.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+			 </Button>
         </HBox>
 
     </VBox>
