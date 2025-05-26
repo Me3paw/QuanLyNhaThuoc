@@ -212,7 +212,6 @@ public class ThemThuocController {
 
         if (thuocDAO.addThuoc(newThuoc)) {
             showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm thuốc '" + tenThuoc + "' với mã '" + maThuoc + "' thành công!");
-            dsThuoc.add(newThuoc); // thêm vào danh sách hiển thị
             clearForm();
         } else {
             showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thuốc thất bại.");
@@ -242,6 +241,19 @@ public class ThemThuocController {
         } catch (NumberFormatException e) {
             return showAndFocus(txtSoLuongTon, "Sai định dạng", "Số lượng tồn phải là số nguyên.");
         }
+        if(hanSuDungDate.isBefore(LocalDate.now())) {
+			return showAndFocus(dpHanSuDung, "Sai thông tin", "Hạn sử dụng phải lớn hơn ngày hôm nay.");
+		}
+        if (Double.parseDouble(giaBanStr) <= Double.parseDouble(giaNhapStr)) {
+			return showAndFocus(txtGiaBan, "Sai thông tin", "Giá bán phải lớn hơn giá nhập.");
+		}
+        if (Integer.parseInt(soLuongTonStr) <= 0) {	
+        		return showAndFocus(txtSoLuongTon, "Sai thông tin", "Số lượng tồn phải lớn hơn 0.");
+		}
+        //file ảnh thuốc phải có đuôi .jpg
+        if (selectedImageFile != null && !selectedImageFile.getName().toLowerCase().endsWith(".jpg")) {
+			return showAndFocus(txtHinhAnhPath, "Sai định dạng", "Hình ảnh thuốc phải có đuôi .jpg.");
+		}
         return true;
     }
 
