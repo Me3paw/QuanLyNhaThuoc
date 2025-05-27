@@ -32,7 +32,7 @@ public class Main extends Application {
        
         progressBar.setLayoutY(335);  // Gần đáy ảnh
 
-        progressBar.setStyle(
+        progressBar.setStyle( 
             "-fx-accent: #ED6214;" +
             "-fx-control-inner-background: transparent;" +
             "-fx-background-color: rgba(255,255,255,0.3);" +
@@ -94,4 +94,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
 }
