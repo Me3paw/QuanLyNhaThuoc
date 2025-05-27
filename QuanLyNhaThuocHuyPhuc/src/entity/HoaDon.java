@@ -31,4 +31,7 @@ public class HoaDon {
 
     public String getMaNhanVien() { return maNhanVien; }
     public void setMaNhanVien(String maNhanVien) { this.maNhanVien = maNhanVien; }
+    
+    
+    
 }
