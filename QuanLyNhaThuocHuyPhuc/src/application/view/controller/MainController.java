@@ -2,12 +2,17 @@ package application.view.controller;
 import application.util.SessionManager;
 import entity.NhanVien;
 import entity.TaiKhoan;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -78,7 +83,16 @@ public class MainController {
     private HBox chiaCaButton; // Button for "Chia ca"
     @FXML
     private HBox thongKeCaButton;
-
+    @FXML
+    private HBox lapHoaDon;
+    @FXML
+    private HBox themThuoc;
+    @FXML
+    private HBox timThuoc;
+    @FXML
+    private HBox themNhanVien;
+    @FXML
+    private Button signOut;
    @FXML
 	public void initialize() {
 	    loadPage("POS.fxml"); // Load the default page
@@ -104,11 +118,16 @@ public class MainController {
 	        nameLabel.setText("Unknown User");
 	        roleLabel.setText("Unknown Role");
 	    }
+	    Platform.runLater(() -> setupShortcuts(nameLabel.getScene()));
+	    
+	    //thêm tooltip cho các shortcut
+	    Tooltip.install(lapHoaDon, new Tooltip("Ctrl + D"));
+	    Tooltip.install(themThuoc, new Tooltip("Ctrl + T"));
+	    Tooltip.install(timThuoc, new Tooltip("Ctrl + F"));
+	    Tooltip.install(themNhanVien, new Tooltip("Ctrl + N"));
+	    Tooltip.install(signOut, new Tooltip("Ctrl + Q"));
+	    
 	}
-
-
-
-
 
     private void loadPage(String fxmlFileName) {
         try {
@@ -120,7 +139,6 @@ public class MainController {
         }
     }
 
-
     private void resetSidebarStyle() {
         hoaDonItem.getStyleClass().remove("sidebar-item-selected");
         accountItem.getStyleClass().remove("sidebar-item-selected");
@@ -128,6 +146,7 @@ public class MainController {
         khachHangItem.getStyleClass().remove("sidebar-item-selected");
         nhanVienItem.getStyleClass().remove("sidebar-item-selected");
         caLamViecItem.getStyleClass().remove("sidebar-item-selected");
+        thongKeItem.getStyleClass().remove("sidebar-item-selected");
     }
 
     // Toggle submenus (ẩn hiện các submenu)
@@ -161,24 +180,29 @@ public class MainController {
 
     @FXML
     private void handleTimKiemHoaDonClick() {
-        loadPage("PurchaseLookup.fxml"); // Load "Tìm Kiếm Hóa Đơn" view
+        loadPage("PurchaseLookup.fxml"); 
     }
-
-
+    
     @FXML
     private void handleDoiDangNhap() {
-        loadPage("DoiDangNhap.fxml"); // Load "Phân quyền Tài Khoản" view
+        loadPage("DoiDangNhap.fxml"); 
+        accountItem.getStyleClass().add("sidebar-item-selected");
     }
+    
     @FXML
     private void handlePhanQuyenClick() {
-        loadPage("PhanQuyen.fxml"); // Load "Phân quyền Tài Khoản" view
+        loadPage("PhanQuyen.fxml"); 
+    }
+    
+    @FXML
+    private void handleQuanLyNhanVienClick() {
+    	loadPage("QuanLyNhanVien.fxml"); 
+    	
     }
 
-   
-    //Thuoc
     @FXML
     private void handleThuocClick() {
-        resetSidebarStyle();
+    	resetSidebarStyle(); 
         thuocItem.getStyleClass().add("sidebar-item-selected");
         toggleSubMenu(thuocSubMenu);
     }
@@ -229,10 +253,12 @@ public class MainController {
             Stage currentStage = (Stage) nameLabel.getScene().getWindow();
 
             // Set the login scene
-            Scene loginScene = new Scene(loginRoot);
+            Scene loginScene = new Scene(loginRoot,800,600);
             loginScene.getStylesheets().add(getClass().getResource("/application/assets/css/Login.css").toExternalForm());
+            
             currentStage.setScene(loginScene);
             currentStage.setTitle("Login");
+            currentStage.centerOnScreen();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -294,6 +320,37 @@ public class MainController {
     public void updateUserInfo(String tenNhanVien, String vaiTro) {
         nameLabel.setText(tenNhanVien);  // Cập nhật tên nhân viên
         roleLabel.setText(vaiTro);  // Cập nhật vai trò của nhân viên
+    }
+    private void setupShortcuts(Scene scene) {
+        // Ctrl + D: Lập hóa đơn
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN),
+            this::handleLapHoaDonClick
+        );
+
+        // Ctrl + T: Thêm thuốc
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.T, KeyCombination.CONTROL_DOWN),
+            this::handleThemThuocClick
+        );
+
+        // Ctrl + N: Thêm nhân viên
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN),
+            this::handleQuanLyNhanVienClick
+        );
+
+        // Ctrl + F: Tìm thuốc
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN),
+            this::handleTimThuocClick
+        );
+
+        // Ctrl + Q: Đăng xuất
+        scene.getAccelerators().put(
+            new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN),
+            this::handleSignOut
+        );
     }
 
     

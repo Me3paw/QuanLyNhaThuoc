@@ -27,15 +27,17 @@
 <?import java.lang.String?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.controller.PurchaseLookupController">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" 
+			fx:controller="application.view.controller.PurchaseLookupController" 
+			stylesheets="@/application/assets/css/QuanLyNhanVien.css">
 
     <VBox spacing="15" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
-        <Label text="Tra Cứu Hóa Đơn" styleClass="panel-title" />
+        <Label text="Tra Cứu Hóa Đơn" styleClass="form-title" />
 
         <HBox spacing="10">
-            <TextField promptText="Nhập Mã Hóa Đơn..." fx:id="txtMaHoaDon" HBox.hgrow="ALWAYS"/>
-            <TextField  promptText="Nhập SĐT..." fx:id="txtSDT" HBox.hgrow="ALWAYS"/>
-            <Button text="Tìm kiếm" onAction="#handleLookup" />
+            <TextField promptText="Nhập Mã Hóa Đơn..." fx:id="txtMaHoaDon" HBox.hgrow="ALWAYS" styleClass="input-field" prefHeight="70"/>
+            <TextField  promptText="Nhập SĐT..." fx:id="txtSDT" HBox.hgrow="ALWAYS" styleClass="input-field" prefHeight="70"/>
+            <Button text="Tìm kiếm" onAction="#handleLookup" styleClass="primary-button"/>
         </HBox>
 
         <VBox spacing="10" styleClass="table-zone" VBox.vgrow="ALWAYS">
@@ -68,7 +70,7 @@
 									</columns>
 					
 					                <placeholder>
-					                    <Label text="Trống" />
+					                    <Label text="Trống" styleClass="form-title" />
 					                </placeholder>
 					            </TableView>
 					        </content>

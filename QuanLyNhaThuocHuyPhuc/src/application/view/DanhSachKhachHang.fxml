@@ -12,18 +12,18 @@
 
 <StackPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml"
            fx:controller="application.view.controller.DanhSachKhachHangController"
-           stylesheets="@../assets/css/DanhSachKhachHang.css"> 
+           stylesheets="@../assets/css/QuanLyNhanVien.css"> 
         <VBox spacing="10" alignment="TOP_CENTER" styleClass="container">
          <padding>
             <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
          </padding>
-        <Label text="Danh Sách Khách Hàng" styleClass="title-label" style="-fx-font-size: 40px;"/>
+        <Label text="Danh Sách Khách Hàng"  style="-fx-font-size: 40px;" styleClass="form-title"/>
 
         <HBox spacing="10" alignment="CENTER">
-            <Label text="Tìm" styleClass="label"/>
-            <TextField fx:id="txtSdtSearch" promptText="Nhập số điện thoại cần tìm" styleClass="text-field" HBox.hgrow="ALWAYS"/>
-            <Button text="Tìm" onAction="#handleSearchBySdt" styleClass="button"/>
-            <Button text="Làm Mới" onAction="#handleResetClick" styleClass="button"/>
+            
+            <TextField fx:id="txtSdtSearch" promptText="Nhập số điện thoại cần tìm" prefHeight="70" styleClass="input-field" HBox.hgrow="ALWAYS"/>
+            <Button text="Tìm" onAction="#handleSearchBySdt" styleClass="primary-button"/>
+            <Button text="Làm Mới" onAction="#handleResetClick" styleClass="primary-button"/>
         </HBox>
 
         <TableView fx:id="tableCustomer" prefHeight="450" prefWidth="800" styleClass="table-view" VBox.vgrow="ALWAYS">

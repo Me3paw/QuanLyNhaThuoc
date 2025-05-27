@@ -32,7 +32,7 @@ public class Main extends Application {
        
         progressBar.setLayoutY(335);  // Gần đáy ảnh
 
-        progressBar.setStyle(
+        progressBar.setStyle( 
             "-fx-accent: #ED6214;" +
             "-fx-control-inner-background: transparent;" +
             "-fx-background-color: rgba(255,255,255,0.3);" +
@@ -59,10 +59,10 @@ public class Main extends Application {
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
 
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(100), e -> {
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(60), e -> {
             // Cập nhật thanh tiến trình trên UI thread
             javafx.application.Platform.runLater(() -> {
-                double progress = progressBar.getProgress() + 0.02;
+                double progress = progressBar.getProgress() + 0.04;
                 if (progress <= 1.0) {
                     progressBar.setProgress(progress);
                 } else {
@@ -70,8 +70,8 @@ public class Main extends Application {
 
                     try {
                         // Load màn hình login
-                        Parent loginRoot = FXMLLoader.load(getClass().getResource("view/login.fxml"));
-                        Scene loginScene = new Scene(loginRoot, 800, 600);
+                        Parent loginRoot = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
+                        Scene loginScene = new Scene(loginRoot,800, 600);
                         loginScene.getStylesheets().add(getClass().getResource("assets/css/Login.css").toExternalForm());
 
                         Stage loginStage = new Stage(); // Mở stage mới cho login
@@ -94,4 +94,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
 }

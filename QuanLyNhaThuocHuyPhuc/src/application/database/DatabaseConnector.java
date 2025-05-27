@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DatabaseConnector {
 	
-    private static final String URL = "jdbc:sqlite:PharmacyManagement.db";
+    private static final String URL = "jdbc:sqlite:database/PharmacyManagement.db";
 
     static {
         try {

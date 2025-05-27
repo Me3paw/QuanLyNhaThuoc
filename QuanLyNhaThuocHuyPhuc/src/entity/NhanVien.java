@@ -15,6 +15,7 @@ public class NhanVien {
     private int caLam;
     private final BooleanProperty selected = new SimpleBooleanProperty(false);
     // Constructor
+    
     public NhanVien(String maNhanVien, String tenNhanVien, String gioiTinh, int namSinh, String soDienThoai,
             String email, double heSoLuong, double luongCoBan, TaiKhoan taiKhoan, int caLam) {
 			this.maNhanVien = maNhanVien;
@@ -28,7 +29,20 @@ public class NhanVien {
 			this.taiKhoan = taiKhoan;
 			this.caLam = caLam;
 	}
-    public NhanVien() {
+    public NhanVien(String maNhanVien, String tenNhanVien, String gioiTinh, int namSinh, String soDienThoai,
+			String email, double heSoLuong, double luongCoBan, TaiKhoan taiKhoan) {
+		super();
+		this.maNhanVien = maNhanVien;
+		this.tenNhanVien = tenNhanVien;
+		this.gioiTinh = gioiTinh;
+		this.namSinh = namSinh;
+		this.soDienThoai = soDienThoai;
+		this.email = email;
+		this.heSoLuong = heSoLuong;
+		this.luongCoBan = luongCoBan;
+		this.taiKhoan = taiKhoan;
+	}
+	public NhanVien() {
 		// TODO Auto-generated constructor stub
 	}
 	public BooleanProperty selectedProperty() {

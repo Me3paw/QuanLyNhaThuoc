@@ -33,5 +33,25 @@ public class NhaCungCapDAO {
         }
         return listNCC;
     }
+	public static NhaCungCap getByMaNhaCungCap(String maNCC) {
+		NhaCungCap ncc = null;
+		String sql = "SELECT * FROM NhaCungCap WHERE maNhaCungCap = ?";
 
+		try (Connection conn = DatabaseConnector.getConnection();
+			 PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, maNCC);
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					String tenNCC = rs.getString("tenNhaCungCap");
+					String diaChi = rs.getString("diaChi");
+					String soDienThoai = rs.getString("soDienThoai");
+					String email = rs.getString("email");
+					ncc = new NhaCungCap(maNCC, tenNCC, diaChi, soDienThoai, email);
+				}
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ncc;
+	}
 }

@@ -43,7 +43,28 @@
                 </ImageView>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button onAction="#handleSignOut" styleClass="icon-button">
+   
+           <VBox alignment="CENTER_LEFT" spacing="2.0">
+			    <Label fx:id="nameLabel" styleClass="header-name-label" text="Nguyễn Văn A">
+			    <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/nhanvien1.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    	</Label>
+			    <Label fx:id="roleLabel" styleClass="header-role-label" text="Quản lý">
+			    <graphic>
+			        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+			            <image>
+			                <Image url="@/application/assets/icon/taikhoan2.png" />
+			            </image>
+			        </ImageView>
+			    </graphic>	
+		    	</Label>
+			</VBox>
+			<Button fx:id="signOut" onAction="#handleSignOut" styleClass="icon-button">
 		    <graphic>
 		        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
 		            <image>
@@ -52,10 +73,7 @@
 		        </ImageView>
 		    </graphic>
 		</Button>
-           <VBox alignment="CENTER_LEFT" spacing="2.0">
-			    <Label fx:id="nameLabel" styleClass="header-name-label" text="Nguyễn Văn A"/>
-			    <Label fx:id="roleLabel" styleClass="header-role-label" text="Quản lý"/>
-			</VBox>
+			<padding><Insets top="0" bottom="0" left="0" right="20.0"/></padding>
         </HBox>
     </top>
 
@@ -73,15 +91,26 @@
                     <padding><Insets top="15.0" bottom="15.0" left="15.0" right="10.0"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Hóa đơn" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
-                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16" />
                 </HBox>
                 <VBox fx:id="hoaDonSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="lapHoaDon" onMouseClicked="#handleLapHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/hoadon2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Lập hóa đơn" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handleTimKiemHoaDonClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/hoadon3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Tìm kiếm hóa đơn" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -92,11 +121,17 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Thống kê" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thongKeSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleDoanhThuClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thongke2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Doanh thu" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -107,11 +142,17 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Khách hàng" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="khachHangSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleDanhSachKhachHangClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/khachhang2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Danh sách khách hàng" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -122,15 +163,26 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Thuốc" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="thuocSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="themThuoc" onMouseClicked="#handleThemThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thuoc2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thêm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
-                    <HBox onMouseClicked="#handleTimThuocClick" styleClass="sidebar-subitem" spacing="15.0">
+                    <HBox fx:id="timThuoc" onMouseClicked="#handleTimThuocClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/thuoc3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Tìm kiếm thuốc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -141,23 +193,27 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Quản lí nhân viên" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="nhanVienSubMenu" visible="false" managed="false">
-                    <HBox onMouseClicked="#handleTimNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
+                    
+                    <HBox fx:id="themNhanVien" onMouseClicked="#handleQuanLyNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Tìm kiếm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
-                    <HBox onMouseClicked="#handleCapNhatNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Cập nhật nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
-                    </HBox>
-                    <HBox onMouseClicked="#handleThemNhanVienClick" styleClass="sidebar-subitem" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Thêm nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/nhanvien1.png"/>
+					        </image>
+					    </ImageView>
+                        <Label text="Quản lý nhân viên" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox onMouseClicked="#handlePhanQuyenClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/nhanvien5.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Phân quyền" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -168,19 +224,35 @@
                     <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
                     <Region styleClass="sidebar-icon-placeholder" prefWidth="24" prefHeight="24"/>
                     <Label text="Ca làm việc" styleClass="sidebar-label" HBox.hgrow="ALWAYS"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <Region styleClass="sidebar-arrow-placeholder" prefWidth="16" prefHeight="16"/>
                 </HBox>
                 <VBox fx:id="caLamViecSubMenu" visible="false" managed="false">
                     <HBox onMouseClicked="#handleThongTinCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/calamviec2.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thông tin ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox fx:id="chiaCaButton" onMouseClicked="#handleChiaCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/calamviec3.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Chia ca làm việc" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                     <HBox fx:id="thongKeCaButton" onMouseClicked="#handleLichSuCaLamViecClick" styleClass="sidebar-subitem" spacing="15.0">
                         <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/calamviec4.png"/>
+					        </image>
+					    </ImageView>
                         <Label text="Thống kê lịch sử ca" styleClass="sidebar-label sidebar-label-sub"/>
                     </HBox>
                 </VBox>
@@ -189,9 +261,13 @@
  
                 <HBox fx:id="accountItem" onMouseClicked="#handleDoiDangNhap" alignment="CENTER_LEFT"
                       styleClass="sidebar-item" spacing="15.0">
-                        <padding><Insets top="10" bottom="10" left="40" right="10"/></padding>
-                        <Label text="Tài khoản" styleClass="sidebar-label"/>
-                   
+                        <padding><Insets top="15" bottom="15" left="15" right="10"/></padding>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+					        <image>
+					            <Image url="@/application/assets/icon/taikhoan1.png"/>
+					        </image>
+					    </ImageView>
+                        <Label text="Tài khoản" styleClass="sidebar-label"/>                   
                 </HBox>
             </VBox>
         </VBox>
@@ -201,8 +277,6 @@
 
     <!-- CENTER CONTENT -->
     <center>
-        <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
-
-        
+        <StackPane fx:id="contentArea" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>        
     </center>
 </BorderPane>

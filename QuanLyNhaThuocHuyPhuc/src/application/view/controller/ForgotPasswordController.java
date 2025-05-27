@@ -101,7 +101,7 @@ private void handleChangePassword() {
             Parent root = loader.load();
             
             // Tạo một cảnh mới với màn hình đăng nhập
-            Scene loginScene = new Scene(root);
+            Scene loginScene = new Scene(root,800,600);
             loginScene.getStylesheets().add(getClass().getResource("/application/assets/css/Login.css").toExternalForm());
             
             // Thiết lập và hiển thị cửa sổ đăng nhập

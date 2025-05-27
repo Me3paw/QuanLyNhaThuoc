@@ -1,17 +1,21 @@
 package application.view.controller;
 
 import application.database.ThuocDAO;
+import entity.NhaCungCap;
 import entity.Thuoc;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.List;
 
 public class SearchMedicineController {
@@ -20,8 +24,6 @@ public class SearchMedicineController {
     private TextField searchField; // Trường tìm kiếm
     @FXML
     private ComboBox<String> searchCriteriaCombo; // ComboBox cho tiêu chí tìm kiếm
-    @FXML
-    private Label resultLabel; // Label hiển thị kết quả tìm kiếm
     @FXML
     private TableView<Thuoc> medicineTable; // Bảng thuốc
     @FXML
@@ -44,6 +46,8 @@ public class SearchMedicineController {
     private TableColumn<Thuoc, String> maNhaCungCapColumn; // Cột mã nhà cung cấp
     @FXML
     private TableColumn<Thuoc, String> hinhAnhColumn; // Cột hình ảnh
+    @FXML
+    private ImageView imgPreview;
 
     private ThuocDAO thuocDAO = new ThuocDAO();
 
@@ -56,7 +60,6 @@ public class SearchMedicineController {
         if (keyword != null && !keyword.trim().isEmpty()) {
             List<Thuoc> thuocList = null;
 
-            // Tìm kiếm theo tiêu chí đã chọn
             if ("Tên Thuốc".equals(selectedCriteria)) {
                 thuocList = thuocDAO.searchThuocByTen(keyword);
             } else if ("Mã Thuốc".equals(selectedCriteria)) {
@@ -64,7 +67,6 @@ public class SearchMedicineController {
             } else if ("Công Dụng".equals(selectedCriteria)) {
                 thuocList = thuocDAO.searchThuocByCongDung(keyword);
             }
-
             updateTable(thuocList);
         }
     }
@@ -74,14 +76,12 @@ public class SearchMedicineController {
     private void handleResetClick() {
         searchField.clear();
         searchCriteriaCombo.getSelectionModel().clearSelection();
-        resultLabel.setText("Kết quả tìm kiếm: 0 thuốc tìm thấy");
         loadAllMedicines();
     }
 
     // Phương thức khởi tạo bảng thuốc
     @FXML
     public void initialize() {
-        // Khởi tạo các cột trong bảng
         codeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaThuoc()));
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTenThuoc()));
         thanhPhanColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getThanhPhan()));
@@ -93,12 +93,25 @@ public class SearchMedicineController {
         maNhaCungCapColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMaNhaCungCap()));
         hinhAnhColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHinhAnh()));
 
-        // Thiết lập các mục trong ComboBox
         searchCriteriaCombo.setItems(FXCollections.observableArrayList("Tên Thuốc", "Mã Thuốc", "Công Dụng"));
         searchCriteriaCombo.getSelectionModel().select(0);
+        
+        try {
+            Image defaultImage = new Image(getClass().getResourceAsStream("/application/assets/images/thuoc/thuocmacdinh.png"));
+            imgPreview.setImage(defaultImage);
+        } catch (Exception e) {
+            System.out.println("Không thể tải ảnh mặc định.");
+            imgPreview.setImage(null);
+        }
 
-        // Hiển thị tất cả các thuốc khi khởi động
         loadAllMedicines();
+        medicineTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                loadImagePreview(newSelection); 
+            } else {
+                imgPreview.setImage(null);
+            }
+        });
     }
 
     // Phương thức để hiển thị tất cả các thuốc trong bảng
@@ -111,6 +124,22 @@ public class SearchMedicineController {
     private void updateTable(List<Thuoc> thuocList) {
         ObservableList<Thuoc> observableList = FXCollections.observableArrayList(thuocList);
         medicineTable.setItems(observableList);
-        resultLabel.setText("Kết quả tìm kiếm: " + thuocList.size() + " thuốc tìm thấy");
     }
+
+    // Phương thức load ảnh vào imgPreview
+    @FXML
+    private void loadImagePreview(Thuoc thuoc) {
+
+            // Hiển thị hình ảnh preview (nếu có)
+            if (thuoc.getHinhAnh() != null && !thuoc.getHinhAnh().isEmpty()) {
+                try {
+                    Image image = new Image(getClass().getResourceAsStream(thuoc.getHinhAnh()));
+                    imgPreview.setImage(image);
+                } catch (Exception e) {
+                    imgPreview.setImage(null);
+                }
+            } else {
+                imgPreview.setImage(null);
+            }
+        }
 }

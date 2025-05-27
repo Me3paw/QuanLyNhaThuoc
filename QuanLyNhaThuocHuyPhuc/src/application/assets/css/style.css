@@ -191,7 +191,7 @@
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-text-fill: #BABABA;
-     -fx-font-size: 12px; /* Smaller font for combo */
+    -fx-font-size: 12px; /* Smaller font for combo */
 }
 .combo-box .list-cell {
     -fx-background-color: #1B1617;
@@ -199,7 +199,7 @@
      -fx-font-size: 12px;
 }
 .combo-box .list-cell:filled:selected, .combo-box .list-cell:filled:selected:hover {
-    -fx-background-color: #ED6214; /* Orange selection */
+    /* Orange selection */
     -fx-text-fill: white;
 }
 .combo-box .list-cell:filled:hover {
@@ -409,7 +409,8 @@
 }
 .sidebar-arrow-placeholder {
      -fx-background-color: #BABABA;
-     -fx-shape: "M0 0 L4 4 L8 0 Z"; /* Simple down arrow */
+     -fx-shape: "M0 0 L6 6 L12 0"; /* Simple down arrow */
+      -fx-alignment: CENTER_RIGHT;
 }
 .icon-cart {
      -fx-background-color: white;
@@ -443,3 +444,13 @@
 .payment-icon:hover {
     -fx-opacity: 0.8;
 }
+.tooltip {
+    -fx-background-color: #333333;   /* Màu nền */
+    -fx-text-fill:#ED6214 ;            /* Màu chữ */
+    -fx-font-size: 14px;             /* Kích thước chữ */
+    -fx-padding: 10px;
+    -fx-border-color: #777777;       /* Viền */
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+}
+

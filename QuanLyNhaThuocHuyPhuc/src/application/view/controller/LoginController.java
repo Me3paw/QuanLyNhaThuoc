@@ -102,30 +102,24 @@ public class LoginController {
 
     @FXML
     private void handleForgotPassword() {
-        System.out.println("handleForgotPassword() called");
-
         try {
-            System.out.println("Hiding login window");
-            Stage loginStage = (Stage) forgotPasswordLink.getScene().getWindow();
-            loginStage.hide();
+            // Lấy Stage hiện tại từ hyperlink
+            Stage stage = (Stage) forgotPasswordLink.getScene().getWindow();
 
-            System.out.println("Loading ForgotPasswordLayout.fxml");
+            // Load scene quên mật khẩu
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/ForgotPasswordLayout.fxml"));
             Parent root = loader.load();
 
-            Scene forgotPasswordScene = new Scene(root);
+            Scene forgotPasswordScene = new Scene(root,800,600);
             forgotPasswordScene.getStylesheets().add(getClass().getResource("/application/assets/css/ForgotPassword.css").toExternalForm());
 
-            Stage forgotPasswordStage = new Stage();
-            forgotPasswordStage.setWidth(800);
-            forgotPasswordStage.setHeight(600);
-            forgotPasswordStage.setScene(forgotPasswordScene);
-            forgotPasswordStage.setTitle("Quên Mật Khẩu");
-            forgotPasswordStage.show();
+            stage.setScene(forgotPasswordScene); // Chuyển scene
+            stage.setTitle("Quên Mật Khẩu");
+            stage.centerOnScreen(); // Căn giữa cửa sổ
 
         } catch (IOException e) {
-            System.out.println("Error loading ForgotPasswordLayout.fxml: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 }

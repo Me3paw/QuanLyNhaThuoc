@@ -34,12 +34,14 @@ public class PhanQuyenController {
     @FXML private TableColumn<TaiKhoan, String> colVaiTro;      
     @FXML private ComboBox<String> cboNewRole; 
     @FXML private Button btnApplyRole; 
+    @FXML private Button btnChonTatCa; 
 
     private ObservableList<TaiKhoan> masterData = FXCollections.observableArrayList(); 
     private FilteredList<TaiKhoan> filteredData;
     private SortedList<TaiKhoan> sortedData;
     private TaiKhoanDAO taiKhoanDAO;
-    private final ObservableList<String> vaiTroOptions = FXCollections.observableArrayList("Admin", "Nhân viên"); 
+    private final ObservableList<String> vaiTroOptions = FXCollections.observableArrayList("Admin", "Nhân viên");
+    private boolean isAllSelected = false;
 
     @FXML
     public void initialize() {
@@ -159,6 +161,7 @@ public class PhanQuyenController {
     @FXML
     private void handleSearch() {
         filteredData.setPredicate(createSearchPredicate(txtSearch.getText()));
+        btnChonTatCa.setText("Chọn tất cả");
     }
 
     private void showAlert(String title, String message, AlertType alertType) {
@@ -171,85 +174,101 @@ public class PhanQuyenController {
     @FXML
     private void handleResetSearch() {
         txtSearch.clear();
+        
     }
 
 
-@FXML
-private void handleApplyRole() {
-    String selectedRole = cboNewRole.getValue();
-    if (selectedRole == null) {
-        showAlert("Chưa chọn vai trò", "Vui lòng chọn vai trò mới để áp dụng!", Alert.AlertType.WARNING);
-        return;
-    }
+	@FXML
+	private void handleApplyRole() {
+	    String selectedRole = cboNewRole.getValue();
+	    if (selectedRole == null) {
+	        showAlert("Chưa chọn vai trò", "Vui lòng chọn vai trò mới để áp dụng!", Alert.AlertType.WARNING);
+	        return;
+	    }
+	
+	    List<TaiKhoan> accountsToUpdate = new ArrayList<>();
+	    for (TaiKhoan tk : masterData) {
+	        if (tk.isSelected()) {
+	            accountsToUpdate.add(tk);
+	        }
+	    }
+	
+	    if (accountsToUpdate.isEmpty()) {
+	        showAlert("Chưa chọn tài khoản", "Vui lòng chọn ít nhất một tài khoản bằng cách tích vào ô 'Chọn'.", Alert.AlertType.WARNING);
+	        return;
+	    }
+	
+	    Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+	    confirmAlert.setTitle("Xác nhận cập nhật");
+	    confirmAlert.setHeaderText("Áp dụng vai trò '" + selectedRole + "' cho " + accountsToUpdate.size() + " tài khoản?");
+	    confirmAlert.setContentText("Bạn có chắc chắn muốn thực hiện thay đổi này?");
+	    if (confirmAlert.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) {
+	        return;
+	    }
+	
+	    int successCount = 0;
+	    int failCount = 0;
+	    StringBuilder failedInfo = new StringBuilder("Các tài khoản cập nhật thất bại:\n");
+	
+	    for (TaiKhoan tk : accountsToUpdate) {
+	        if (!selectedRole.equals(tk.getVaiTro())) {
+	            boolean success = taiKhoanDAO.updateTaiKhoanRole(tk.getMaTaiKhoan(), selectedRole);
+	            if (success) {
+	                tk.setVaiTro(selectedRole);
+	                successCount++;
+	
+	                // Update session if the logged-in user is updated
+	                TaiKhoan loggedInUser = SessionManager.getLoggedInUser();
+	                if (loggedInUser != null && loggedInUser.getMaTaiKhoan().equals(tk.getMaTaiKhoan())) {
+	                    SessionManager.setLoggedInUser(tk);
+	
+	                    // Refresh MainController UI
+	                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
+	                    try {
+	                        Parent root = loader.load();
+	                        MainController mainController = loader.getController();
+	                        mainController.updateUserInfo(tk.getNhanVien().getTenNhanVien(), tk.getVaiTro());
+	                        tableTaiKhoan.getScene().setRoot(root); 
+	                    } catch (IOException e) {
+	                        e.printStackTrace();
+	                    }
+	                }
+	            } else {
+	                failCount++;
+	                String identifier = tk.getTenDangNhap() != null ? tk.getTenDangNhap() : tk.getMaTaiKhoan();
+	                failedInfo.append("- ").append(identifier).append("\n");
+	            }
+	        }
+	        tk.setSelected(false);
+	    }
+	
+	    tableTaiKhoan.refresh();
+	
+	    String message = "";
+	    if (successCount > 0) {
+	    	message += "Đã cập nhật thành công vai trò cho " + successCount + " tài khoản.\n";
+	    	btnChonTatCa.setText("Chọn tất cả");
+	    }
+	    if (failCount > 0) message += "Cập nhật thất bại cho " + failCount + " tài khoản.\n" + failedInfo.toString();
+	    if (message.isEmpty() && !accountsToUpdate.isEmpty()) message = "Không có tài khoản nào cần cập nhật (vai trò đã giống nhau).";
+	    else if (message.isEmpty()) message = "Không có tài khoản nào được chọn.";
+	
+	    showAlert("Kết quả", message, failCount > 0 ? Alert.AlertType.WARNING : Alert.AlertType.INFORMATION);
+	
+	    cboNewRole.getSelectionModel().clearSelection();
+	    cboNewRole.setPromptText("Chọn vai trò");
+	    tableTaiKhoan.getSelectionModel().clearSelection();
+	}
+	@FXML private  void handleChonTatCa() {
+		isAllSelected = !isAllSelected;
 
-    List<TaiKhoan> accountsToUpdate = new ArrayList<>();
-    for (TaiKhoan tk : masterData) {
-        if (tk.isSelected()) {
-            accountsToUpdate.add(tk);
-        }
-    }
+	    for (TaiKhoan tk : filteredData) {
+	        tk.setSelected(isAllSelected);
+	    }
 
-    if (accountsToUpdate.isEmpty()) {
-        showAlert("Chưa chọn tài khoản", "Vui lòng chọn ít nhất một tài khoản bằng cách tích vào ô 'Chọn'.", Alert.AlertType.WARNING);
-        return;
-    }
+	    tableTaiKhoan.refresh();
 
-    Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-    confirmAlert.setTitle("Xác nhận cập nhật");
-    confirmAlert.setHeaderText("Áp dụng vai trò '" + selectedRole + "' cho " + accountsToUpdate.size() + " tài khoản?");
-    confirmAlert.setContentText("Bạn có chắc chắn muốn thực hiện thay đổi này?");
-    if (confirmAlert.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) {
-        return;
-    }
-
-    int successCount = 0;
-    int failCount = 0;
-    StringBuilder failedInfo = new StringBuilder("Các tài khoản cập nhật thất bại:\n");
-
-    for (TaiKhoan tk : accountsToUpdate) {
-        if (!selectedRole.equals(tk.getVaiTro())) {
-            boolean success = taiKhoanDAO.updateTaiKhoanRole(tk.getMaTaiKhoan(), selectedRole);
-            if (success) {
-                tk.setVaiTro(selectedRole);
-                successCount++;
-
-                // Update session if the logged-in user is updated
-                TaiKhoan loggedInUser = SessionManager.getLoggedInUser();
-                if (loggedInUser != null && loggedInUser.getMaTaiKhoan().equals(tk.getMaTaiKhoan())) {
-                    SessionManager.setLoggedInUser(tk);
-
-                    // Refresh MainController UI
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/MainLayout.fxml"));
-                    try {
-                        Parent root = loader.load();
-                        MainController mainController = loader.getController();
-                        mainController.updateUserInfo(tk.getNhanVien().getTenNhanVien(), tk.getVaiTro());
-                        tableTaiKhoan.getScene().setRoot(root); 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else {
-                failCount++;
-                String identifier = tk.getTenDangNhap() != null ? tk.getTenDangNhap() : tk.getMaTaiKhoan();
-                failedInfo.append("- ").append(identifier).append("\n");
-            }
-        }
-        tk.setSelected(false);
-    }
-
-    tableTaiKhoan.refresh();
-
-    String message = "";
-    if (successCount > 0) message += "Đã cập nhật thành công vai trò cho " + successCount + " tài khoản.\n";
-    if (failCount > 0) message += "Cập nhật thất bại cho " + failCount + " tài khoản.\n" + failedInfo.toString();
-    if (message.isEmpty() && !accountsToUpdate.isEmpty()) message = "Không có tài khoản nào cần cập nhật (vai trò đã giống nhau).";
-    else if (message.isEmpty()) message = "Không có tài khoản nào được chọn.";
-
-    showAlert("Kết quả", message, failCount > 0 ? Alert.AlertType.WARNING : Alert.AlertType.INFORMATION);
-
-    cboNewRole.getSelectionModel().clearSelection();
-    cboNewRole.setPromptText("Chọn vai trò");
-    tableTaiKhoan.getSelectionModel().clearSelection();
-}
+	    // Cập nhật lại văn bản trên nút
+	    btnChonTatCa.setText(isAllSelected ? "Bỏ chọn tất cả" : "Chọn tất cả");
+	}
 }
