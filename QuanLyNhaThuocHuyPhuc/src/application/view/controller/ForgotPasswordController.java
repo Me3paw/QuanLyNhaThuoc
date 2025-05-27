@@ -23,57 +23,61 @@ public class ForgotPasswordController {
     private PasswordField txtNewPassword;  // Ô nhập mật khẩu mới
     @FXML
     private PasswordField txtConfirmPassword;  // Ô nhập lại mật khẩu
-
     @FXML
     private TextField txtSDT;
 
 
     // Phương thức xử lý khi người dùng nhấn "Đổi mật khẩu"
     @FXML
-private void handleChangePassword() {
-    String username = txtUsername.getText();
-    String newPassword = txtNewPassword.getText();
-    String confirmPassword = txtConfirmPassword.getText();
-    String sdt = txtSDT.getText(); // Get the SDT input from the user
-
-    // Validate if the username is provided
-    if (username == null || username.trim().isEmpty()) {
-        showAlert(Alert.AlertType.ERROR, "Error", "Username cannot be empty.");
-        return;
-    }
-
-    // Validate if the new password and confirm password match
-    if (!newPassword.equals(confirmPassword)) {
-        showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
-        return;
-    }
-
-    // Retrieve the NhanVien associated with the username
-    NhanVienDAO nhanVienDAO = new NhanVienDAO();
-    TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
-    TaiKhoan account = taiKhoanDAO.getTaiKhoanByTenDangNhap(username);
-
-    if (account == null) {
-        showAlert(Alert.AlertType.ERROR, "Error", "Username does not exist.");
-        return;
-    }
-
-    NhanVien nhanVien = nhanVienDAO.getNhanVienByTaiKhoan(account.getMaTaiKhoan());
-
-    // Validate if the phone number matches
-    if (nhanVien == null || !nhanVien.getSoDienThoai().equals(sdt)) {
-        showAlert(Alert.AlertType.ERROR, "Error", "Invalid phone number.");
-        return;
-    }
-
-    // Update the password if validation passes
-    boolean success = taiKhoanDAO.updateTaiKhoanPassword(username, newPassword);
-    if (success) {
-        showAlert(Alert.AlertType.INFORMATION, "Success", "Password has been changed successfully.");
-    } else {
-        showAlert(Alert.AlertType.ERROR, "Error", "Failed to change the password. Please try again.");
-    }
-}
+    private void handleChangePassword() {
+	    String username = txtUsername.getText();
+	    String newPassword = txtNewPassword.getText();
+	    String confirmPassword = txtConfirmPassword.getText();
+	    String sdt = txtSDT.getText(); // Get the SDT input from the user
+	
+	    // Validate if the username is provided
+	    if (username == null || username.trim().isEmpty()) {
+	        showAlert(Alert.AlertType.ERROR, "Error", "Vui lòng nhập tài khoản.");
+	        return;
+	    }
+	
+	    // Validate if the new password and confirm password match
+	    if (!newPassword.equals(confirmPassword)) {
+	        showAlert(Alert.AlertType.ERROR, "Error", "Mật khẩu mới và xác nhận mật khẩu không khớp.");
+	        return;
+	    }
+	
+	    // Retrieve the NhanVien associated with the username
+	    NhanVienDAO nhanVienDAO = new NhanVienDAO();
+	    TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+	    TaiKhoan account = taiKhoanDAO.getTaiKhoanByTenDangNhap(username);
+	
+	    if (account == null) {
+	        showAlert(Alert.AlertType.ERROR, "Error", "Tài khoản không tồn tại.");
+	        return;
+	    }
+	
+	    NhanVien nhanVien = nhanVienDAO.getNhanVienByTaiKhoan(account.getMaTaiKhoan());
+	
+	    // Validate if the phone number matches
+	    if (nhanVien == null || !nhanVien.getSoDienThoai().equals(sdt)) {
+	        showAlert(Alert.AlertType.ERROR, "Error", "Số điện thoại không khớp với tài khoản.");
+	        return;
+	    }
+	
+	    // Update the password if validation passes
+	    boolean success = taiKhoanDAO.updateTaiKhoanPassword(username, newPassword);
+	    if (success) {
+	        showAlert(Alert.AlertType.INFORMATION, "Success", "Mật khẩu đã được đổi thành công.");
+	        txtUsername.clear();
+	        txtNewPassword.clear();
+	        txtConfirmPassword.clear();
+	        txtSDT.clear();
+	        txtUsername.requestFocus();
+	    } else {
+	        showAlert(Alert.AlertType.ERROR, "Error", "Không thể đổi mật khẩu. Vui lòng thử lại sau.");
+	    }
+	}
 
 
     

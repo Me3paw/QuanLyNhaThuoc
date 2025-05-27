@@ -167,7 +167,11 @@ public class ThemThuocController {
         NhaCungCap selectedNCC = cboNhaCungCap.getValue();
         String hinhAnhRelativePath = "";
 
-        if (!validateInputs(tenThuoc, hanSuDungDate, giaBanStr, giaNhapStr, soLuongTonStr, selectedNCC)) return;
+        if (!validateInputs(tenThuoc, hanSuDungDate, giaBanStr, giaNhapStr, soLuongTonStr, selectedNCC)) {
+        	
+			return;	
+        	
+        }
 
         double giaBan = Double.parseDouble(giaBanStr);
         double giaNhap = Double.parseDouble(giaNhapStr);
@@ -373,7 +377,7 @@ public class ThemThuocController {
         
         int countSuccess = 0;
         for (Thuoc thuoc : dsThuoc) {
-            // Có thể kiểm tra thuốc đã tồn tại hay chưa nếu muốn
+            
             if (thuocDAO.addThuoc(thuoc)) {
                 countSuccess++;
             }

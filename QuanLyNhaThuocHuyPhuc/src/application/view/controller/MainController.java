@@ -5,6 +5,7 @@ import entity.TaiKhoan;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -93,6 +94,8 @@ public class MainController {
     private HBox themNhanVien;
     @FXML
     private Button signOut;
+    @FXML
+	private Node taiKhoanItem;
    @FXML
 	public void initialize() {
 	    loadPage("POS.fxml"); // Load the default page
@@ -110,8 +113,8 @@ public class MainController {
 	            nhanVienItem.setDisable(true);
 	            nhanVienSubMenu.setDisable(true);
 	            chiaCaButton.setDisable(true);
-	            thongKeCaButton.setDisable(true);
-
+	            thongKeSubMenu.setDisable(true);
+	            accountItem.setDisable(true);
 	        }
 	    } else {
 	        // Fallback values if no session data is available
