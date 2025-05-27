@@ -156,67 +156,70 @@ public class ThemThuocController {
     }
 
     @FXML
-    private void handleThemThuocAction() {
-        String tenThuoc = txtTenThuoc.getText().trim();
-        String thanhPhan = txtThanhPhan.getText().trim();
-        String congDung = txtCongDung.getText().trim();
-        LocalDate hanSuDungDate = dpHanSuDung.getValue();
-        String giaBanStr = txtGiaBan.getText().trim();
-        String giaNhapStr = txtGiaNhap.getText().trim();
-        String soLuongTonStr = txtSoLuongTon.getText().trim();
-        NhaCungCap selectedNCC = cboNhaCungCap.getValue();
-        String hinhAnhRelativePath = "";
+private void handleThemThuocAction() {
+    String tenThuoc = txtTenThuoc.getText().trim();
+    String thanhPhan = txtThanhPhan.getText().trim();
+    String congDung = txtCongDung.getText().trim();
+    LocalDate hanSuDungDate = dpHanSuDung.getValue();
+    String giaBanStr = txtGiaBan.getText().trim();
+    String giaNhapStr = txtGiaNhap.getText().trim();
+    String soLuongTonStr = txtSoLuongTon.getText().trim();
+    NhaCungCap selectedNCC = cboNhaCungCap.getValue();
+    String hinhAnhRelativePath = "";
 
-        if (!validateInputs(tenThuoc, hanSuDungDate, giaBanStr, giaNhapStr, soLuongTonStr, selectedNCC)) return;
+    if (!validateInputs(tenThuoc, hanSuDungDate, giaBanStr, giaNhapStr, soLuongTonStr, selectedNCC)) return;
 
-        double giaBan = Double.parseDouble(giaBanStr);
-        double giaNhap = Double.parseDouble(giaNhapStr);
-        int soLuongTon = Integer.parseInt(soLuongTonStr);
+    double giaBan = Double.parseDouble(giaBanStr);
+    double giaNhap = Double.parseDouble(giaNhapStr);
+    int soLuongTon = Integer.parseInt(soLuongTonStr);
 
-        if (hanSuDungDate.isBefore(LocalDate.now())) {
-            showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Hạn sử dụng phải lớn hơn ngày hôm nay.");
-            dpHanSuDung.requestFocus();
-            return;
-        }
-        if (giaBan <= giaNhap) {
-            showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Giá bán phải lớn hơn giá nhập.");
-            txtGiaBan.requestFocus();
-            return;
-        }
-        if (soLuongTon <= 0) {
-            showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Số lượng tồn phải lớn hơn 0.");
-            txtSoLuongTon.requestFocus();
-            return;
-        }
-
-        if (selectedImageFile != null) {
-            try {
-                Path destinationFolder = Paths.get("src", "application", "assets", "images", "thuoc");
-                if (!Files.exists(destinationFolder)) Files.createDirectories(destinationFolder);
-
-                String newFileName = selectedImageFile.getName();
-                Path destinationPath = destinationFolder.resolve(newFileName);
-                Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                hinhAnhRelativePath = "/application/assets/images/thuoc/" + newFileName;
-            } catch (IOException e) {
-                showAlert(Alert.AlertType.ERROR, "Lỗi File", "Không thể sao chép file hình ảnh: " + e.getMessage());
-                e.printStackTrace();
-                return;
-            }
-        } else {
-            hinhAnhRelativePath = txtHinhAnhPath.getText().trim();
-        }
-
-        String maThuoc = thuocDAO.generateNextMaThuoc(tenThuoc);
-        Thuoc newThuoc = new Thuoc(maThuoc, tenThuoc, thanhPhan, congDung, hanSuDungDate.toString(), giaBan, giaNhap, soLuongTon, selectedNCC.getMaNhaCungCap(), hinhAnhRelativePath);
-
-        if (thuocDAO.addThuoc(newThuoc)) {
-            showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm thuốc '" + tenThuoc + "' với mã '" + maThuoc + "' thành công!");
-            clearForm();
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thuốc thất bại.");
-        }
+    if (hanSuDungDate.isBefore(LocalDate.now())) {
+        showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Hạn sử dụng phải lớn hơn ngày hôm nay.");
+        dpHanSuDung.requestFocus();
+        return;
     }
+    if (giaBan <= giaNhap) {
+        showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Giá bán phải lớn hơn giá nhập.");
+        txtGiaBan.requestFocus();
+        return;
+    }
+    if (soLuongTon <= 0) {
+        showAlert(Alert.AlertType.WARNING, "Sai thông tin", "Số lượng tồn phải lớn hơn 0.");
+        txtSoLuongTon.requestFocus();
+        return;
+    }
+
+    if (selectedImageFile != null) {
+        try {
+            // Get the root directory of the application
+            Path rootDirectory = Paths.get("").toAbsolutePath();
+            Path destinationFolder = rootDirectory.resolve("application/assets/images/thuoc");
+            if (!Files.exists(destinationFolder)) Files.createDirectories(destinationFolder);
+
+            String newFileName = selectedImageFile.getName();
+            Path destinationPath = destinationFolder.resolve(newFileName);
+            Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            hinhAnhRelativePath = "application/assets/images/thuoc/" + newFileName;
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Lỗi File", "Không thể sao chép file hình ảnh: " + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+    } else {
+        hinhAnhRelativePath = txtHinhAnhPath.getText().trim();
+    }
+
+    String maThuoc = thuocDAO.generateNextMaThuoc(tenThuoc);
+    Thuoc newThuoc = new Thuoc(maThuoc, tenThuoc, thanhPhan, congDung, hanSuDungDate.toString(), giaBan, giaNhap, soLuongTon, selectedNCC.getMaNhaCungCap(), hinhAnhRelativePath);
+
+    if (thuocDAO.addThuoc(newThuoc)) {
+        showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đã thêm thuốc '" + tenThuoc + "' với mã '" + maThuoc + "' thành công!");
+        clearForm();
+    } else {
+        showAlert(Alert.AlertType.ERROR, "Lỗi", "Thêm thuốc thất bại.");
+    }
+}
+
 
     private boolean validateInputs(String tenThuoc, LocalDate hanSuDungDate, String giaBanStr, String giaNhapStr, String soLuongTonStr, NhaCungCap selectedNCC) {
         if (tenThuoc.isEmpty()) return showAndFocus(txtTenThuoc, "Thiếu thông tin", "Vui lòng nhập Tên Thuốc.");

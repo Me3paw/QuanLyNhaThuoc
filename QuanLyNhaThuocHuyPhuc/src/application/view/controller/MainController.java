@@ -246,7 +246,7 @@ public class MainController {
 
         try {
             // Load the login page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/Login.fxml"));
             Parent loginRoot = loader.load();
 
             // Get the current stage

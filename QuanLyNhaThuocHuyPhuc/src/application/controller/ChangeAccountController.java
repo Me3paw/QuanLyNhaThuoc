@@ -31,30 +31,31 @@ public class ChangeAccountController {
         }
     }
 
-    @FXML
-    private void handleChangePassword() {
-        String username = usernameField.getText();
-        String currentPassword = currentPasswordField.getText();
-        String newPassword = newPasswordField.getText();
+	  @FXML
+	private void handleChangePassword() {
+	    String username = usernameField.getText();
+	    String currentPassword = currentPasswordField.getText();
+	    String newPassword = newPasswordField.getText();
+	
+	    if (username.isEmpty() || currentPassword.isEmpty() || newPassword.isEmpty()) {
+	        statusLabel.setText("Tất cả các trường đều bắt buộc.");
+	        return;
+	    }
+	
+	    // Verify current password
+	    if (!taiKhoanDAO.getTaiKhoanByTenDangNhap(username).getMatKhau().equals(currentPassword)) {
+	        statusLabel.setText("Mật khẩu hiện tại không chính xác.");
+	        return;
+	    }
+	
+	    // Update the password
+	    boolean success = taiKhoanDAO.updateTaiKhoanPassword(username, newPassword);
+	    if (success) {
+	        statusLabel.setText("Cập nhật mật khẩu thành công.");
+	        statusLabel.setStyle("-fx-text-fill: green;");
+	    } else {
+	        statusLabel.setText("Cập nhật mật khẩu thất bại.");
+	    }
+	}
 
-        if (username.isEmpty() || currentPassword.isEmpty() || newPassword.isEmpty()) {
-            statusLabel.setText("All fields are required.");
-            return;
-        }
-
-        // Verify current password
-        if (!taiKhoanDAO.getTaiKhoanByTenDangNhap(username).getMatKhau().equals(currentPassword)) {
-            statusLabel.setText("Current password is incorrect.");
-            return;
-        }
-
-        // Update the password
-        boolean success = taiKhoanDAO.updateTaiKhoanPassword(username, newPassword);
-        if (success) {
-            statusLabel.setText("Password updated successfully.");
-            statusLabel.setStyle("-fx-text-fill: green;");
-        } else {
-            statusLabel.setText("Failed to update password.");
-        }
-    }
 }
