@@ -15,6 +15,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -131,15 +134,22 @@ public class SearchMedicineController {
     private void loadImagePreview(Thuoc thuoc) {
 
             // Hiển thị hình ảnh preview (nếu có)
-            if (thuoc.getHinhAnh() != null && !thuoc.getHinhAnh().isEmpty()) {
-                try {
-                    Image image = new Image(getClass().getResourceAsStream(thuoc.getHinhAnh()));
-                    imgPreview.setImage(image);
-                } catch (Exception e) {
-                    imgPreview.setImage(null);
-                }
-            } else {
-                imgPreview.setImage(null);
-            }
+	    	if (thuoc.getHinhAnh() != null && !thuoc.getHinhAnh().isEmpty()) {
+	            try {
+	                Path imagePath = Paths.get(System.getProperty("user.dir"), thuoc.getHinhAnh());
+	                if (Files.exists(imagePath)) {
+	                    Image image = new Image(imagePath.toUri().toString());
+	                    imgPreview.setImage(image);
+	                } else {
+	                    System.out.println("Image file not found: " + imagePath);
+	                    imgPreview.setImage(null);
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	                imgPreview.setImage(null);
+	            }
+	        } else {
+	            imgPreview.setImage(null);
+	        }
         }
 }

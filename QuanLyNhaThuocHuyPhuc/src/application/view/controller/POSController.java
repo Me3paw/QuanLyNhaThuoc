@@ -19,6 +19,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 public class POSController {
@@ -231,34 +234,41 @@ private void handleCheckout() {
     }
 }
 
+@FXML
+private void handleThongTinThuoc() {
+    String maThuoc = txtMaThuocInput.getText().trim();
+    if (maThuoc.isEmpty()) return;
 
-
-
-
-    @FXML
-    private void handleThongTinThuoc() {
-        String maThuoc = txtMaThuocInput.getText().trim();
-        if (maThuoc.isEmpty()) return;
-
-        Thuoc t = thuocDAO.getThuocByID(maThuoc);
-        if (t == null) {
-            System.out.println("Không tìm thấy thuốc");
-            return;
-        }
-
-        currentThuoc = t;
-
-        lblDrugName.setText(t.getTenThuoc());
-        lblDrugID.setText("ID: " + t.getMaThuoc());
-        txtThanhPhan.setText(t.getThanhPhan());
-        txtGiaTien.setText(String.valueOf(t.getGiaBan()));
-
-        Image img = new Image(getClass().getResource(t.getHinhAnh()).toExternalForm());
-        imgDrug.setImage(img);
-
-        quantity = 1;
-        txtQuantity.setText(String.valueOf(quantity));
+    Thuoc t = thuocDAO.getThuocByID(maThuoc);
+    if (t == null) {
+        System.out.println("Không tìm thấy thuốc");
+        return;
     }
+
+    currentThuoc = t;
+
+    lblDrugName.setText(t.getTenThuoc());
+    lblDrugID.setText("ID: " + t.getMaThuoc());
+    txtThanhPhan.setText(t.getThanhPhan());
+    txtGiaTien.setText(String.valueOf(t.getGiaBan()));
+
+    // Update image loading logic
+    try {
+        Path imagePath = Paths.get(System.getProperty("user.dir"), t.getHinhAnh());
+        if (Files.exists(imagePath)) {
+            Image img = new Image(imagePath.toUri().toString());
+            imgDrug.setImage(img);
+        } else {
+            System.out.println("Image file not found: " + imagePath);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    quantity = 1;
+    txtQuantity.setText(String.valueOf(quantity));
+}
+
 
     @FXML
     private void handleXemChiTietThuoc() {

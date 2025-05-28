@@ -195,21 +195,23 @@ public class ThemThuocController {
 
         if (selectedImageFile != null) {
             try {
-                Path destinationFolder = Paths.get("src", "application", "assets", "images", "thuoc");
-                if (!Files.exists(destinationFolder)) Files.createDirectories(destinationFolder);
+                // Get the folder containing the .jar file
+                Path jarFolder = Paths.get(System.getProperty("user.dir"),"application", "assets", "images", "thuoc");
+                if (!Files.exists(jarFolder)) Files.createDirectories(jarFolder);
 
                 String newFileName = selectedImageFile.getName();
-                Path destinationPath = destinationFolder.resolve(newFileName);
+                Path destinationPath = jarFolder.resolve(newFileName);
                 Files.copy(selectedImageFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                hinhAnhRelativePath = "/application/assets/images/thuoc/" + newFileName;
+                hinhAnhRelativePath = "application/assets/images/thuoc/" + newFileName;
             } catch (IOException e) {
-                showAlert(Alert.AlertType.ERROR, "Lỗi File", "Không thể sao chép file hình ảnh: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "File Error", "Unable to copy image file: " + e.getMessage());
                 e.printStackTrace();
                 return;
             }
         } else {
             hinhAnhRelativePath = txtHinhAnhPath.getText().trim();
         }
+
 
         String maThuoc = thuocDAO.generateNextMaThuoc(tenThuoc);
         Thuoc newThuoc = new Thuoc(maThuoc, tenThuoc, thanhPhan, congDung, hanSuDungDate.toString(), giaBan, giaNhap, soLuongTon, selectedNCC.getMaNhaCungCap(), hinhAnhRelativePath);
